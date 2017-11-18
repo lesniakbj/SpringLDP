@@ -29,8 +29,7 @@ public class TenantResolver implements CurrentTenantIdentifierResolver {
     @Override
     public String resolveCurrentTenantIdentifier() {
         log.debug("Attempting to resolve current tenant.");
-        String tenant = resolveTenant();
-        return tenant;
+        return resolveTenant();
     }
 
     private String resolveTenant() {

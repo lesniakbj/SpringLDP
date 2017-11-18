@@ -1,11 +1,23 @@
 package com.calabrio.datasource;
 
+import com.calabrio.util.DbProperties;
 import org.apache.log4j.Logger;
 import org.hibernate.engine.jdbc.connections.spi.AbstractDataSourceBasedMultiTenantConnectionProviderImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.lookup.DataSourceLookup;
+import org.springframework.context.EnvironmentAware;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -25,20 +37,35 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
     @Autowired
     private DataSource defaultDataSource;
 
-    @Autowired
-    private DataSourceLookup dataSourceLookup;
+    private static final Properties props = loadProperties();
 
     @Override
     protected DataSource selectAnyDataSource() {
-        log.debug(String.format("Selecting Any DataSource: %s", defaultDataSource));
+        log.debug("Selecting Default DataSource");
         return defaultDataSource;
     }
 
     @Override
     protected DataSource selectDataSource(String tenantIdentifier) {
-        log.debug(String.format("Looking up DataSource by: %s, %s", dataSourceLookup, tenantIdentifier));
-        DataSource ds = dataSourceLookup.getDataSource(tenantIdentifier);
+        log.debug(String.format("Connection to DataSource by: %s", tenantIdentifier));
+        DriverManagerDataSource ds = new DriverManagerDataSource();
+        ds.setDriverClassName(props.getProperty("jdbc.driverClassName"));
+        ds.setUrl(props.getProperty("jdbc.url.no.db") + "database=" + tenantIdentifier + ";");
+        ds.setUsername("sa");
+        ds.setPassword("Admin2193!");
         log.debug(String.format("Data Source Selected: %s", ds));
         return ds;
+    }
+
+    private static Properties loadProperties() {
+        try(InputStream in = MultiTenantConnectionProvider.class.getClassLoader().getResourceAsStream("application.properties")) {
+            Properties prop = new Properties();
+            prop.load(in);
+            return prop;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
