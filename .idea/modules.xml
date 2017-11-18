@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SpringBootLDP.iml" filepath="$PROJECT_DIR$/.idea/modules/SpringBootLDP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SpringBootLDP_main.iml" filepath="$PROJECT_DIR$/.idea/modules/SpringBootLDP_main.iml" group="SpringBootLDP" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SpringBootLDP_test.iml" filepath="$PROJECT_DIR$/.idea/modules/SpringBootLDP_test.iml" group="SpringBootLDP" />
+    </modules>
+  </component>
+</project>
