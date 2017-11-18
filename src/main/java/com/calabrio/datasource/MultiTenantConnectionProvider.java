@@ -17,6 +17,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -34,10 +38,22 @@ import java.util.Properties;
 public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiTenantConnectionProviderImpl {
     private static final Logger log = Logger.getLogger(MultiTenantConnectionProvider.class);
 
-    @Autowired
-    private DataSource defaultDataSource;
+
 
     private static final Properties props = loadProperties();
+    private DriverManagerDataSource defaultDataSource;
+    private Map<Integer, String> tenantDbMap;
+
+    public MultiTenantConnectionProvider(){
+        defaultDataSource = new DriverManagerDataSource();
+        defaultDataSource.setDriverClassName(props.getProperty("jdbc.driverClassName"));
+        defaultDataSource.setUrl(props.getProperty("jdbc.url.no.db"));// + "database=" + tenantIdentifier + ";");
+        defaultDataSource.setCatalog(props.getProperty("jdbc.default.db"));
+        defaultDataSource.setUsername(props.getProperty("jdbc.driverClassName"));
+        defaultDataSource.setPassword(props.getProperty("jdbc.driverClassName"));
+
+        initTenantMap();
+    }
 
     @Override
     protected DataSource selectAnyDataSource() {
@@ -53,10 +69,15 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
 
         log.debug(String.format("Connection to DataSource by: %s", tenantIdentifier));
 
+        String tenantDb = tenantDbMap.get(Integer.parseInt(tenantIdentifier));
+        if(tenantDb == null) {
+            return null;
+        }
+
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName(props.getProperty("jdbc.driverClassName"));
         ds.setUrl(props.getProperty("jdbc.url.no.db"));// + "database=" + tenantIdentifier + ";");
-        ds.setCatalog(tenantIdentifier);
+        ds.setCatalog(tenantDb);
         ds.setUsername(props.getProperty("jdbc.driverClassName"));
         ds.setPassword(props.getProperty("jdbc.driverClassName"));
 
@@ -65,6 +86,7 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
     }
 
     private static Properties loadProperties() {
+        log.debug("Loading properties for Connection Provider");
         try(InputStream in = MultiTenantConnectionProvider.class.getClassLoader().getResourceAsStream("application.properties")) {
             Properties prop = new Properties();
             prop.load(in);
@@ -74,5 +96,17 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
         }
 
         return null;
+    }
+
+    private void initTenantMap() {
+        tenantDbMap = new HashMap<>();
+        tenantDbMap.put(-1, "SpringLDPCommon");
+        try(ResultSet rs = getAnyConnection().prepareStatement("SELECT tenantId, tenantDbName FROM WFOTenant").executeQuery()) {
+            while (rs.next()) {
+                tenantDbMap.put(rs.getInt("tenantId"), rs.getString("tenantDbName"));
+            }
+        } catch (SQLException e) {
+            log.debug("Error querying for Tenant Map");
+        }
     }
 }

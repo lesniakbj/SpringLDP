@@ -15,16 +15,16 @@ package com.calabrio.model;
 public class AuthRequest {
     private String email;
     private String password;
-    private String tenantDb;
+    private Integer tenantId;
 
-    public AuthRequest(String email, String password, String tenantDb) {
+    public AuthRequest(String email, String password, Integer tenantId) {
         this.email = email;
         this.password = password;
-        this.tenantDb = tenantDb;
+        this.tenantId = tenantId;
     }
 
     public String toString() {
-        return "Username: " + email + ", Password: " + password + ", TenantDB: " + tenantDb;
+        return "Username: " + email + ", Password: " + password + ", TenantId: " + tenantId;
     }
 
     public String getEmail() {
@@ -35,7 +35,7 @@ public class AuthRequest {
         return password;
     }
 
-    public String getTenantDb() {
-        return tenantDb;
+    public Integer getTenantId() {
+        return tenantId;
     }
 }

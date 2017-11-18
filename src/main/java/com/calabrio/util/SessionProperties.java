@@ -13,6 +13,6 @@ package com.calabrio.util;
  * Created by Brendan.Lesniak on 11/17/2017.
  */
 public class SessionProperties {
-    public static final String WFO_DB = "WFODb";
+    public static final String WFO_TENANT = "WFOTenant";
     public static final String WFO_USER = "WFOUser";
 }

@@ -37,7 +37,7 @@ public class TenantResolver implements CurrentTenantIdentifierResolver {
         if(attr != null) {
             HttpSession sess = attr.getRequest().getSession(false);
             if(sess != null) {
-                String tenantDb = (String) sess.getAttribute(SessionProperties.WFO_DB);
+                String tenantDb = Integer.toString((Integer)sess.getAttribute(SessionProperties.WFO_TENANT));
                 if(tenantDb != null) {
                     log.debug(String.format("Tenant Resolved to: %s", tenantDb));
                     return tenantDb;

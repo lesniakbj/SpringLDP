@@ -41,7 +41,7 @@ public class AuthController extends AbstractController {
             log.debug(String.format("Auth parsed as: %s", auth));
 
             // Set our Tenant DB
-            rq.getSession().setAttribute(SessionProperties.WFO_DB, auth.getTenantDb());
+            rq.getSession().setAttribute(SessionProperties.WFO_TENANT, auth.getTenantId());
 
             // Query the WFOUserService to retrieve the WFOUser associated with
             // that username and password that we got from the AuthRequest.
