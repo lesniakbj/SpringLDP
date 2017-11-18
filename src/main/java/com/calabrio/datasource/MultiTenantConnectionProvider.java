@@ -47,13 +47,20 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
 
     @Override
     protected DataSource selectDataSource(String tenantIdentifier) {
+        if(props == null) {
+            return null;
+        }
+
         log.debug(String.format("Connection to DataSource by: %s", tenantIdentifier));
+
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName(props.getProperty("jdbc.driverClassName"));
-        ds.setUrl(props.getProperty("jdbc.url.no.db") + "database=" + tenantIdentifier + ";");
-        ds.setUsername("sa");
-        ds.setPassword("Admin2193!");
-        log.debug(String.format("Data Source Selected: %s", ds));
+        ds.setUrl(props.getProperty("jdbc.url.no.db"));// + "database=" + tenantIdentifier + ";");
+        ds.setCatalog(tenantIdentifier);
+        ds.setUsername(props.getProperty("jdbc.driverClassName"));
+        ds.setPassword(props.getProperty("jdbc.driverClassName"));
+
+        log.debug(String.format("Data Source Selected: %s/%s/%s/%s", ds.getUrl(), ds.getCatalog(), ds.getUsername(), ds.getPassword()));
         return ds;
     }
 
