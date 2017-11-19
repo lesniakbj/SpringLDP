@@ -17,5 +17,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "WFOPerson")
 public class WFOPerson {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
+    @Column(name = "tenantId")
+    private Integer tenantId;
 }
