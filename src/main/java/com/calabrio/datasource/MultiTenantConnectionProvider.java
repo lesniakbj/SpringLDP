@@ -52,10 +52,7 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
     private DriverManagerDataSource initDataSourceDefaults() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(props.getProperty("jdbc.driverClassName"));
-        dataSource.setUrl(props.getProperty("jdbc.short.url"));
-        dataSource.setCatalog(props.getProperty("jdbc.default.db"));
-        dataSource.setPassword(props.getProperty("jdbc.password"));
-        dataSource.setUsername(props.getProperty("jdbc.username"));
+        dataSource.setUrl(formatConnectionString(props.getProperty("jdbc.default.host"), props.getProperty("jdbc.default.port"), props.getProperty("jdbc.default.db"), props.getProperty("jdbc.username"), props.getProperty("jdbc.password")));
         return dataSource;
     }
 
@@ -101,16 +98,20 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
     private void initTenantMap() {
         tenantDbMap = new HashMap<>();
         tenantDbMap.put(DbProperties.DEFAULT_TENANT, DbProperties.DEFAULT_TENANT_DB);
-        try(ResultSet rs = getAnyConnection().prepareStatement("SELECT tenantId, tenantDbName FROM WFOTenant").executeQuery()) {
+        try(ResultSet rs = getAnyConnection().prepareStatement("SELECT tenantId, databaseName FROM Tenant").executeQuery()) {
             while (rs.next()) {
-                tenantDbMap.put(rs.getInt("tenantId"), rs.getString("tenantDbName"));
+                tenantDbMap.put(rs.getInt("tenantId"), rs.getString("databaseName"));
             }
         } catch (SQLException e) {
-            log.debug("Error querying for Tenant Map");
+            log.debug("Error querying for Tenant Map", e);
         }
     }
 
     public static Map<Integer, String> getTenantDbMap() {
         return tenantDbMap;
+    }
+
+    private static String formatConnectionString(String host, String port, String databaseName, String user, String pass) {
+        return String.format("jdbc:sqlserver://%s:%s;database=%s;user=%s;password=%s;", host, port, databaseName, user, pass);
     }
 }
