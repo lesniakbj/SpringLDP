@@ -4,14 +4,18 @@ import com.calabrio.util.DbProperties;
 import org.apache.log4j.Logger;
 import org.hibernate.engine.jdbc.connections.spi.AbstractDataSourceBasedMultiTenantConnectionProviderImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.EnvironmentAware;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.lookup.DataSourceLookup;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.sql.DataSource;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -35,18 +39,20 @@ import java.util.Properties;
  * <p>
  * Created by Brendan.Lesniak on 11/17/2017.
  */
+@Component
+@Configurable
 public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiTenantConnectionProviderImpl {
     private static final Logger log = Logger.getLogger(MultiTenantConnectionProvider.class);
 
     private static final Properties props = loadProperties();
     private DriverManagerDataSource defaultDataSource;
     private DriverManagerDataSource tenantDataSource;
-    private static Map<Integer, String> tenantDbMap;
+    private TenantDataSourceLookup dataSourceLookup;
 
     public MultiTenantConnectionProvider(){
         defaultDataSource = initDataSourceDefaults();
         tenantDataSource = initDataSourceDefaults();
-        initTenantMap();
+        dataSourceLookup = new TenantDataSourceLookup();
     }
 
     private DriverManagerDataSource initDataSourceDefaults() {
@@ -66,19 +72,13 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
     protected DataSource selectDataSource(String tenantIdentifier) {
         log.debug(String.format("Connection to DataSource by: %s", tenantIdentifier));
 
-        String tenantDb = tenantDbMap.get(Integer.parseInt(tenantIdentifier));
-        if(tenantDb == null) {
-            log.debug(String.format("Unable to find by id %s, got null.", tenantIdentifier));
-
-            // If we only have 1 tenant, and tenant was null, we can assume that is the tenant
-            // we are supposed to use, and can return that instead.
-
+        if(tenantIdentifier == null || Integer.parseInt(tenantIdentifier) == -1) {
+            log.debug("No tenant Identifier.");
             return defaultDataSource;
         }
 
-        tenantDataSource.setCatalog(tenantDb);
-
-        log.debug(String.format("Data Source Selected: %s/%s/%s/%s", tenantDataSource.getUrl(), tenantDataSource.getCatalog(), tenantDataSource.getUsername(), tenantDataSource.getPassword()));
+        tenantDataSource = (DriverManagerDataSource)dataSourceLookup.getDataSource(tenantIdentifier, selectAnyDataSource());
+        log.debug(String.format("Data Source Selected: %s", tenantDataSource.getUrl()));
         return tenantDataSource;
     }
 
@@ -95,23 +95,7 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
         return null;
     }
 
-    private void initTenantMap() {
-        tenantDbMap = new HashMap<>();
-        tenantDbMap.put(DbProperties.DEFAULT_TENANT, DbProperties.DEFAULT_TENANT_DB);
-        try(ResultSet rs = getAnyConnection().prepareStatement("SELECT tenantId, databaseName FROM Tenant").executeQuery()) {
-            while (rs.next()) {
-                tenantDbMap.put(rs.getInt("tenantId"), rs.getString("databaseName"));
-            }
-        } catch (SQLException e) {
-            log.debug("Error querying for Tenant Map", e);
-        }
-    }
-
-    public static Map<Integer, String> getTenantDbMap() {
-        return tenantDbMap;
-    }
-
-    private static String formatConnectionString(String host, String port, String databaseName, String user, String pass) {
+    public static String formatConnectionString(String host, String port, String databaseName, String user, String pass) {
         return String.format("jdbc:sqlserver://%s:%s;database=%s;user=%s;password=%s;", host, port, databaseName, user, pass);
     }
 }

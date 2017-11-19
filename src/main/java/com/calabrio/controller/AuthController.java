@@ -39,6 +39,7 @@ public class AuthController extends AbstractController {
         try {
             AuthRequest auth = fromJson(requestBody(rq), AuthRequest.class);
             log.debug(String.format("Auth parsed as: %s", auth));
+            rq.getSession().setAttribute(SessionProperties.WFO_TENANT, auth.getTenantId());
 
             // Query the WFOPersonService to retrieve the WFOPerson associated with
             // that username and password that we got from the AuthRequest.

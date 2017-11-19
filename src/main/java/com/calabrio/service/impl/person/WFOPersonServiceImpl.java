@@ -1,5 +1,6 @@
-package com.calabrio.service.impl;
+package com.calabrio.service.impl.person;
 
+import com.calabrio.dao.TenantDao;
 import com.calabrio.dao.WFOPersonDao;
 import com.calabrio.datasource.MultiTenantConnectionProvider;
 import com.calabrio.model.auth.AuthRequest;
@@ -38,20 +39,16 @@ public class WFOPersonServiceImpl implements WFOPersonService {
     private WFOPersonDao userDao;
 
     @Autowired
+    private TenantDao tenantDao;
+
+    @Autowired
     private SessionFactory sessionFactory;
 
     @Override public WFOPerson authenticate(AuthRequest auth) throws AuthenticationException {
         log.debug(String.format("Authenticating user with auth request: %s", auth));
 
-        if(auth.getTenantId() == null) {
-            Map<Integer, String> dbMap = MultiTenantConnectionProvider.getTenantDbMap();
-            boolean hasMoreThanOneTenant = dbMap.size() > 2; // Note: There will always be a single 'Common' tenant.
-            if(hasMoreThanOneTenant) {
-                throw new AuthenticationException("Please specify tenant!");
-            } else {
-                setTenantId(dbMap, auth);
-            }
-        }
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        attr.getRequest().getSession().setAttribute(SessionProperties.WFO_TENANT, auth.getTenantId());
 
         WFOPerson user = userDao.findByEmail(auth.getEmail());
         if(user == null) {
@@ -63,17 +60,5 @@ public class WFOPersonServiceImpl implements WFOPersonService {
         }
 
         return user;
-    }
-
-    private void setTenantId(Map<Integer, String> dbMap, AuthRequest auth) {
-        Integer id = DbProperties.DEFAULT_TENANT;
-        for(Integer key : dbMap.keySet()) {
-            if(!Objects.equals(key, DbProperties.DEFAULT_TENANT)) {
-                id = key;
-            }
-        }
-        auth.setTenantId(id);
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        attr.getRequest().getSession().setAttribute(SessionProperties.WFO_TENANT, auth.getTenantId());
     }
 }

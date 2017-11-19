@@ -1,4 +1,4 @@
-package com.calabrio.dao.impl;
+package com.calabrio.dao.impl.person;
 
 import com.calabrio.dao.AbstractDao;
 import com.calabrio.dao.WFOPersonDao;
@@ -28,9 +28,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class WFOPersonDaoImpl extends AbstractDao implements WFOPersonDao {
     private static final Logger log = Logger.getLogger(WFOPersonDaoImpl.class);
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
     public WFOPerson findByEmail(String email) {
         log.debug("Finding user by email.");
 
@@ -51,9 +48,5 @@ public class WFOPersonDaoImpl extends AbstractDao implements WFOPersonDao {
         WFOPerson pwUser = (WFOPerson) querySingleResult(query);
 
         return pwUser != null && pwUser.equals(user);
-    }
-
-    private Session getSession() {
-        return sessionFactory.getCurrentSession();
     }
 }

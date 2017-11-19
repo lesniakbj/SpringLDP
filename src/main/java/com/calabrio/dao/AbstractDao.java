@@ -1,7 +1,10 @@
 package com.calabrio.dao;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.NoResultException;
 
@@ -20,6 +23,9 @@ import javax.persistence.NoResultException;
 public class AbstractDao {
     private static final Logger log = Logger.getLogger(AbstractDao.class);
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
     public Object querySingleResult(Query query) {
         try {
             return query.getSingleResult();
@@ -28,5 +34,9 @@ public class AbstractDao {
         }
 
         return null;
+    }
+
+    public Session getSession() {
+        return sessionFactory.getCurrentSession();
     }
 }

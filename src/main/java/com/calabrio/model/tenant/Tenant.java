@@ -2,6 +2,7 @@ package com.calabrio.model.tenant;
 
 import javax.persistence.*;
 
+@Table(name = "Tenant")
 public class Tenant {
     @Id
     @Column(name = "tenantId", nullable = false)
