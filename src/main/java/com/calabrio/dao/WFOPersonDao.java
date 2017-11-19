@@ -1,6 +1,7 @@
 package com.calabrio.dao;
 
-import com.calabrio.model.user.WFOUser;
+
+import com.calabrio.model.user.WFOPerson;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -14,8 +15,8 @@ import com.calabrio.model.user.WFOUser;
  * <p>
  * Created by Brendan.Lesniak on 11/17/2017.
  */
-public interface WFOUserDao {
-    WFOUser findByEmail(String email);
+public interface WFOPersonDao {
+    WFOPerson findByEmail(String email);
 
-    boolean authenticate(WFOUser user, String password);
+    boolean authenticate(WFOPerson user, String password);
 }

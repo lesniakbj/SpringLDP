@@ -1,8 +1,8 @@
 package com.calabrio.controller;
 
 import com.calabrio.model.auth.AuthRequest;
-import com.calabrio.model.user.WFOUser;
-import com.calabrio.service.WFOUserService;
+import com.calabrio.model.user.WFOPerson;
+import com.calabrio.service.WFOPersonService;
 import com.calabrio.util.SessionProperties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class AuthController extends AbstractController {
     private static final Logger log = Logger.getLogger(AuthController.class);
 
     @Autowired
-    private WFOUserService userService;
+    private WFOPersonService userService;
 
     @RequestMapping(name = "auth", value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<String> auth(HttpServletRequest rq) {
@@ -40,15 +40,15 @@ public class AuthController extends AbstractController {
             AuthRequest auth = fromJson(requestBody(rq), AuthRequest.class);
             log.debug(String.format("Auth parsed as: %s", auth));
 
-            // Query the WFOUserService to retrieve the WFOUser associated with
+            // Query the WFOPersonService to retrieve the WFOPerson associated with
             // that username and password that we got from the AuthRequest.
-            WFOUser authUser = userService.authenticate(auth);
+            WFOPerson authUser = userService.authenticate(auth);
             if(authUser == null) {
                 return errorResponse("Error authenticating user credentials", 400);
             }
 
             String json = toJson(authUser);
-            rq.getSession().setAttribute(SessionProperties.WFO_USER, json);
+            rq.getSession().setAttribute(SessionProperties.WFO_PERSON, json);
             return ResponseEntity.ok(json);
         } catch (ParseException | AuthenticationException e) {
             log.debug(e.getMessage(), e);

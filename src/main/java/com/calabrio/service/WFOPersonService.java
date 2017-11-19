@@ -1,4 +1,9 @@
-package com.calabrio.util;
+package com.calabrio.service;
+
+import com.calabrio.model.auth.AuthRequest;
+import com.calabrio.model.user.WFOPerson;
+
+import javax.naming.AuthenticationException;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -12,7 +17,6 @@ package com.calabrio.util;
  * <p>
  * Created by Brendan.Lesniak on 11/17/2017.
  */
-public class SessionProperties {
-    public static final String WFO_TENANT = "WFOTenant";
-    public static final String WFO_PERSON = "WFOPerson";
+public interface WFOPersonService {
+    WFOPerson authenticate(AuthRequest auth) throws AuthenticationException;
 }

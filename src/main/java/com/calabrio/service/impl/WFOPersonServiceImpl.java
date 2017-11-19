@@ -1,10 +1,10 @@
 package com.calabrio.service.impl;
 
-import com.calabrio.dao.WFOUserDao;
+import com.calabrio.dao.WFOPersonDao;
 import com.calabrio.datasource.MultiTenantConnectionProvider;
 import com.calabrio.model.auth.AuthRequest;
-import com.calabrio.model.user.WFOUser;
-import com.calabrio.service.WFOUserService;
+import com.calabrio.model.user.WFOPerson;
+import com.calabrio.service.WFOPersonService;
 import com.calabrio.util.DbProperties;
 import com.calabrio.util.SessionProperties;
 import org.apache.log4j.Logger;
@@ -31,16 +31,16 @@ import java.util.Objects;
  * Created by Brendan.Lesniak on 11/17/2017.
  */
 @Service
-public class WFOUserServiceImpl implements WFOUserService {
-    private static final Logger log = Logger.getLogger(WFOUserServiceImpl.class);
+public class WFOPersonServiceImpl implements WFOPersonService {
+    private static final Logger log = Logger.getLogger(WFOPersonServiceImpl.class);
 
     @Autowired
-    WFOUserDao userDao;
+    private WFOPersonDao userDao;
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Override public WFOUser authenticate(AuthRequest auth) throws AuthenticationException {
+    @Override public WFOPerson authenticate(AuthRequest auth) throws AuthenticationException {
         log.debug(String.format("Authenticating user with auth request: %s", auth));
 
         if(auth.getTenantId() == null) {
@@ -53,7 +53,7 @@ public class WFOUserServiceImpl implements WFOUserService {
             }
         }
 
-        WFOUser user = userDao.findByEmail(auth.getEmail());
+        WFOPerson user = userDao.findByEmail(auth.getEmail());
         if(user == null) {
             throw new AuthenticationException("Unable to find user!");
         }

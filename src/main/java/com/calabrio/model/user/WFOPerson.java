@@ -1,9 +1,6 @@
-package com.calabrio.service;
+package com.calabrio.model.user;
 
-import com.calabrio.model.auth.AuthRequest;
-import com.calabrio.model.user.WFOUser;
-
-import javax.naming.AuthenticationException;
+import javax.persistence.*;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -17,6 +14,8 @@ import javax.naming.AuthenticationException;
  * <p>
  * Created by Brendan.Lesniak on 11/17/2017.
  */
-public interface WFOUserService {
-    WFOUser authenticate(AuthRequest auth) throws AuthenticationException;
+@Entity
+@Table(name = "WFOPerson")
+public class WFOPerson {
+
 }

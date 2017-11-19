@@ -1,6 +1,8 @@
 package com.calabrio.controller;
 
-import com.calabrio.model.user.WFOUser;
+import com.calabrio.model.user.WFOPerson;
+import com.calabrio.util.DbProperties;
+import com.calabrio.util.SessionProperties;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +32,9 @@ abstract class AbstractController {
         return ResponseEntity.status(code).body(toJson(err));
     }
 
-    static WFOUser getUser(HttpServletRequest rq) {
+    static WFOPerson getUser(HttpServletRequest rq) {
         try {
-            return fromJson((String)rq.getSession().getAttribute("WFOUser"), WFOUser.class);
+            return fromJson((String)rq.getSession().getAttribute(SessionProperties.WFO_PERSON), WFOPerson.class);
         } catch (ParseException e) {
             log.debug("Unable to parse user from session.");
             return null;

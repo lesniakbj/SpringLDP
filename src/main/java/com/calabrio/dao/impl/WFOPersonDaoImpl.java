@@ -1,8 +1,8 @@
 package com.calabrio.dao.impl;
 
 import com.calabrio.dao.AbstractDao;
-import com.calabrio.dao.WFOUserDao;
-import com.calabrio.model.user.WFOUser;
+import com.calabrio.dao.WFOPersonDao;
+import com.calabrio.model.user.WFOPerson;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,30 +25,30 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class WFOUserDaoImpl extends AbstractDao implements WFOUserDao {
-    private static final Logger log = Logger.getLogger(WFOUserDaoImpl.class);
+public class WFOPersonDaoImpl extends AbstractDao implements WFOPersonDao {
+    private static final Logger log = Logger.getLogger(WFOPersonDaoImpl.class);
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    public WFOUser findByEmail(String email) {
+    public WFOPerson findByEmail(String email) {
         log.debug("Finding user by email.");
 
-        Query query = getSession().createQuery("FROM WFOUser WHERE email = :email");
+        Query query = getSession().createQuery("FROM WFOPerson WHERE email = :email");
         query.setParameter("email", email);
-        return (WFOUser) querySingleResult(query);
+        return (WFOPerson) querySingleResult(query);
     }
 
-    public boolean authenticate(WFOUser user, String password) {
+    public boolean authenticate(WFOPerson user, String password) {
         log.debug("Authenticating user.");
 
         if(user == null) {
             return false;
         }
 
-        Query query = getSession().createQuery("FROM WFOUser WHERE password = :password");
+        Query query = getSession().createQuery("FROM WFOPerson WHERE password = :password");
         query.setParameter("password", password);
-        WFOUser pwUser = (WFOUser) querySingleResult(query);
+        WFOPerson pwUser = (WFOPerson) querySingleResult(query);
 
         return pwUser != null && pwUser.equals(user);
     }

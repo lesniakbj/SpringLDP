@@ -1,6 +1,6 @@
 package com.calabrio.controller;
 
-import com.calabrio.model.user.WFOUser;
+import com.calabrio.model.user.WFOPerson;
 import org.apache.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +27,7 @@ public class IndexController extends AbstractController {
 
     @RequestMapping(name = "index", value = "/index", method = RequestMethod.GET)
     public ResponseEntity<String> index(HttpServletRequest rq) {
-        WFOUser user = getUser(rq);
+        WFOPerson user = getUser(rq);
         if(user == null) {
             return errorResponse("Must have valid User!", 400);
         }
