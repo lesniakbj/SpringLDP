@@ -1,9 +1,6 @@
 package com.calabrio.model.user;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -22,6 +19,7 @@ import javax.persistence.Table;
 public class WFOUser {
     @Id
     @Column(name = "personId", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer personId;
 
     @Column(name = "tenantId", nullable = false)
