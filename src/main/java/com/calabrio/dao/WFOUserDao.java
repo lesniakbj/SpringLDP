@@ -1,7 +1,6 @@
 package com.calabrio.dao;
 
-import com.calabrio.model.WFOUser;
-import org.hibernate.Session;
+import com.calabrio.model.user.WFOUser;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.

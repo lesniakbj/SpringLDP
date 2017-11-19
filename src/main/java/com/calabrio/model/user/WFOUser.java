@@ -1,7 +1,4 @@
-package com.calabrio.model;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
+package com.calabrio.model.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

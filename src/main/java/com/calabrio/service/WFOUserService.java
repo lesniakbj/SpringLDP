@@ -1,7 +1,7 @@
 package com.calabrio.service;
 
-import com.calabrio.model.AuthRequest;
-import com.calabrio.model.WFOUser;
+import com.calabrio.model.auth.AuthRequest;
+import com.calabrio.model.user.WFOUser;
 
 import javax.naming.AuthenticationException;
 

@@ -1,4 +1,4 @@
-package com.calabrio.model;
+package com.calabrio.model.auth;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -37,5 +37,17 @@ public class AuthRequest {
 
     public Integer getTenantId() {
         return tenantId;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setTenantId(Integer tenantId) {
+        this.tenantId = tenantId;
     }
 }

@@ -13,5 +13,6 @@ package com.calabrio.util;
  * Created by Brendan.Lesniak on 11/17/2017.
  */
 public class DbProperties {
-    public static final String DEFAULT_TENANT = "-1";
+    public static final Integer DEFAULT_TENANT = -1;
+    public static final String DEFAULT_TENANT_DB = "SpringLDPCommon";
 }

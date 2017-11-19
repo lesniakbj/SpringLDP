@@ -1,7 +1,7 @@
 package com.calabrio.controller;
 
-import com.calabrio.model.AuthRequest;
-import com.calabrio.model.WFOUser;
+import com.calabrio.model.auth.AuthRequest;
+import com.calabrio.model.user.WFOUser;
 import com.calabrio.service.WFOUserService;
 import com.calabrio.util.SessionProperties;
 import org.apache.log4j.Logger;
@@ -39,9 +39,6 @@ public class AuthController extends AbstractController {
         try {
             AuthRequest auth = fromJson(requestBody(rq), AuthRequest.class);
             log.debug(String.format("Auth parsed as: %s", auth));
-
-            // Set our Tenant DB
-            rq.getSession().setAttribute(SessionProperties.WFO_TENANT, auth.getTenantId());
 
             // Query the WFOUserService to retrieve the WFOUser associated with
             // that username and password that we got from the AuthRequest.

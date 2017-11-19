@@ -1,6 +1,6 @@
 package com.calabrio.controller;
 
-import com.calabrio.model.WFOUser;
+import com.calabrio.model.user.WFOUser;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.springframework.http.ResponseEntity;

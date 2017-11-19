@@ -1,9 +1,7 @@
 package com.calabrio.datasource;
 
-import com.calabrio.model.WFOUser;
 import com.calabrio.util.DbProperties;
 import com.calabrio.util.SessionProperties;
-import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -29,15 +27,15 @@ public class TenantResolver implements CurrentTenantIdentifierResolver {
     @Override
     public String resolveCurrentTenantIdentifier() {
         log.debug("Attempting to resolve current tenant.");
-        return resolveTenant();
+        return Integer.toString(resolveTenant());
     }
 
-    private String resolveTenant() {
+    private Integer resolveTenant() {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if(attr != null) {
             HttpSession sess = attr.getRequest().getSession(false);
             if(sess != null) {
-                String tenantDb = Integer.toString((Integer)sess.getAttribute(SessionProperties.WFO_TENANT));
+                Integer tenantDb = (Integer)sess.getAttribute(SessionProperties.WFO_TENANT);
                 if(tenantDb != null) {
                     log.debug(String.format("Tenant Resolved to: %s", tenantDb));
                     return tenantDb;

@@ -41,7 +41,7 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
     private static final Properties props = loadProperties();
     private DriverManagerDataSource defaultDataSource;
     private DriverManagerDataSource tenantDataSource;
-    private Map<Integer, String> tenantDbMap;
+    private static Map<Integer, String> tenantDbMap;
 
     public MultiTenantConnectionProvider(){
         defaultDataSource = initDataSourceDefaults();
@@ -72,6 +72,10 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
         String tenantDb = tenantDbMap.get(Integer.parseInt(tenantIdentifier));
         if(tenantDb == null) {
             log.debug(String.format("Unable to find by id %s, got null.", tenantIdentifier));
+
+            // If we only have 1 tenant, and tenant was null, we can assume that is the tenant
+            // we are supposed to use, and can return that instead.
+
             return defaultDataSource;
         }
 
@@ -96,7 +100,7 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
 
     private void initTenantMap() {
         tenantDbMap = new HashMap<>();
-        tenantDbMap.put(-1, "SpringLDPCommon");
+        tenantDbMap.put(DbProperties.DEFAULT_TENANT, DbProperties.DEFAULT_TENANT_DB);
         try(ResultSet rs = getAnyConnection().prepareStatement("SELECT tenantId, tenantDbName FROM WFOTenant").executeQuery()) {
             while (rs.next()) {
                 tenantDbMap.put(rs.getInt("tenantId"), rs.getString("tenantDbName"));
@@ -104,5 +108,9 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
         } catch (SQLException e) {
             log.debug("Error querying for Tenant Map");
         }
+    }
+
+    public static Map<Integer, String> getTenantDbMap() {
+        return tenantDbMap;
     }
 }
