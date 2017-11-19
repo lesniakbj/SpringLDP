@@ -45,6 +45,7 @@ public class AuthController extends AbstractController {
             // that username and password that we got from the AuthRequest.
             WFOPerson authUser = userService.authenticate(auth);
             if(authUser == null) {
+                clearSession(rq);
                 return errorResponse("Error authenticating user credentials", 400);
             }
 
@@ -53,7 +54,13 @@ public class AuthController extends AbstractController {
             return ResponseEntity.ok(json);
         } catch (ParseException | AuthenticationException e) {
             log.debug(e.getMessage(), e);
+            clearSession(rq);
             return errorResponse(e.getMessage(), 400);
         }
+    }
+
+    private static void clearSession(HttpServletRequest rq) {
+        log.debug("Clearing session attributes");
+        rq.getSession().invalidate();
     }
 }

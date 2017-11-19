@@ -45,3 +45,15 @@ VALUES ('Tenant1', 'Tenant1', 'Tenant1', 'dbTenant1', '', 0), ('Tenant2', 'Tenan
 
 INSERT INTO DatabaseInstance (hostName, instanceName, port, master, username, password)
 VALUES ('localhost', '', 1433, 1, 'sa', '')
+
+CREATE TABLE WFOPerson (
+	id INT IDENTITY(1, 1) NOT NULL,
+	tenantId INT NOT NULL,
+	acdId NVARCHAR(256) NULL,
+	firstName NVARCHAR(60) NULL,
+	lastName NVARCHAR(60) NULL,
+	email NVARCHAR(254) NULL,
+	password NVARCHAR(200) NULL,
+	PRIMARY KEY (id)
+);
+

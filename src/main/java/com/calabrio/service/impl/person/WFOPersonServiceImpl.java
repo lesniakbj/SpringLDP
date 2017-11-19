@@ -5,6 +5,7 @@ import com.calabrio.dao.WFOPersonDao;
 import com.calabrio.datasource.MultiTenantConnectionProvider;
 import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.user.WFOPerson;
+import com.calabrio.service.AbstractService;
 import com.calabrio.service.WFOPersonService;
 import com.calabrio.util.DbProperties;
 import com.calabrio.util.SessionProperties;
@@ -32,7 +33,7 @@ import java.util.Objects;
  * Created by Brendan.Lesniak on 11/17/2017.
  */
 @Service
-public class WFOPersonServiceImpl implements WFOPersonService {
+public class WFOPersonServiceImpl extends AbstractService implements WFOPersonService {
     private static final Logger log = Logger.getLogger(WFOPersonServiceImpl.class);
 
     @Autowired
@@ -46,15 +47,14 @@ public class WFOPersonServiceImpl implements WFOPersonService {
 
     @Override public WFOPerson authenticate(AuthRequest auth) throws AuthenticationException {
         log.debug(String.format("Authenticating user with auth request: %s", auth));
-
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        attr.getRequest().getSession().setAttribute(SessionProperties.WFO_TENANT, auth.getTenantId());
+        setTenantId(auth.getTenantId());
 
         WFOPerson user = userDao.findByEmail(auth.getEmail());
         if(user == null) {
             throw new AuthenticationException("Unable to find user!");
         }
 
+        log.debug(String.format("Attempting to auth user: %s", user));
         if(!userDao.authenticate(user, auth.getPassword())) {
             throw new AuthenticationException("Unable to authenticate user!");
         }
