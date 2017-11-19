@@ -38,21 +38,25 @@ import java.util.Properties;
 public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiTenantConnectionProviderImpl {
     private static final Logger log = Logger.getLogger(MultiTenantConnectionProvider.class);
 
-
-
     private static final Properties props = loadProperties();
     private DriverManagerDataSource defaultDataSource;
+    private DriverManagerDataSource tenantDataSource;
     private Map<Integer, String> tenantDbMap;
 
     public MultiTenantConnectionProvider(){
-        defaultDataSource = new DriverManagerDataSource();
-        defaultDataSource.setDriverClassName(props.getProperty("jdbc.driverClassName"));
-        defaultDataSource.setUrl(props.getProperty("jdbc.url.no.db"));// + "database=" + tenantIdentifier + ";");
-        defaultDataSource.setCatalog(props.getProperty("jdbc.default.db"));
-        defaultDataSource.setUsername(props.getProperty("jdbc.driverClassName"));
-        defaultDataSource.setPassword(props.getProperty("jdbc.driverClassName"));
-
+        defaultDataSource = initDataSourceDefaults();
+        tenantDataSource = initDataSourceDefaults();
         initTenantMap();
+    }
+
+    private DriverManagerDataSource initDataSourceDefaults() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(props.getProperty("jdbc.driverClassName"));
+        dataSource.setUrl(props.getProperty("jdbc.short.url"));
+        dataSource.setCatalog(props.getProperty("jdbc.default.db"));
+        dataSource.setPassword(props.getProperty("jdbc.password"));
+        dataSource.setUsername(props.getProperty("jdbc.username"));
+        return dataSource;
     }
 
     @Override
@@ -63,26 +67,18 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
 
     @Override
     protected DataSource selectDataSource(String tenantIdentifier) {
-        if(props == null) {
-            return null;
-        }
-
         log.debug(String.format("Connection to DataSource by: %s", tenantIdentifier));
 
         String tenantDb = tenantDbMap.get(Integer.parseInt(tenantIdentifier));
         if(tenantDb == null) {
-            return null;
+            log.debug(String.format("Unable to find by id %s, got null.", tenantIdentifier));
+            return defaultDataSource;
         }
 
-        DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setDriverClassName(props.getProperty("jdbc.driverClassName"));
-        ds.setUrl(props.getProperty("jdbc.url.no.db"));// + "database=" + tenantIdentifier + ";");
-        ds.setCatalog(tenantDb);
-        ds.setUsername(props.getProperty("jdbc.driverClassName"));
-        ds.setPassword(props.getProperty("jdbc.driverClassName"));
+        tenantDataSource.setCatalog(tenantDb);
 
-        log.debug(String.format("Data Source Selected: %s/%s/%s/%s", ds.getUrl(), ds.getCatalog(), ds.getUsername(), ds.getPassword()));
-        return ds;
+        log.debug(String.format("Data Source Selected: %s/%s/%s/%s", tenantDataSource.getUrl(), tenantDataSource.getCatalog(), tenantDataSource.getUsername(), tenantDataSource.getPassword()));
+        return tenantDataSource;
     }
 
     private static Properties loadProperties() {
@@ -92,7 +88,7 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
             prop.load(in);
             return prop;
         } catch (IOException e) {
-            e.printStackTrace();
+            log.debug("Error loading properties for Connection Provider");
         }
 
         return null;
