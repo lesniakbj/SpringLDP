@@ -39,3 +39,9 @@ INSERT INTO TenantState (tenantStateId, name) VALUES
 
 SET IDENTITY_INSERT TenantState OFF;
 GO
+
+INSERT INTO Tenant (tenantName, displayName, databaseName, databaseUserName, databasePassword, tenantStateId)
+VALUES ('Tenant1', 'Tenant1', 'Tenant1', 'dbTenant1', '', 0), ('Tenant2', 'Tenant2', 'Tenant2', 'dbTenant2', '', 0)
+
+INSERT INTO DatabaseInstance (hostName, instanceName, port, master, username, password)
+VALUES ('localhost', '', 1433, 1, 'sa', '')
