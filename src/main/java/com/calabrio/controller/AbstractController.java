@@ -1,17 +1,12 @@
 package com.calabrio.controller;
 
 import com.calabrio.model.ErrorMessage;
-import com.calabrio.model.user.WFOPerson;
-import com.calabrio.util.DbProperties;
 import com.calabrio.util.JsonUtil;
-import com.calabrio.util.SessionProperties;
-import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.stream.Collectors;
 
 /**

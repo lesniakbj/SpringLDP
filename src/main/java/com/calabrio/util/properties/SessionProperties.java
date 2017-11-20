@@ -1,4 +1,4 @@
-package com.calabrio.util;
+package com.calabrio.util.properties;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.

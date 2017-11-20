@@ -5,7 +5,7 @@ import com.calabrio.model.tenant.Tenant;
 import com.calabrio.model.tenant.TenantProperty;
 import com.calabrio.service.AbstractService;
 import com.calabrio.service.TenantService;
-import com.calabrio.util.DbProperties;
+import com.calabrio.util.properties.DbProperties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

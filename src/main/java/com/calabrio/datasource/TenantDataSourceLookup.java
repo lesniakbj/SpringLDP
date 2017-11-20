@@ -2,23 +2,18 @@ package com.calabrio.datasource;
 
 import com.calabrio.model.tenant.Tenant;
 import com.calabrio.service.TenantService;
+import com.calabrio.util.ConnectionUtil;
 import org.apache.log4j.Logger;
-import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.context.ApplicationContext;
-import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.lookup.DataSourceLookup;
 import org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException;
-import org.springframework.orm.jpa.EntityManagerFactoryInfo;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -76,7 +71,7 @@ public class TenantDataSourceLookup implements DataSourceLookup {
         for(Tenant t : tenants) {
             DriverManagerDataSource ds = new DriverManagerDataSource();
             ds.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            ds.setUrl(MultiTenantConnectionProvider.formatConnectionString("localhost","1433",t.getDatabaseName(),t.getDatabaseUserName(),t.getDatabasePassword()));
+            ds.setUrl(ConnectionUtil.connectionString("localhost","1433",t.getDatabaseName(),t.getDatabaseUserName(),t.getDatabasePassword()));
             tenantDataSources.put(t.getTenantId(), ds);
         }
     }

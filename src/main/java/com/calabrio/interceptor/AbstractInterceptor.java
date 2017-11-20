@@ -2,7 +2,7 @@ package com.calabrio.interceptor;
 
 import com.calabrio.model.user.WFOPerson;
 import com.calabrio.util.JsonUtil;
-import com.calabrio.util.SessionProperties;
+import com.calabrio.util.properties.SessionProperties;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

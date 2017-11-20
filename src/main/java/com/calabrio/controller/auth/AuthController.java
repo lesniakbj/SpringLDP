@@ -5,7 +5,7 @@ import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.user.WFOPerson;
 import com.calabrio.service.WFOPersonService;
 import com.calabrio.util.JsonUtil;
-import com.calabrio.util.SessionProperties;
+import com.calabrio.util.properties.SessionProperties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

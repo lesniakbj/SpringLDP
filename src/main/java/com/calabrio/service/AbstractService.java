@@ -1,6 +1,6 @@
 package com.calabrio.service;
 
-import com.calabrio.util.SessionProperties;
+import com.calabrio.util.properties.SessionProperties;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

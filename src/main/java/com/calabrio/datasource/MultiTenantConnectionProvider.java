@@ -1,30 +1,15 @@
 package com.calabrio.datasource;
 
-import com.calabrio.util.DbProperties;
+import com.calabrio.util.ConnectionUtil;
 import org.apache.log4j.Logger;
 import org.hibernate.engine.jdbc.connections.spi.AbstractDataSourceBasedMultiTenantConnectionProviderImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.context.EnvironmentAware;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.jdbc.datasource.lookup.DataSourceLookup;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-import javax.inject.Inject;
 import javax.sql.DataSource;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -43,8 +28,8 @@ import java.util.Properties;
 @Configurable
 public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiTenantConnectionProviderImpl {
     private static final Logger log = Logger.getLogger(MultiTenantConnectionProvider.class);
-
     private static final Properties props = loadProperties();
+
     private DriverManagerDataSource defaultDataSource;
     private DriverManagerDataSource tenantDataSource;
     private TenantDataSourceLookup dataSourceLookup;
@@ -58,7 +43,7 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
     private DriverManagerDataSource initDataSourceDefaults() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(props.getProperty("jdbc.driverClassName"));
-        dataSource.setUrl(formatConnectionString(props.getProperty("jdbc.default.host"), props.getProperty("jdbc.default.port"), props.getProperty("jdbc.default.db"), props.getProperty("jdbc.username"), props.getProperty("jdbc.password")));
+        dataSource.setUrl(ConnectionUtil.connectionString(props.getProperty("jdbc.default.host"), props.getProperty("jdbc.default.port"), props.getProperty("jdbc.default.db"), props.getProperty("jdbc.username"), props.getProperty("jdbc.password")));
         return dataSource;
     }
 
@@ -93,9 +78,5 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
         }
 
         return null;
-    }
-
-    public static String formatConnectionString(String host, String port, String databaseName, String user, String pass) {
-        return String.format("jdbc:sqlserver://%s:%s;database=%s;user=%s;password=%s;", host, port, databaseName, user, pass);
     }
 }

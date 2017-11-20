@@ -2,6 +2,7 @@ package com.calabrio.configuration;
 
 import com.calabrio.datasource.MultiTenantConnectionProvider;
 import com.calabrio.datasource.TenantResolver;
+import com.calabrio.util.ConnectionUtil;
 import org.hibernate.MultiTenancyStrategy;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class HibernateConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getRequiredProperty("jdbc.driverClassName"));
-        dataSource.setUrl(MultiTenantConnectionProvider.formatConnectionString(env.getProperty("jdbc.default.host"), env.getProperty("jdbc.default.port"),env.getProperty("jdbc.default.db"),env.getProperty("jdbc.username"),env.getProperty("jdbc.password")));
+        dataSource.setUrl(ConnectionUtil.connectionString(env.getProperty("jdbc.default.host"), env.getProperty("jdbc.default.port"),env.getProperty("jdbc.default.db"),env.getProperty("jdbc.username"),env.getProperty("jdbc.password")));
         return dataSource;
     }
 

@@ -2,23 +2,16 @@ package com.calabrio.service.impl.person;
 
 import com.calabrio.dao.TenantDao;
 import com.calabrio.dao.WFOPersonDao;
-import com.calabrio.datasource.MultiTenantConnectionProvider;
 import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.user.WFOPerson;
 import com.calabrio.service.AbstractService;
 import com.calabrio.service.WFOPersonService;
-import com.calabrio.util.DbProperties;
-import com.calabrio.util.SessionProperties;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.naming.AuthenticationException;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
