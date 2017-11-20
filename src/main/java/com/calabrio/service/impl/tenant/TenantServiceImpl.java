@@ -35,11 +35,19 @@ public class TenantServiceImpl extends AbstractService implements TenantService 
 
     @Override
     public Tenant addTenant(Tenant tenant) {
+        // Has to run as the default (Admin) tenant
+        setTenantId(DbProperties.DEFAULT_TENANT);
+
         // Create Tenant Database
 
         // Create Tenant DB User
 
         // Add Tenant To CommonTables
         return tenantDao.add(tenant);
+    }
+
+    @Override
+    public void removeTenant(Tenant tenant) {
+        tenantDao.delete(tenant);
     }
 }

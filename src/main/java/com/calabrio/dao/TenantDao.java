@@ -10,4 +10,5 @@ public interface TenantDao {
     List<TenantProperty> getAllProperties();
 
     Tenant add(Tenant tenant);
+    void delete(Tenant tenant);
 }

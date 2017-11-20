@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class TenantState {
     @Id
     @Column(name = "tenantStateId", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer tenantStateId;
 
     @Column(name = "name", length =  50, nullable = false)

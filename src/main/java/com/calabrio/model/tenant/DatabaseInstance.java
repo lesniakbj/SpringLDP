@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class DatabaseInstance {
     @Id
     @Column(name = "databaseInstanceId", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer databaseInstanceId;
 
     @Column(name = "hostName", length = 200, nullable = false)

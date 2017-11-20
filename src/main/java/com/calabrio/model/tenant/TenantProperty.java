@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "TenantProperties")
 public class TenantProperty {
     @Column(name = "id", nullable =  false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private transient Integer id;
 
     @Column(name = "tenantId", nullable =  false)

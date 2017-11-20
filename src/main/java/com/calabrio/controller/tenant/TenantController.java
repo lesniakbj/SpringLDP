@@ -41,6 +41,19 @@ public class TenantController extends AbstractController {
         }
     }
 
+    @RequestMapping(name = "removeTenant", value = "/admin/tenant/remove", method = RequestMethod.DELETE)
+    public ResponseEntity<String> removeTenant(HttpServletRequest rq) {
+        try {
+            Tenant tenant = JsonUtil.fromJson(requestBody(rq), Tenant.class);
+            log.debug(String.format("Tenant parsed as: %s", tenant));
+            tenantService.removeTenant(tenant);
+            return ResponseEntity.ok("Successfully Removed!");
+        } catch (ParseException e) {
+            log.debug("Error trying to parse Tenant JSON", e);
+            return errorResponse(e.getMessage(), 400);
+        }
+    }
+
     @RequestMapping(name = "tenantProperties", value = "/tenant/properties", method = RequestMethod.GET)
     public ResponseEntity<String> tenantProperties(HttpServletRequest rq) {
         String json = JsonUtil.toJson(tenantService.getAllTenantProperties());

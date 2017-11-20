@@ -10,4 +10,5 @@ public interface TenantService {
     List<TenantProperty> getAllTenantProperties();
 
     Tenant addTenant(Tenant tenant);
+    void removeTenant(Tenant tenant);
 }

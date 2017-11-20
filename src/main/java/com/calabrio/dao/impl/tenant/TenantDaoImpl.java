@@ -29,9 +29,14 @@ public class TenantDaoImpl extends AbstractDao implements TenantDao {
 
     @Override
     public Tenant add(Tenant tenant) {
-        getSession().beginTransaction();
+        log.debug("AddingTenant TenantDao");
         getSession().save(tenant);
-        getSession().getTransaction().commit();
         return tenant;
+    }
+
+    @Override
+    public void delete(Tenant tenant) {
+        log.debug("DeleteTenant TenantDao");
+        getSession().delete(tenant);
     }
 }
