@@ -30,6 +30,7 @@ public class AbstractDao {
     private SessionFactory sessionFactory;
 
     public <T> List<T> getAllOfType(Session sess, Class<T> type) {
+        log.debug(String.format("Getting all of type: %s", type));
         CriteriaQuery<T> criteria = sess.getCriteriaBuilder().createQuery(type);
         Root<T> root = criteria.from(type);
         criteria.select(root);

@@ -1,5 +1,6 @@
-package com.calabrio.controller;
+package com.calabrio.controller.auth;
 
+import com.calabrio.controller.AbstractController;
 import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.user.WFOPerson;
 import com.calabrio.service.WFOPersonService;

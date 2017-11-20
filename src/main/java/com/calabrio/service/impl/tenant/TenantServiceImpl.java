@@ -2,11 +2,11 @@ package com.calabrio.service.impl.tenant;
 
 import com.calabrio.dao.TenantDao;
 import com.calabrio.model.tenant.Tenant;
+import com.calabrio.model.tenant.TenantProperty;
 import com.calabrio.service.AbstractService;
 import com.calabrio.service.TenantService;
 import com.calabrio.util.DbProperties;
 import org.apache.log4j.Logger;
-import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,24 @@ public class TenantServiceImpl extends AbstractService implements TenantService 
     @Override
     public List<Tenant> getAllTenants() {
         log.debug("GetAllTenants TenantService");
+        // Has to run as the default (Admin) tenant
         setTenantId(DbProperties.DEFAULT_TENANT);
         return tenantDao.getAll();
+    }
+
+    @Override
+    public List<TenantProperty> getAllTenantProperties() {
+        log.debug("GetAllTenantProperties TenantService");
+        return tenantDao.getAllProperties();
+    }
+
+    @Override
+    public Tenant addTenant(Tenant tenant) {
+        // Create Tenant Database
+
+        // Create Tenant DB User
+
+        // Add Tenant To CommonTables
+        return tenantDao.add(tenant);
     }
 }

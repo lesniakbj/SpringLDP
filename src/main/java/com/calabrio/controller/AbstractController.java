@@ -26,15 +26,15 @@ import java.util.stream.Collectors;
  * <p>
  * Created by Brendan.Lesniak on 11/17/2017.
  */
-abstract class AbstractController {
+public abstract class AbstractController {
     private static final Logger log = Logger.getLogger(AbstractController.class);
 
-    static ResponseEntity<String> errorResponse(String msg, Integer code) {
+    public static ResponseEntity<String> errorResponse(String msg, Integer code) {
         ErrorMessage err = new ErrorMessage(msg);
         return ResponseEntity.status(code).body(JsonUtil.toJson(err));
     }
 
-    static String requestBody(HttpServletRequest rq) {
+    public static String requestBody(HttpServletRequest rq) {
         try {
             return rq.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         } catch (IOException e) {
@@ -44,11 +44,11 @@ abstract class AbstractController {
         return "";
     }
 
-    static void setAttribute(HttpServletRequest rq, String property, Object value) {
+    public static void setAttribute(HttpServletRequest rq, String property, Object value) {
         rq.getSession().setAttribute(property, value);
     }
 
-    static void clearSession(HttpServletRequest rq) {
+    public static void clearSession(HttpServletRequest rq) {
         log.debug("Clearing session attributes");
         rq.getSession().invalidate();
     }

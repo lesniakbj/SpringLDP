@@ -57,3 +57,10 @@ CREATE TABLE WFOPerson (
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE TenantProperties (
+	id INT IDENTITY(1,1) NOT NULL,
+	tenantId INT NOT NULL,
+	keyName NVARCHAR(100) NOT NULL,
+	value NVARCHAR(MAX) NOT NULL,
+	PRIMARY KEY (tenantId, keyName)
+);
