@@ -2,6 +2,7 @@ package com.calabrio.model.tenant;
 
 import javax.persistence.*;
 
+@Entity
 @Table(name = "Tenant")
 public class Tenant {
     @Id

@@ -67,6 +67,11 @@ abstract class AbstractController {
         return response;
     }
 
+    public static void clearSession(HttpServletRequest rq) {
+        log.debug("Clearing session attributes");
+        rq.getSession().invalidate();
+    }
+
 
     private static class ErrorMessage {
         private String error;

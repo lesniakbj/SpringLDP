@@ -1,10 +1,9 @@
 package com.calabrio.model.tenant;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "DatabaseInstance")
 public class DatabaseInstance {
     @Id
     @Column(name = "databaseInstanceId", nullable = false)

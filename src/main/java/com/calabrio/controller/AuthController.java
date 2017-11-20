@@ -58,9 +58,4 @@ public class AuthController extends AbstractController {
             return errorResponse(e.getMessage(), 400);
         }
     }
-
-    private static void clearSession(HttpServletRequest rq) {
-        log.debug("Clearing session attributes");
-        rq.getSession().invalidate();
-    }
 }
