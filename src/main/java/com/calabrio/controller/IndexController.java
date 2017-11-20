@@ -27,13 +27,6 @@ public class IndexController extends AbstractController {
 
     @RequestMapping(name = "index", value = "/index", method = RequestMethod.GET)
     public ResponseEntity<String> index(HttpServletRequest rq) {
-        WFOPerson user = getUser(rq);
-
-        log.debug(String.format("Checking user: %s", user));
-        if(user == null) {
-            return errorResponse("Must have valid User!", 400);
-        }
-
         return ResponseEntity.ok("Hello World!");
     }
 }

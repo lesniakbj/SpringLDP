@@ -2,15 +2,14 @@ package com.calabrio.dao.impl.tenant;
 
 import com.calabrio.dao.AbstractDao;
 import com.calabrio.dao.TenantDao;
-import com.calabrio.dao.WFOPersonDao;
 import com.calabrio.model.tenant.Tenant;
 import org.apache.log4j.Logger;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 @Repository
@@ -21,8 +20,6 @@ public class TenantDaoImpl extends AbstractDao implements TenantDao {
     @Override
     public List<Tenant> getAll() {
         log.debug("GetAll TenantDao");
-
-        Query q = getSession().createQuery("FROM Tenant");
-        return q.getResultList();
+        return getAllOfType(getSession(), Tenant.class);
     }
 }

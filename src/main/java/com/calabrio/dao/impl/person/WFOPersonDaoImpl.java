@@ -2,14 +2,21 @@ package com.calabrio.dao.impl.person;
 
 import com.calabrio.dao.AbstractDao;
 import com.calabrio.dao.WFOPersonDao;
+import com.calabrio.model.tenant.Tenant;
 import com.calabrio.model.user.WFOPerson;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -30,9 +37,7 @@ public class WFOPersonDaoImpl extends AbstractDao implements WFOPersonDao {
 
     public WFOPerson findByEmail(String email) {
         log.debug("Finding user by email.");
-
-        Query query = getSession().createQuery("FROM WFOPerson WHERE email = :email");
-        query.setParameter("email", email);
+        Query query = getQuery("FROM WFOPerson WHERE email = :email").setParameter("email", email);
         return (WFOPerson) querySingleResult(query);
     }
 
@@ -43,8 +48,7 @@ public class WFOPersonDaoImpl extends AbstractDao implements WFOPersonDao {
             return false;
         }
 
-        Query query = getSession().createQuery("FROM WFOPerson WHERE password = :password");
-        query.setParameter("password", password);
+        Query query = getQuery("FROM WFOPerson WHERE password = :password").setParameter("password", password);
         WFOPerson pwUser = (WFOPerson) querySingleResult(query);
 
         return pwUser != null && pwUser.equals(user);

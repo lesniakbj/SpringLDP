@@ -95,7 +95,7 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
         return null;
     }
 
-    public static String formatConnectionString(String host, String port, String databaseName, String user, String pass) {
+    static String formatConnectionString(String host, String port, String databaseName, String user, String pass) {
         return String.format("jdbc:sqlserver://%s:%s;database=%s;user=%s;password=%s;", host, port, databaseName, user, pass);
     }
 }

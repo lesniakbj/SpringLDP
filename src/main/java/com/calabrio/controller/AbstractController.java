@@ -1,7 +1,9 @@
 package com.calabrio.controller;
 
+import com.calabrio.model.ErrorMessage;
 import com.calabrio.model.user.WFOPerson;
 import com.calabrio.util.DbProperties;
+import com.calabrio.util.JsonUtil;
 import com.calabrio.util.SessionProperties;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
@@ -29,16 +31,7 @@ abstract class AbstractController {
 
     static ResponseEntity<String> errorResponse(String msg, Integer code) {
         ErrorMessage err = new ErrorMessage(msg);
-        return ResponseEntity.status(code).body(toJson(err));
-    }
-
-    static WFOPerson getUser(HttpServletRequest rq) {
-        try {
-            return fromJson((String)rq.getSession().getAttribute(SessionProperties.WFO_PERSON), WFOPerson.class);
-        } catch (ParseException e) {
-            log.debug("Unable to parse user from session.");
-            return null;
-        }
+        return ResponseEntity.status(code).body(JsonUtil.toJson(err));
     }
 
     static String requestBody(HttpServletRequest rq) {
@@ -51,33 +44,12 @@ abstract class AbstractController {
         return "";
     }
 
-    static String toJson(Object obj) {
-        Gson gson = new Gson();
-        return gson.toJson(obj);
+    static void setAttribute(HttpServletRequest rq, String property, Object value) {
+        rq.getSession().setAttribute(property, value);
     }
 
-    static <T> T fromJson(String json, Class<T> clazz) throws ParseException {
-        Gson gson = new Gson();
-        T response = gson.fromJson(json, clazz);
-
-        if(response == null) {
-            throw new ParseException("Error parsing JSON!", -1);
-        }
-
-        return response;
-    }
-
-    public static void clearSession(HttpServletRequest rq) {
+    static void clearSession(HttpServletRequest rq) {
         log.debug("Clearing session attributes");
         rq.getSession().invalidate();
-    }
-
-
-    private static class ErrorMessage {
-        private String error;
-
-        ErrorMessage(String error) {
-            this.error = error;
-        }
     }
 }

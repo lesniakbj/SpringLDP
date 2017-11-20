@@ -40,7 +40,7 @@ public class TenantDataSourceLookup implements DataSourceLookup {
     private List<Tenant> tenants;
     private Map<Integer, DataSource> tenantDataSources;
 
-   public DataSource getDataSource(String dataSourceName, DataSource ds) throws DataSourceLookupFailureException {
+   DataSource getDataSource(String dataSourceName, DataSource ds) throws DataSourceLookupFailureException {
         if(tenantDataSources == null && ds != null) {
             tenants = loadTenants(ds);
             log.debug("Tenants Size " + tenants.size());

@@ -7,6 +7,9 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.NoResultException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -26,6 +29,13 @@ public class AbstractDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+    public <T> List<T> getAllOfType(Session sess, Class<T> type) {
+        CriteriaQuery<T> criteria = sess.getCriteriaBuilder().createQuery(type);
+        Root<T> root = criteria.from(type);
+        criteria.select(root);
+        return sess.createQuery(criteria).list();
+    }
+
     public Object querySingleResult(Query query) {
         try {
             return query.getSingleResult();
@@ -34,6 +44,10 @@ public class AbstractDao {
         }
 
         return null;
+    }
+
+    public Query getQuery(String query) {
+        return getSession().createQuery(query);
     }
 
     public Session getSession() {
