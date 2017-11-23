@@ -2,9 +2,11 @@ package com.calabrio;
 
 import com.calabrio.configuration.HibernateConfig;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -19,7 +21,7 @@ import org.springframework.context.annotation.ComponentScan;
  * <p>
  * Created by Brendan.Lesniak on 11/17/2017.
  */
-@SpringBootApplication(exclude = HibernateJpaAutoConfiguration.class)
+@SpringBootApplication(exclude = {HibernateJpaAutoConfiguration.class, SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
 @ComponentScan(basePackages = {"com.calabrio"})
 public class ApplicationMain {
     public static void main(String[] args) {
