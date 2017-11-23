@@ -3,6 +3,7 @@ package com.calabrio.dao;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,10 +37,12 @@ public class AbstractDao {
         criteria.select(root);
         return sess.createQuery(criteria).list();
     }
-
-    public Object querySingleResult(Query query) {
+    public Query getQuery(String query) {
+        return getSession().createQuery(query);
+    }
+    public <T> T querySingleResult(Query query) {
         try {
-            return query.getSingleResult();
+            return (T)query.getSingleResult();
         } catch (NoResultException ex) {
             log.debug("No results when attempting query!");
         }
@@ -47,8 +50,31 @@ public class AbstractDao {
         return null;
     }
 
-    public Query getQuery(String query) {
-        return getSession().createQuery(query);
+    public <T> T add(T type) {
+        log.debug("AddingTenant TenantDao");
+        getSession().save(type);
+        getSession().flush();
+        getSession().clear();
+        return type;
+    }
+    public <T> List<T> batchAdd(List<T> types) {
+        log.debug("AddingTenantBatch TenantDao");
+        Session session = getSession();
+        Transaction tx = session.getTransaction();
+
+        int count = 0;
+        for(T t : types) {
+            session.save(t);
+            if(count % 20 == 0) {
+                session.flush();
+                session.clear();
+            }
+            count++;
+        }
+
+        tx.commit();
+        session.close();
+        return types;
     }
 
     public Session getSession() {

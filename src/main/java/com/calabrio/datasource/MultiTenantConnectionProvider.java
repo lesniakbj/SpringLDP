@@ -1,6 +1,7 @@
 package com.calabrio.datasource;
 
 import com.calabrio.util.ConnectionUtil;
+import com.calabrio.util.properties.DbProperties;
 import org.apache.log4j.Logger;
 import org.hibernate.engine.jdbc.connections.spi.AbstractDataSourceBasedMultiTenantConnectionProviderImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +65,7 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
         log.debug(String.format("Connection to DataSource by: %s", tenantIdentifier));
 
         Integer tId = Integer.parseInt(tenantIdentifier);
-        if(tenantIdentifier == null || Objects.equals(tId,-1)) {
+        if(tenantIdentifier == null || Objects.equals(tId, DbProperties.DEFAULT_TENANT)) {
             log.debug("No tenant Identifier.");
             return defaultDataSource;
         }

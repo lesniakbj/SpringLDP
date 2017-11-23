@@ -10,5 +10,6 @@ public interface TenantDao {
     List<TenantProperty> getAllProperties();
 
     Tenant add(Tenant tenant);
+    List<Tenant> addBatch(List<Tenant> tenants);
     void delete(Tenant tenant);
 }

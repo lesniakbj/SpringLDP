@@ -1,4 +1,4 @@
-package com.calabrio.dao.impl;
+package com.calabrio.dao.impl.telephony;
 
 import com.calabrio.dao.AbstractDao;
 import com.calabrio.dao.TelephonyGroupDao;
@@ -11,6 +11,6 @@ import java.util.List;
 public class TelephonyGroupDaoImpl extends AbstractDao implements TelephonyGroupDao {
     @Override
     public List<TelephonyGroup> getAll() {
-        return getAllOfType(getSession(), TelephonyGroup.class);
+        return  super.getAllOfType(getSession(), TelephonyGroup.class);
     }
 }

@@ -5,6 +5,8 @@ import com.calabrio.dao.TenantDao;
 import com.calabrio.model.tenant.Tenant;
 import com.calabrio.model.tenant.TenantProperty;
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,20 +20,25 @@ public class TenantDaoImpl extends AbstractDao implements TenantDao {
     @Override
     public List<Tenant> getAll() {
         log.debug("GetAll TenantDao");
-        return getAllOfType(getSession(), Tenant.class);
+        return super.getAllOfType(getSession(), Tenant.class);
     }
 
     @Override
     public List<TenantProperty> getAllProperties() {
         log.debug("GetAllProperties TenantDao");
-        return getAllOfType(getSession(), TenantProperty.class);
+        return super.getAllOfType(getSession(), TenantProperty.class);
     }
 
     @Override
     public Tenant add(Tenant tenant) {
         log.debug("AddingTenant TenantDao");
-        getSession().save(tenant);
-        return tenant;
+        return super.add(tenant);
+    }
+
+    @Override
+    public List<Tenant> addBatch(List<Tenant> tenants) {
+        log.debug("AddingTenantBatch TenantDao");
+        return super.batchAdd(tenants);
     }
 
     @Override

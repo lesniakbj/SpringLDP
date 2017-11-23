@@ -37,8 +37,8 @@ public class WFOPersonDaoImpl extends AbstractDao implements WFOPersonDao {
 
     public WFOPerson findByEmail(String email) {
         log.debug("Finding user by email.");
-        Query query = getQuery("FROM WFOPerson WHERE email = :email").setParameter("email", email);
-        return (WFOPerson) querySingleResult(query);
+        Query query = super.getQuery("FROM WFOPerson WHERE email = :email").setParameter("email", email);
+        return super.querySingleResult(query);
     }
 
     public boolean authenticate(WFOPerson user, String password) {
@@ -48,8 +48,8 @@ public class WFOPersonDaoImpl extends AbstractDao implements WFOPersonDao {
             return false;
         }
 
-        Query query = getQuery("FROM WFOPerson WHERE password = :password").setParameter("password", password);
-        WFOPerson pwUser = (WFOPerson) querySingleResult(query);
+        Query query = super.getQuery("FROM WFOPerson WHERE password = :password").setParameter("password", password);
+        WFOPerson pwUser =  super.querySingleResult(query);
 
         return pwUser != null && pwUser.equals(user);
     }
