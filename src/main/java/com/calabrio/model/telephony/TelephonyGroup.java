@@ -1,6 +1,5 @@
 package com.calabrio.model.telephony;
 
-import com.calabrio.model.server.Server;
 import com.calabrio.model.server.TelephonyGroupServer;
 
 import javax.persistence.*;

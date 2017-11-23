@@ -4,7 +4,6 @@ import com.calabrio.util.properties.DbProperties;
 import com.calabrio.util.properties.SessionProperties;
 import org.apache.log4j.Logger;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

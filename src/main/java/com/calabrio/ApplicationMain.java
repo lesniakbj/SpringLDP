@@ -1,9 +1,7 @@
 package com.calabrio;
 
-import com.calabrio.configuration.HibernateConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;

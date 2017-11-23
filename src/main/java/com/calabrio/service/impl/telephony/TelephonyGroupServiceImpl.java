@@ -3,7 +3,6 @@ package com.calabrio.service.impl.telephony;
 import com.calabrio.dao.impl.telephony.TelephonyGroupDao;
 import com.calabrio.model.telephony.TelephonyGroup;
 import com.calabrio.service.AbstractService;
-import com.calabrio.service.impl.telephony.TelephonyGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

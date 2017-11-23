@@ -3,7 +3,10 @@ package com.calabrio.model.server;
 import com.calabrio.model.telephony.SignalingGroup;
 import com.calabrio.model.telephony.TelephonyGroup;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.

@@ -1,7 +1,7 @@
 package com.calabrio.service.impl.person;
 
-import com.calabrio.dao.impl.tenant.TenantDao;
 import com.calabrio.dao.impl.person.WFOPersonDao;
+import com.calabrio.dao.impl.tenant.TenantDao;
 import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.user.WFOPerson;
 import com.calabrio.service.AbstractService;

@@ -1,7 +1,7 @@
 
 package com.calabrio.configuration;
 
-import com.calabrio.evaluator.UserPermissionEvaluator;
+import com.calabrio.security.evaluator.UserPermissionEvaluator;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
