@@ -5,6 +5,7 @@ import com.calabrio.util.properties.SessionProperties;
 import org.apache.log4j.Logger;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpSession;
  * <p>
  * Created by Brendan.Lesniak on 11/17/2017.
  */
-@Configurable
+@Component
 public class TenantResolver implements CurrentTenantIdentifierResolver {
     private static final Logger log = Logger.getLogger(TenantResolver.class);
 

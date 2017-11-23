@@ -3,13 +3,16 @@ package com.calabrio.datasource;
 import com.calabrio.util.ConnectionUtil;
 import org.apache.log4j.Logger;
 import org.hibernate.engine.jdbc.connections.spi.AbstractDataSourceBasedMultiTenantConnectionProviderImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -25,19 +28,22 @@ import java.util.Properties;
  * Created by Brendan.Lesniak on 11/17/2017.
  */
 @Component
-@Configurable
 public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiTenantConnectionProviderImpl {
     private static final Logger log = Logger.getLogger(MultiTenantConnectionProvider.class);
     private static final Properties props = loadProperties();
 
     private DriverManagerDataSource defaultDataSource;
+
+    private Integer tenantId;
     private DriverManagerDataSource tenantDataSource;
+
+    @Autowired
+    @Qualifier(value = "dataSourceLookupBean")
     private TenantDataSourceLookup dataSourceLookup;
 
     public MultiTenantConnectionProvider(){
         defaultDataSource = initDataSourceDefaults();
         tenantDataSource = initDataSourceDefaults();
-        dataSourceLookup = new TenantDataSourceLookup();
     }
 
     private DriverManagerDataSource initDataSourceDefaults() {
@@ -57,9 +63,15 @@ public class MultiTenantConnectionProvider extends AbstractDataSourceBasedMultiT
     protected DataSource selectDataSource(String tenantIdentifier) {
         log.debug(String.format("Connection to DataSource by: %s", tenantIdentifier));
 
-        if(tenantIdentifier == null || Integer.parseInt(tenantIdentifier) == -1) {
+        Integer tId = Integer.parseInt(tenantIdentifier);
+        if(tenantIdentifier == null || Objects.equals(tId,-1)) {
             log.debug("No tenant Identifier.");
             return defaultDataSource;
+        }
+
+        // Check to see if the tenant as same as last time, if so just return the datasource.
+        if(Objects.equals(tenantId, tId)) {
+            return tenantDataSource;
         }
 
         tenantDataSource = (DriverManagerDataSource)dataSourceLookup.getDataSource(tenantIdentifier, selectAnyDataSource());

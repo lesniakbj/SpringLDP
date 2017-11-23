@@ -1,7 +1,6 @@
 package com.calabrio.model.server;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -18,4 +17,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Server")
 public class Server {
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 }

@@ -1,5 +1,7 @@
 package com.calabrio.model.telephony;
 
+import javax.persistence.*;
+
 /**
  * (c) Copyright 2017 Calabrio, Inc.
  * All Rights Reserved. www.calabrio.com LICENSED MATERIALS
@@ -12,5 +14,11 @@ package com.calabrio.model.telephony;
  * <p>
  * Created by Brendan.Lesniak on 11/20/2017.
  */
+@Entity
+@Table(name = "SignalingGroup")
 public class SignalingGroup {
+    @Id
+    @Column(name = "id", nullable =  false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 }

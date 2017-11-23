@@ -12,5 +12,5 @@ package com.calabrio.model.telephony;
  * <p>
  * Created by Brendan.Lesniak on 11/20/2017.
  */
-public class TelephonyGroupType {
+public enum TelephonyGroupType {
 }

@@ -3,8 +3,7 @@ package com.calabrio.model.server;
 import com.calabrio.model.telephony.SignalingGroup;
 import com.calabrio.model.telephony.TelephonyGroup;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -21,6 +20,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TelephonyGroupServer")
 public class TelephonyGroupServer extends Server {
+    @OneToOne
+    @JoinColumn(name = "telephonyGroupId")
     private TelephonyGroup telephonyGroup;
+
+    @OneToOne
+    @JoinColumn(name = "signalingGroupId")
     private SignalingGroup signalingGroup;
 }

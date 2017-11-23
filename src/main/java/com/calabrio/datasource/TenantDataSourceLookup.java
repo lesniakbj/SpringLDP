@@ -21,16 +21,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
-@Configurable
+@Component(value = "dataSourceLookupBean")
 public class TenantDataSourceLookup implements DataSourceLookup {
     private static final Logger log = Logger.getLogger(TenantDataSourceLookup.class);
-
-    @PersistenceContext
-    EntityManager entityManager;
-
-    @Autowired
-    private TenantService tenantService;
 
     private List<Tenant> tenants;
     private Map<Integer, DataSource> tenantDataSources;
@@ -46,6 +39,9 @@ public class TenantDataSourceLookup implements DataSourceLookup {
         return tenantDataSources.get(Integer.parseInt(dataSourceName));
     }
 
+    // NOTE: This is a raw query as we create this Lookup bean
+    // before Hibernate can fully initialize, thus we do not actually
+    // have access to a Hibernate Session.
     private static final String TENANT_DATA_STORE = "SELECT tenantId, databaseName, databaseUserName, databasePassword FROM Tenant";
     private List<Tenant> loadTenants(DataSource ds) {
         List<Tenant> tenants = new ArrayList<>();

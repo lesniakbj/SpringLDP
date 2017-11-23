@@ -3,15 +3,7 @@ package com.calabrio.model.telephony;
 import com.calabrio.model.server.Server;
 import com.calabrio.model.server.TelephonyGroupServer;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
 
@@ -46,8 +38,14 @@ public class TelephonyGroup {
     private String inclusionList;
 
     @OneToMany
-    @Column(name = "inclusionList")
+    @JoinColumn(name = "inclusionListId")
     private List<TelephonyGroupServer> servers;
+
+    @ElementCollection(targetClass = String.class)
+    @CollectionTable(name = "MetadataMappings")
+    @MapKeyColumn(name = "metaDataKey")
+    @Column(name = "metaDataValue")
     private Map<String,String> customMetadataMappings;
-    private Server acd;
+
+    //private Server acd;
 }

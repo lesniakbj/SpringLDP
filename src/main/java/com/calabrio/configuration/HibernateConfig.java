@@ -3,9 +3,13 @@ package com.calabrio.configuration;
 import com.calabrio.datasource.MultiTenantConnectionProvider;
 import com.calabrio.datasource.TenantResolver;
 import com.calabrio.util.ConnectionUtil;
+import com.calabrio.util.SpringUtil;
+import org.apache.log4j.Logger;
 import org.hibernate.MultiTenancyStrategy;
 import org.hibernate.SessionFactory;
+import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
@@ -38,18 +42,34 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @Component
+@ComponentScan(basePackages = "com.calabrio")
 public class HibernateConfig {
+    private static final Logger log = Logger.getLogger(HibernateConfig.class);
+
     @Autowired
     private Environment env;
 
+    @Autowired
+    private SpringUtil springUtil;
+
+    @Autowired
+    @Qualifier("connectionProviderBean")
+    private MultiTenantConnectionProvider connectionProvider;
+
+    @Autowired
+    @Qualifier("tenantResolverBean")
+    private TenantResolver tenantResolver;
+
     @Bean
+    @Autowired
     public LocalSessionFactoryBean sessionFactory() {
+        springUtil.listAllBeans().forEach((b) -> log.debug(String.format("Bean: %s", b)));
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("com.calabrio");
         sessionFactory.setHibernateProperties(hibernateProperties());
-        sessionFactory.setMultiTenantConnectionProvider(connectionProvider());
-        sessionFactory.setCurrentTenantIdentifierResolver(tenantResolver());
+        sessionFactory.setCurrentTenantIdentifierResolver(tenantResolver);
+        sessionFactory.setMultiTenantConnectionProvider(connectionProvider);
         return sessionFactory;
     }
 
@@ -78,13 +98,13 @@ public class HibernateConfig {
         return txManager;
     }
 
-    @Bean
-    public MultiTenantConnectionProvider connectionProvider() {
+    @Bean(name = "connectionProviderBean")
+    public MultiTenantConnectionProvider connectionProviderBean() {
         return new MultiTenantConnectionProvider();
     }
 
-    @Bean
-    public TenantResolver tenantResolver() {
+    @Bean(name = "tenantResolverBean")
+    public TenantResolver tenantResolverBean() {
         return new TenantResolver();
     }
 }
