@@ -1,4 +1,4 @@
-package com.calabrio.security;
+package com.calabrio.security.principal;
 
 import com.calabrio.model.user.WFOPermission;
 import com.calabrio.model.user.WFOPerson;

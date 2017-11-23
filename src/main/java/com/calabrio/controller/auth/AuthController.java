@@ -2,8 +2,9 @@ package com.calabrio.controller.auth;
 
 import com.calabrio.controller.AbstractController;
 import com.calabrio.model.auth.AuthRequest;
+import com.calabrio.model.generic.ErrorMessage;
 import com.calabrio.model.user.WFOPerson;
-import com.calabrio.security.UserPrincipal;
+import com.calabrio.security.principal.UserPrincipal;
 import com.calabrio.service.impl.person.WFOPersonService;
 import com.calabrio.util.JsonUtil;
 import com.calabrio.util.properties.SessionProperties;
@@ -12,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 
 /**
@@ -65,6 +66,12 @@ public class AuthController extends AbstractController {
             clearSession(rq);
             return errorResponse(e.getMessage(), 400);
         }
+    }
+
+    @RequestMapping(name = "denied", value = "/denied", method = RequestMethod.POST)
+    public ResponseEntity<String> denied(HttpServletRequest rq) {
+        ErrorMessage msg = new ErrorMessage("Access is Denied!");
+        return ResponseEntity.status(401).body(JsonUtil.toJson(msg));
     }
 
     private void setSecurityContext(WFOPerson authUser) {

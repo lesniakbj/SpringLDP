@@ -2,6 +2,7 @@ package com.calabrio.security;
 
 import com.calabrio.model.user.WFOPermission;
 import com.calabrio.model.user.WFOPerson;
+import com.calabrio.security.principal.UserPrincipal;
 import org.apache.log4j.Logger;
 import org.springframework.security.access.expression.SecurityExpressionRoot;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionOperations;

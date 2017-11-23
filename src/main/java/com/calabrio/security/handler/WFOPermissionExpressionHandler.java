@@ -1,5 +1,6 @@
-package com.calabrio.security;
+package com.calabrio.security.handler;
 
+import com.calabrio.security.WFOPermissionExpressionRoot;
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.log4j.Logger;
 import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
