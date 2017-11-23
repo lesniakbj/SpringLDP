@@ -2,11 +2,11 @@ package com.calabrio.model.server;
 
 import com.calabrio.model.telephony.SignalingGroup;
 import com.calabrio.model.telephony.TelephonyGroup;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.FilterJoinTable;
+import org.hibernate.annotations.ParamDef;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -22,12 +22,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TelephonyGroupServer")
+@PrimaryKeyJoinColumn(name = "serverFk", referencedColumnName = "id")
 public class TelephonyGroupServer extends Server {
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "telephonyGroupId")
     private TelephonyGroup telephonyGroup;
 
-    @OneToOne
-    @JoinColumn(name = "signalingGroupId")
-    private SignalingGroup signalingGroup;
+    public TelephonyGroup getTelephonyGroup() {
+        return telephonyGroup;
+    }
+
+    public void setTelephonyGroup(TelephonyGroup telephonyGroup) {
+        this.telephonyGroup = telephonyGroup;
+    }
 }

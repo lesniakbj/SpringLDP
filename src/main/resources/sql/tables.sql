@@ -68,8 +68,70 @@ CREATE TABLE TenantProperties (
 
 CREATE TABLE PersonPermissions (
 	personId INT NOT NULL,
-	permissionId INT NOT NULL,
+	permissionId NVARCHAR(MAX) NOT NULL,
 	FOREIGN KEY (personId) REFERENCES WFOPerson(id)
 );
 
 INSERT INTO PersonPermissions VALUES (1, 0)
+INSERT INTO PersonPermissions VALUES (2, 'VIEW_TELEPHONY')
+
+CREATE TABLE Server (
+	id INT IDENTITY(1,1) NOT NULL,
+	serverType NVARCHAR(MAX) NOT NULL,
+	ipHostName NVARCHAR(1000) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE TelephonyGroupServer (
+	telephonyGroupId INT NOT NULL,
+	serverFk INT NOT NULL,
+	FOREIGN KEY (serverFk) REFERENCES Server(id)
+);
+
+CREATE TABLE RecordingGroupServer (
+	recordingGroupId INT NOT NULL,
+	serverFk INT NOT NULL,
+	priority INT NULL,
+	FOREIGN KEY (serverFk) REFERENCES Server(id)
+);
+
+CREATE TABLE SignalingGroupServer (
+	signalingGroupId INT NOT NULL,
+	serverFk INT NOT NULL,
+	signalingAssociation INT NULL,
+	priority INT NULL,
+	FOREIGN KEY (serverFk) REFERENCES Server(id)
+);
+
+CREATE TABLE TelephonyGroup (
+	id INT IDENTITY(1,1) NOT NULL,
+	name NVARCHAR(255) NOT NULL,
+	telephonyGroupTypeId NVARCHAR(MAX) NOT NULL,
+	inclusionList NVARCHAR(MAX) NULL,
+	acdServerId INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY acdServerId REFERENCES Server(serverId)
+);
+
+CREATE TABLE SignalingGroup (
+	id INT IDENTITY(1,1) NOT NULL,
+	name NVARCHAR(255) NOT NULL,
+	telephonyGroupId INT NULL,
+	primarySignalingId INT NULL,
+	backupSignalingId INT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (telephonyGroupId) REFERENCES TelephonyGroup(id),
+	FOREIGN KEY (primarySignalingId) REFERENCES Server(id),
+	FOREIGN KEY (backupSignalingId) REFERENCES Server(id)
+);
+
+CREATE TABLE RecordingGroup (
+	id INT IDENTITY(1,1) NOT NULL,
+	name NVARCHAR(255) NOT NULL,
+	signalingGroupId INT NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (signalingGroupId) REFERENCES SignalingGroup(id)
+);
+
+INSERT INTO Server VALUES ('ACD_SERVER', 'localhost')
+INSERT INTO TelephonyGroup VALUES ('TestTG1', 'UNIFIED_CM', NULL, 1)

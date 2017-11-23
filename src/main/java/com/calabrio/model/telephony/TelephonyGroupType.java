@@ -13,4 +13,15 @@ package com.calabrio.model.telephony;
  * Created by Brendan.Lesniak on 11/20/2017.
  */
 public enum TelephonyGroupType {
+    UNIFIED_CM,
+    AVAYA,
+    ACME_PACKET_SIP_REC,
+    CUBE,
+    MEDIA_SENSE,
+    AUDIO_CODES,
+    AACC_WITH_MLS,
+    SONUS_SIP_REC,
+    IP_OFFICE,
+    GENESYS,
+    SKYPE_4_BUSINESS;
 }

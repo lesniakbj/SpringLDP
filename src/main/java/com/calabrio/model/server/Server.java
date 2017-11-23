@@ -16,9 +16,40 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Server")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Server {
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "serverType", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ServerType serverType;
+
+    @Column(name = "ipHostName", nullable = false)
+    private String ipHostName;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public ServerType getServerType() {
+        return serverType;
+    }
+
+    public void setServerType(ServerType serverType) {
+        this.serverType = serverType;
+    }
+
+    public String getIpHostName() {
+        return ipHostName;
+    }
+
+    public void setIpHostName(String ipHostName) {
+        this.ipHostName = ipHostName;
+    }
 }

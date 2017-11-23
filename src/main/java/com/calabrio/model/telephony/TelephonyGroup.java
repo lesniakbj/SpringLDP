@@ -1,6 +1,9 @@
 package com.calabrio.model.telephony;
 
+import com.calabrio.model.server.Server;
 import com.calabrio.model.server.TelephonyGroupServer;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,22 +32,65 @@ public class TelephonyGroup {
     @Column(name =  "name", nullable = false)
     private String name;
 
-    @Column(name =  "telephonyGroupType", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @Column(name =  "telephonyGroupTypeId", nullable = false)
+    @Enumerated(EnumType.STRING)
     private TelephonyGroupType telephonyGroupType;
 
     @Column(name =  "inclusionList")
     private String inclusionList;
 
-    @OneToMany
-    @JoinColumn(name = "inclusionListId")
+    @OneToOne
+    @JoinColumn(name = "acdServerId", nullable = false)
+    private Server acdServer;
+
+    @OneToMany(mappedBy = "telephonyGroup", fetch = FetchType.EAGER)
     private List<TelephonyGroupServer> servers;
 
-    @ElementCollection(targetClass = String.class)
-    @CollectionTable(name = "MetadataMappings")
-    @MapKeyColumn(name = "metaDataKey")
-    @Column(name = "metaDataValue")
-    private Map<String,String> customMetadataMappings;
+    public Integer getId() {
+        return id;
+    }
 
-    //private Server acd;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public TelephonyGroupType getTelephonyGroupType() {
+        return telephonyGroupType;
+    }
+
+    public void setTelephonyGroupType(TelephonyGroupType telephonyGroupType) {
+        this.telephonyGroupType = telephonyGroupType;
+    }
+
+    public String getInclusionList() {
+        return inclusionList;
+    }
+
+    public void setInclusionList(String inclusionList) {
+        this.inclusionList = inclusionList;
+    }
+
+    public Server getAcdServer() {
+        return acdServer;
+    }
+
+    public void setAcdServer(Server acdServer) {
+        this.acdServer = acdServer;
+    }
+
+    public List<TelephonyGroupServer> getServers() {
+        return servers;
+    }
+
+    public void setServers(List<TelephonyGroupServer> servers) {
+        this.servers = servers;
+    }
 }

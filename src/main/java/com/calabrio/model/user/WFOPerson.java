@@ -41,7 +41,7 @@ public class WFOPerson {
     @ElementCollection(targetClass = WFOPermission.class, fetch = FetchType.EAGER)
     @JoinTable(name = "PersonPermissions", joinColumns = @JoinColumn(name = "personId"))
     @Column(name = "permissionId", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private List<WFOPermission> userPermissions;
 
     @Column(name = "isServiceUser")
