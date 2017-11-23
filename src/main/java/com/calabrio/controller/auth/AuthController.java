@@ -10,6 +10,8 @@ import com.calabrio.util.properties.SessionProperties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,16 +45,17 @@ public class AuthController extends AbstractController {
     public ResponseEntity<String> auth(HttpServletRequest rq) {
         try {
             AuthRequest auth = JsonUtil.fromJson(requestBody(rq), AuthRequest.class);
-            log.debug(String.format("Auth parsed as: %s", auth));
             setAttribute(rq, SessionProperties.WFO_TENANT, auth.getTenantId());
 
-            // Query the WFOPersonService to retrieve the WFOPerson associated with
-            // that username and password that we got from the AuthRequest.
+            // Authenticate
             WFOPerson authUser = userService.authenticate(auth);
             if(authUser == null) {
                 clearSession(rq);
                 return errorResponse("Error authenticating user credentials", 400);
             }
+
+            // Set our Security Context for this User
+            setSecurityContext(authUser);
 
             String json = JsonUtil.toJson(authUser);
             setAttribute(rq, SessionProperties.WFO_PERSON, json);
@@ -62,5 +65,12 @@ public class AuthController extends AbstractController {
             clearSession(rq);
             return errorResponse(e.getMessage(), 400);
         }
+    }
+
+    private void setSecurityContext(WFOPerson authUser) {
+        UserPrincipal principal = new UserPrincipal();
+        principal.setPerson(authUser);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(principal, null, principal.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }

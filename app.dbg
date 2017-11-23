@@ -9466,3 +9466,634 @@
 2017-11-22 23:28:45 DEBUG UserSessionInterceptor:23 - Request Path: http://localhost:8080/admin/tenant/add
 2017-11-22 23:28:45 DEBUG WFOPermissionExpressionRoot:18 - Checking user permission!
 2017-11-22 23:28:45 DEBUG WFOPermissionExpressionRoot:19 - [anonymousUser]
+2017-11-22 23:42:57 DEBUG WebSecurityConfig:21 - Creating security expression handler.
+2017-11-22 23:42:58 DEBUG MultiTenantConnectionProvider:83 - Loading properties for Connection Provider
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: WFOPersonDaoImpl
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: WFOPersonServiceImpl
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: applicationMain
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: authController
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: authenticationEventPublisher
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: authenticationManager
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: authenticationManagerBuilder
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: authenticationManagerConfigurationListener
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: autowiredWebSecurityConfigurersIgnoreParents
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: beanNameHandlerMapping
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: bootGlobalAuthenticationConfigurationAdapter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: characterEncodingFilter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: connectionProviderBean
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: dataSource
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: dataSourceInitializer
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: dataSourceInitializerPostProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: dataSourceLookupBean
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: defaultIgnoredRequestsCustomizer
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: defaultServletHandlerMapping
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: defaultValidator
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: defaultViewResolver
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: delegatingApplicationListener
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: dispatcherServlet
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: dispatcherServletRegistration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: duplicateServerPropertiesDetector
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: embeddedServletContainerCustomizerBeanPostProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: enableGlobalAuthenticationAutowiredConfigurer
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: errorPageRegistrarBeanPostProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: faviconHandlerMapping
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: faviconRequestHandler
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: gson
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: handlerExceptionResolver
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: hibernateConfig
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: hiddenHttpMethodFilter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: httpPutFormContentFilter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: httpRequestHandlerAdapter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: ignoredPathsWebSecurityConfigurerAdapter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: indexController
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: initializeAuthenticationProviderBeanManagerConfigurer
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: initializeUserDetailsBeanManagerConfigurer
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: jacksonObjectMapper
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: jacksonObjectMapperBuilder
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: jdbcTemplate
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: jsonComponentModule
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: localeCharsetMappingsCustomizer
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: mappingJackson2HttpMessageConverter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: mbeanExporter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: mbeanServer
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: messageConverters
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: metaDataSourceAdvisor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: methodSecurityInterceptor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: methodSecurityMetadataSource
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: methodValidationPostProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: multiTenantConnectionProvider
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: multipartConfigElement
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: multipartResolver
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: mvcContentNegotiationManager
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: mvcConversionService
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: mvcHandlerMappingIntrospector
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: mvcPathMatcher
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: mvcResourceUrlProvider
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: mvcUriComponentsContributor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: mvcUrlPathHelper
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: mvcValidator
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: mvcViewResolver
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: namedParameterJdbcTemplate
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: objectNamingStrategy
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: objectPostProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.aop.config.internalAutoProxyCreator
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.AutoConfigurationPackages
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.condition.BeanTypeRegistry
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.dao.PersistenceExceptionTranslationAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.internalCachingMetadataReaderFactory
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration$DataSourceTransactionManagerConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.metadata.DataSourcePoolMetadataProvidersConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.AuthenticationManagerConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.BootGlobalAuthenticationConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.SecurityFilterAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration$ApplicationWebSecurityConfigurerAdapter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration$TransactionTemplateConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration$DispatcherServletConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration$DispatcherServletRegistrationConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration$EmbeddedTomcat
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.GsonHttpMessageConvertersConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.HttpEncodingAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration$StringHttpMessageConverterConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.JacksonHttpMessageConvertersConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.JacksonHttpMessageConvertersConfiguration$MappingJackson2HttpMessageConverterConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration$RestTemplateConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$EnableWebMvcConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter$FaviconConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration$TomcatWebSocketConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.store
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalCommonAnnotationProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalPersistenceAnnotationProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalRequiredAnnotationProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.context.event.internalEventListenerFactory
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.context.event.internalEventListenerProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.transaction.config.internalTransactionAdvisor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: org.springframework.transaction.config.internalTransactionalEventListenerFactory
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: persistenceExceptionTranslationPostProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: platformTransactionManagerCustomizers
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: preInvocationAuthorizationAdvice
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: privilegeEvaluator
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: propertySourcesPlaceholderConfigurer
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: requestContextFilter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: requestDataValueProcessor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: requestMappingHandlerAdapter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: requestMappingHandlerMapping
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: resourceHandlerMapping
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: restTemplateBuilder
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: securityFilterChainRegistration
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: securityProperties
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: serverProperties
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: sessionFactory
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: simpleControllerHandlerAdapter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: spring.http.encoding-org.springframework.boot.autoconfigure.web.HttpEncodingProperties
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: spring.http.multipart-org.springframework.boot.autoconfigure.web.MultipartProperties
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: spring.info-org.springframework.boot.autoconfigure.info.ProjectInfoProperties
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: spring.jackson-org.springframework.boot.autoconfigure.jackson.JacksonProperties
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: spring.jta-org.springframework.boot.autoconfigure.transaction.jta.JtaProperties
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: spring.mvc-org.springframework.boot.autoconfigure.web.WebMvcProperties
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: spring.resources-org.springframework.boot.autoconfigure.web.ResourceProperties
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: spring.transaction-org.springframework.boot.autoconfigure.transaction.TransactionProperties
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: springBootAuthenticationConfigurerAdapter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: springSecurityFilterChain
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: springUtil
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: standardJacksonObjectMapperBuilderCustomizer
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: stringHttpMessageConverter
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: telephonyGroupController
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: telephonyGroupDaoImpl
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: telephonyGroupServiceImpl
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: tenantController
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: tenantDaoImpl
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: tenantResolver
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: tenantResolverBean
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: tenantServiceImpl
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: tomcatEmbeddedServletContainerFactory
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: transactionAttributeSource
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: transactionInterceptor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: transactionManager
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: transactionTemplate
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: userSessionInterceptor
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: viewControllerHandlerMapping
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: viewResolver
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: webMvcConfig
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: webSecurityConfig
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: webSecurityConfig.HttpSecurityConfig
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: webSecurityExpressionHandler
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: websocketContainerCustomizer
+2017-11-22 23:42:58 DEBUG HibernateConfig:61 - Bean: welcomePageHandlerMapping
+2017-11-22 23:42:59 DEBUG MultiTenantConnectionProvider:58 - Selecting Default DataSource
+2017-11-22 23:47:04 DEBUG WebSecurityConfig:21 - Creating security expression handler.
+2017-11-22 23:47:05 DEBUG MultiTenantConnectionProvider:83 - Loading properties for Connection Provider
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: WFOPersonDaoImpl
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: WFOPersonServiceImpl
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: applicationMain
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: authController
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: authenticationEventPublisher
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: authenticationManager
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: authenticationManagerBuilder
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: authenticationManagerConfigurationListener
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: autowiredWebSecurityConfigurersIgnoreParents
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: beanNameHandlerMapping
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: bootGlobalAuthenticationConfigurationAdapter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: characterEncodingFilter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: connectionProviderBean
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: dataSource
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: dataSourceInitializer
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: dataSourceInitializerPostProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: dataSourceLookupBean
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: defaultIgnoredRequestsCustomizer
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: defaultServletHandlerMapping
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: defaultValidator
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: defaultViewResolver
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: delegatingApplicationListener
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: dispatcherServlet
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: dispatcherServletRegistration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: duplicateServerPropertiesDetector
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: embeddedServletContainerCustomizerBeanPostProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: enableGlobalAuthenticationAutowiredConfigurer
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: errorPageRegistrarBeanPostProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: faviconHandlerMapping
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: faviconRequestHandler
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: gson
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: handlerExceptionResolver
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: hibernateConfig
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: hiddenHttpMethodFilter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: httpPutFormContentFilter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: httpRequestHandlerAdapter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: ignoredPathsWebSecurityConfigurerAdapter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: indexController
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: initializeAuthenticationProviderBeanManagerConfigurer
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: initializeUserDetailsBeanManagerConfigurer
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: jacksonObjectMapper
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: jacksonObjectMapperBuilder
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: jdbcTemplate
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: jsonComponentModule
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: localeCharsetMappingsCustomizer
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: mappingJackson2HttpMessageConverter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: mbeanExporter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: mbeanServer
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: messageConverters
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: metaDataSourceAdvisor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: methodSecurityInterceptor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: methodSecurityMetadataSource
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: methodValidationPostProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: multiTenantConnectionProvider
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: multipartConfigElement
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: multipartResolver
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: mvcContentNegotiationManager
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: mvcConversionService
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: mvcHandlerMappingIntrospector
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: mvcPathMatcher
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: mvcResourceUrlProvider
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: mvcUriComponentsContributor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: mvcUrlPathHelper
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: mvcValidator
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: mvcViewResolver
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: namedParameterJdbcTemplate
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: objectNamingStrategy
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: objectPostProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.aop.config.internalAutoProxyCreator
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.AutoConfigurationPackages
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.condition.BeanTypeRegistry
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.dao.PersistenceExceptionTranslationAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.internalCachingMetadataReaderFactory
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration$DataSourceTransactionManagerConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.metadata.DataSourcePoolMetadataProvidersConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.AuthenticationManagerConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.BootGlobalAuthenticationConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.SecurityFilterAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration$ApplicationWebSecurityConfigurerAdapter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration$TransactionTemplateConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration$DispatcherServletConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration$DispatcherServletRegistrationConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration$EmbeddedTomcat
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.GsonHttpMessageConvertersConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.HttpEncodingAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration$StringHttpMessageConverterConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.JacksonHttpMessageConvertersConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.JacksonHttpMessageConvertersConfiguration$MappingJackson2HttpMessageConverterConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration$RestTemplateConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$EnableWebMvcConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter$FaviconConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration$TomcatWebSocketConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.store
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalCommonAnnotationProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalPersistenceAnnotationProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalRequiredAnnotationProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.context.event.internalEventListenerFactory
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.context.event.internalEventListenerProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.transaction.config.internalTransactionAdvisor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: org.springframework.transaction.config.internalTransactionalEventListenerFactory
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: persistenceExceptionTranslationPostProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: platformTransactionManagerCustomizers
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: preInvocationAuthorizationAdvice
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: privilegeEvaluator
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: propertySourcesPlaceholderConfigurer
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: requestContextFilter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: requestDataValueProcessor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: requestMappingHandlerAdapter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: requestMappingHandlerMapping
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: resourceHandlerMapping
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: restTemplateBuilder
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: securityFilterChainRegistration
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: securityProperties
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: serverProperties
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: sessionFactory
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: simpleControllerHandlerAdapter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: spring.http.encoding-org.springframework.boot.autoconfigure.web.HttpEncodingProperties
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: spring.http.multipart-org.springframework.boot.autoconfigure.web.MultipartProperties
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: spring.info-org.springframework.boot.autoconfigure.info.ProjectInfoProperties
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: spring.jackson-org.springframework.boot.autoconfigure.jackson.JacksonProperties
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: spring.jta-org.springframework.boot.autoconfigure.transaction.jta.JtaProperties
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: spring.mvc-org.springframework.boot.autoconfigure.web.WebMvcProperties
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: spring.resources-org.springframework.boot.autoconfigure.web.ResourceProperties
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: spring.transaction-org.springframework.boot.autoconfigure.transaction.TransactionProperties
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: springBootAuthenticationConfigurerAdapter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: springSecurityFilterChain
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: springUtil
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: standardJacksonObjectMapperBuilderCustomizer
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: stringHttpMessageConverter
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: telephonyGroupController
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: telephonyGroupDaoImpl
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: telephonyGroupServiceImpl
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: tenantController
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: tenantDaoImpl
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: tenantResolver
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: tenantResolverBean
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: tenantServiceImpl
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: tomcatEmbeddedServletContainerFactory
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: transactionAttributeSource
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: transactionInterceptor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: transactionManager
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: transactionTemplate
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: userSessionInterceptor
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: viewControllerHandlerMapping
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: viewResolver
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: webMvcConfig
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: webSecurityConfig
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: webSecurityConfig.HttpSecurityConfig
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: webSecurityExpressionHandler
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: websocketContainerCustomizer
+2017-11-22 23:47:05 DEBUG HibernateConfig:61 - Bean: welcomePageHandlerMapping
+2017-11-22 23:47:06 DEBUG MultiTenantConnectionProvider:58 - Selecting Default DataSource
+2017-11-22 23:47:11 DEBUG AuthController:48 - Auth parsed as: Username: blah@blah.com, Password: blah, TenantId: 1
+2017-11-22 23:47:11 DEBUG WFOPersonServiceImpl:41 - Authenticating user with auth request: Username: blah@blah.com, Password: blah, TenantId: 1
+2017-11-22 23:47:11 DEBUG TenantResolver:31 - Attempting to resolve current tenant.
+2017-11-22 23:47:11 DEBUG TenantResolver:42 - Tenant Resolved to: 1
+2017-11-22 23:47:11 DEBUG MultiTenantConnectionProvider:64 - Connection to DataSource by: 1
+2017-11-22 23:47:11 DEBUG MultiTenantConnectionProvider:58 - Selecting Default DataSource
+2017-11-22 23:47:11 DEBUG TenantDataSourceLookup:43 - Retrieving Tenant DataSources
+2017-11-22 23:47:11 DEBUG TenantDataSourceLookup:29 - Tenants Size 6
+2017-11-22 23:47:11 DEBUG TenantDataSourceLookup:33 - Getting: 1 / org.springframework.jdbc.datasource.DriverManagerDataSource@6028c42d
+2017-11-22 23:47:11 DEBUG MultiTenantConnectionProvider:78 - Data Source Selected: jdbc:sqlserver://localhost:1433;database=Tenant1;user=dbTenant1;password=Admin2193!;
+2017-11-22 23:47:11 DEBUG WFOPersonDaoImpl:28 - Finding user by email.
+2017-11-22 23:47:11 DEBUG WFOPersonServiceImpl:49 - Attempting to auth user: WFOPerson{id=1, tenantId=1, acdId='SomeRandomACD', firstName='Blah', lastName='BlahLast', email='blah@blah.com'}
+2017-11-22 23:47:11 DEBUG TenantResolver:31 - Attempting to resolve current tenant.
+2017-11-22 23:47:11 DEBUG TenantResolver:42 - Tenant Resolved to: 1
+2017-11-22 23:47:11 DEBUG MultiTenantConnectionProvider:64 - Connection to DataSource by: 1
+2017-11-22 23:47:11 DEBUG MultiTenantConnectionProvider:58 - Selecting Default DataSource
+2017-11-22 23:47:11 DEBUG TenantDataSourceLookup:33 - Getting: 1 / org.springframework.jdbc.datasource.DriverManagerDataSource@6028c42d
+2017-11-22 23:47:11 DEBUG MultiTenantConnectionProvider:78 - Data Source Selected: jdbc:sqlserver://localhost:1433;database=Tenant1;user=dbTenant1;password=Admin2193!;
+2017-11-22 23:47:11 DEBUG WFOPersonDaoImpl:34 - Authenticating user.
+2017-11-22 23:47:16 DEBUG UserSessionInterceptor:18 - PreHandle
+2017-11-22 23:47:16 DEBUG UserSessionInterceptor:23 - Request Path: http://localhost:8080/admin/tenant/add
+2017-11-22 23:47:16 DEBUG WFOPermissionExpressionRoot:18 - Checking user permission!
+2017-11-22 23:47:16 DEBUG WFOPermissionExpressionRoot:19 - [com.calabrio.security.UserPrincipal@18d642ce]
+2017-11-22 23:47:16 DEBUG TenantController:38 - Tenant parsed as: com.calabrio.model.tenant.Tenant@74afce97
+2017-11-22 23:47:16 DEBUG TenantResolver:31 - Attempting to resolve current tenant.
+2017-11-22 23:47:16 DEBUG TenantResolver:42 - Tenant Resolved to: -1
+2017-11-22 23:47:16 DEBUG MultiTenantConnectionProvider:64 - Connection to DataSource by: -1
+2017-11-22 23:47:16 DEBUG MultiTenantConnectionProvider:68 - No tenant Identifier.
+2017-11-22 23:47:16 DEBUG TenantDaoImpl:31 - AddingTenant TenantDao
+2017-11-22 23:47:16 DEBUG AbstractDao:63 - AddingTenant TenantDao
+2017-11-22 23:48:48 DEBUG UserSessionInterceptor:18 - PreHandle
+2017-11-22 23:48:48 DEBUG UserSessionInterceptor:23 - Request Path: http://localhost:8080/admin/tenant/add
+2017-11-22 23:48:48 DEBUG WFOPermissionExpressionRoot:18 - Checking user permission!
+2017-11-22 23:48:48 DEBUG WFOPermissionExpressionRoot:19 - [com.calabrio.security.UserPrincipal@18d642ce]
+2017-11-22 23:48:48 DEBUG TenantController:38 - Tenant parsed as: com.calabrio.model.tenant.Tenant@5ebacf1
+2017-11-22 23:48:48 DEBUG TenantResolver:31 - Attempting to resolve current tenant.
+2017-11-22 23:48:48 DEBUG TenantResolver:42 - Tenant Resolved to: -1
+2017-11-22 23:48:48 DEBUG MultiTenantConnectionProvider:64 - Connection to DataSource by: -1
+2017-11-22 23:48:48 DEBUG MultiTenantConnectionProvider:68 - No tenant Identifier.
+2017-11-22 23:48:48 DEBUG TenantDaoImpl:31 - AddingTenant TenantDao
+2017-11-22 23:48:48 DEBUG AbstractDao:63 - AddingTenant TenantDao
+2017-11-22 23:49:10 DEBUG WebSecurityConfig:21 - Creating security expression handler.
+2017-11-22 23:49:10 DEBUG MultiTenantConnectionProvider:83 - Loading properties for Connection Provider
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: WFOPersonDaoImpl
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: WFOPersonServiceImpl
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: applicationMain
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: authController
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: authenticationEventPublisher
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: authenticationManager
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: authenticationManagerBuilder
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: authenticationManagerConfigurationListener
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: autowiredWebSecurityConfigurersIgnoreParents
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: beanNameHandlerMapping
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: bootGlobalAuthenticationConfigurationAdapter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: characterEncodingFilter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: connectionProviderBean
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: dataSource
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: dataSourceInitializer
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: dataSourceInitializerPostProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: dataSourceLookupBean
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: defaultIgnoredRequestsCustomizer
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: defaultServletHandlerMapping
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: defaultValidator
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: defaultViewResolver
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: delegatingApplicationListener
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: dispatcherServlet
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: dispatcherServletRegistration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: duplicateServerPropertiesDetector
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: embeddedServletContainerCustomizerBeanPostProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: enableGlobalAuthenticationAutowiredConfigurer
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: errorPageRegistrarBeanPostProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: faviconHandlerMapping
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: faviconRequestHandler
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: gson
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: handlerExceptionResolver
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: hibernateConfig
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: hiddenHttpMethodFilter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: httpPutFormContentFilter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: httpRequestHandlerAdapter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: ignoredPathsWebSecurityConfigurerAdapter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: indexController
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: initializeAuthenticationProviderBeanManagerConfigurer
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: initializeUserDetailsBeanManagerConfigurer
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: jacksonObjectMapper
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: jacksonObjectMapperBuilder
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: jdbcTemplate
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: jsonComponentModule
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: localeCharsetMappingsCustomizer
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: mappingJackson2HttpMessageConverter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: mbeanExporter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: mbeanServer
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: messageConverters
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: metaDataSourceAdvisor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: methodSecurityInterceptor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: methodSecurityMetadataSource
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: methodValidationPostProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: multiTenantConnectionProvider
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: multipartConfigElement
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: multipartResolver
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: mvcContentNegotiationManager
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: mvcConversionService
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: mvcHandlerMappingIntrospector
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: mvcPathMatcher
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: mvcResourceUrlProvider
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: mvcUriComponentsContributor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: mvcUrlPathHelper
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: mvcValidator
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: mvcViewResolver
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: namedParameterJdbcTemplate
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: objectNamingStrategy
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: objectPostProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.aop.config.internalAutoProxyCreator
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.AutoConfigurationPackages
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.condition.BeanTypeRegistry
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.dao.PersistenceExceptionTranslationAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.internalCachingMetadataReaderFactory
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration$DataSourceTransactionManagerConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jdbc.metadata.DataSourcePoolMetadataProvidersConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.AuthenticationManagerConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.BootGlobalAuthenticationConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.SecurityFilterAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration$ApplicationWebSecurityConfigurerAdapter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration$TransactionTemplateConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.transaction.jta.JtaAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration$DispatcherServletConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration$DispatcherServletRegistrationConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration$EmbeddedTomcat
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.GsonHttpMessageConvertersConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.HttpEncodingAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration$StringHttpMessageConverterConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.JacksonHttpMessageConvertersConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.JacksonHttpMessageConvertersConfiguration$MappingJackson2HttpMessageConverterConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.ServerPropertiesAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration$RestTemplateConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$EnableWebMvcConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter$FaviconConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.autoconfigure.websocket.WebSocketAutoConfiguration$TomcatWebSocketConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.store
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalCommonAnnotationProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalPersistenceAnnotationProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.context.annotation.internalRequiredAnnotationProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.context.event.internalEventListenerFactory
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.context.event.internalEventListenerProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.transaction.config.internalTransactionAdvisor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: org.springframework.transaction.config.internalTransactionalEventListenerFactory
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: persistenceExceptionTranslationPostProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: platformTransactionManagerCustomizers
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: preInvocationAuthorizationAdvice
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: privilegeEvaluator
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: propertySourcesPlaceholderConfigurer
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: requestContextFilter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: requestDataValueProcessor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: requestMappingHandlerAdapter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: requestMappingHandlerMapping
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: resourceHandlerMapping
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: restTemplateBuilder
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: securityFilterChainRegistration
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: securityProperties
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: serverProperties
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: sessionFactory
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: simpleControllerHandlerAdapter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: spring.http.encoding-org.springframework.boot.autoconfigure.web.HttpEncodingProperties
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: spring.http.multipart-org.springframework.boot.autoconfigure.web.MultipartProperties
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: spring.info-org.springframework.boot.autoconfigure.info.ProjectInfoProperties
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: spring.jackson-org.springframework.boot.autoconfigure.jackson.JacksonProperties
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: spring.jta-org.springframework.boot.autoconfigure.transaction.jta.JtaProperties
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: spring.mvc-org.springframework.boot.autoconfigure.web.WebMvcProperties
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: spring.resources-org.springframework.boot.autoconfigure.web.ResourceProperties
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: spring.transaction-org.springframework.boot.autoconfigure.transaction.TransactionProperties
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: springBootAuthenticationConfigurerAdapter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: springSecurityFilterChain
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: springUtil
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: standardJacksonObjectMapperBuilderCustomizer
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: stringHttpMessageConverter
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: telephonyGroupController
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: telephonyGroupDaoImpl
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: telephonyGroupServiceImpl
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: tenantController
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: tenantDaoImpl
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: tenantResolver
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: tenantResolverBean
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: tenantServiceImpl
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: tomcatEmbeddedServletContainerFactory
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: transactionAttributeSource
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: transactionInterceptor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: transactionManager
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: transactionTemplate
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: userSessionInterceptor
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: viewControllerHandlerMapping
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: viewResolver
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: webMvcConfig
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: webSecurityConfig
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: webSecurityConfig.HttpSecurityConfig
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: webSecurityExpressionHandler
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: websocketContainerCustomizer
+2017-11-22 23:49:11 DEBUG HibernateConfig:61 - Bean: welcomePageHandlerMapping
+2017-11-22 23:49:11 DEBUG MultiTenantConnectionProvider:58 - Selecting Default DataSource
+2017-11-22 23:49:21 DEBUG AuthController:48 - Auth parsed as: Username: asdf@asdf.com, Password: blag, TenantId: 1
+2017-11-22 23:49:21 DEBUG WFOPersonServiceImpl:41 - Authenticating user with auth request: Username: asdf@asdf.com, Password: blag, TenantId: 1
+2017-11-22 23:49:21 DEBUG TenantResolver:31 - Attempting to resolve current tenant.
+2017-11-22 23:49:21 DEBUG TenantResolver:42 - Tenant Resolved to: 1
+2017-11-22 23:49:22 DEBUG MultiTenantConnectionProvider:64 - Connection to DataSource by: 1
+2017-11-22 23:49:22 DEBUG MultiTenantConnectionProvider:58 - Selecting Default DataSource
+2017-11-22 23:49:22 DEBUG TenantDataSourceLookup:43 - Retrieving Tenant DataSources
+2017-11-22 23:49:22 DEBUG TenantDataSourceLookup:29 - Tenants Size 8
+2017-11-22 23:49:22 DEBUG TenantDataSourceLookup:33 - Getting: 1 / org.springframework.jdbc.datasource.DriverManagerDataSource@29ff4059
+2017-11-22 23:49:22 DEBUG MultiTenantConnectionProvider:78 - Data Source Selected: jdbc:sqlserver://localhost:1433;database=Tenant1;user=dbTenant1;password=Admin2193!;
+2017-11-22 23:49:22 DEBUG WFOPersonDaoImpl:28 - Finding user by email.
+2017-11-22 23:49:22 DEBUG WFOPersonServiceImpl:49 - Attempting to auth user: WFOPerson{id=2, tenantId=1, acdId='adsasd', firstName='Blah2', lastName='Blah2Last', email='asdf@asdf.com'}
+2017-11-22 23:49:22 DEBUG TenantResolver:31 - Attempting to resolve current tenant.
+2017-11-22 23:49:22 DEBUG TenantResolver:42 - Tenant Resolved to: 1
+2017-11-22 23:49:22 DEBUG MultiTenantConnectionProvider:64 - Connection to DataSource by: 1
+2017-11-22 23:49:22 DEBUG MultiTenantConnectionProvider:58 - Selecting Default DataSource
+2017-11-22 23:49:22 DEBUG TenantDataSourceLookup:33 - Getting: 1 / org.springframework.jdbc.datasource.DriverManagerDataSource@29ff4059
+2017-11-22 23:49:22 DEBUG MultiTenantConnectionProvider:78 - Data Source Selected: jdbc:sqlserver://localhost:1433;database=Tenant1;user=dbTenant1;password=Admin2193!;
+2017-11-22 23:49:22 DEBUG WFOPersonDaoImpl:34 - Authenticating user.
+2017-11-22 23:49:25 DEBUG UserSessionInterceptor:18 - PreHandle
+2017-11-22 23:49:25 DEBUG UserSessionInterceptor:23 - Request Path: http://localhost:8080/admin/tenant/add
+2017-11-22 23:49:25 DEBUG WFOPermissionExpressionRoot:18 - Checking user permission!
+2017-11-22 23:49:25 DEBUG WFOPermissionExpressionRoot:19 - [com.calabrio.security.UserPrincipal@255712cc]

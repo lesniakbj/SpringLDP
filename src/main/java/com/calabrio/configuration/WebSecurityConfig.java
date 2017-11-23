@@ -13,8 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration  {
-    private static final Logger log = Logger.getLogger(MethodSecurityConfig.class);
+public class WebSecurityConfig extends GlobalMethodSecurityConfiguration  {
+    private static final Logger log = Logger.getLogger(WebSecurityConfig.class);
 
     @Override
     protected MethodSecurityExpressionHandler createExpressionHandler() {
@@ -25,15 +25,15 @@ public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration  {
     }
 
     @Configuration
-    public static class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    public static class HttpSecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity httpSecurity) throws Exception {
             httpSecurity
                     .csrf()
                     .disable()
                     .authorizeRequests()
-                    .antMatchers("/auth").permitAll()
-                    .anyRequest().permitAll();
+                    .antMatchers("/auth").anonymous()
+                    .anyRequest().authenticated();
 
         }
     }
