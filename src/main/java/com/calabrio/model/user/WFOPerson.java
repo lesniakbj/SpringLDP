@@ -44,6 +44,9 @@ public class WFOPerson {
     @Enumerated(EnumType.ORDINAL)
     private List<WFOPermission> userPermissions;
 
+    @Column(name = "isServiceUser")
+    private boolean isServiceUser;
+
     public Integer getId() {
         return id;
     }
@@ -98,6 +101,14 @@ public class WFOPerson {
 
     public void setUserPermissions(List<WFOPermission> userPermissions) {
         this.userPermissions = userPermissions;
+    }
+
+    public boolean isServiceUser() {
+        return isServiceUser;
+    }
+
+    public void setServiceUser(boolean serviceUser) {
+        isServiceUser = serviceUser;
     }
 
     public boolean hasPermission(WFOPermission permission) {

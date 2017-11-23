@@ -17,7 +17,7 @@ public class UserPermissionEvaluator implements PermissionEvaluator {
         }
 
         String tgt = targetDomainObject.getClass().getSimpleName().toUpperCase();
-        return hasPrivlege(authentication, tgt, permission.toString().toUpperCase());
+        return hasPrivilege(authentication, tgt, permission.toString().toUpperCase());
     }
 
     @Override
@@ -27,10 +27,10 @@ public class UserPermissionEvaluator implements PermissionEvaluator {
             return false;
         }
 
-        return hasPrivlege(authentication, targetType.toUpperCase(), permission.toString().toUpperCase());
+        return hasPrivilege(authentication, targetType.toUpperCase(), permission.toString().toUpperCase());
     }
 
-    private boolean hasPrivlege(Authentication auth, String target, String permission) {
+    private boolean hasPrivilege(Authentication auth, String target, String permission) {
         return auth.getAuthorities().stream().anyMatch((ga) -> ga.getAuthority().startsWith(target) && ga.getAuthority().contains(permission));
     }
 }

@@ -16,10 +16,16 @@ public class WFOPermissionExpressionRoot extends SecurityExpressionRoot implemen
     }
 
     public boolean hasPermission(WFOPermission permission) {
-        log.debug("Checking user permission!");
-        log.debug(String.format("[%s]", this.getPrincipal()));
+        log.debug(String.format("Checking user permission: %s", permission));
         WFOPerson user = ((UserPrincipal) this.getPrincipal()).getPerson();
         return user.hasPermission(permission);
+    }
+
+    public boolean isServiceUser() {
+        log.debug("Checking if is service user");
+        log.debug(String.format("[%s]", this.getPrincipal()));
+        WFOPerson user = ((UserPrincipal) this.getPrincipal()).getPerson();
+        return user.isServiceUser();
     }
 
     @Override

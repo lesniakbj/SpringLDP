@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface TelephonyGroupService {
     public List<TelephonyGroup> getAllTelephonyGroups();
+
+    TelephonyGroup addTelephonyGroup(TelephonyGroup tg);
 }

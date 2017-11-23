@@ -54,6 +54,7 @@ CREATE TABLE WFOPerson (
 	lastName NVARCHAR(60) NULL,
 	email NVARCHAR(254) NULL,
 	password NVARCHAR(200) NULL,
+	isServiceUser BIT NOT NULL DEFAULT(0),
 	PRIMARY KEY (id)
 );
 

@@ -17,10 +17,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 
 /**
@@ -41,6 +41,9 @@ public class AuthController extends AbstractController {
 
     @Autowired
     private WFOPersonService userService;
+
+    @Autowired
+    private RequestMappingHandlerMapping handlerMapping;
 
     @RequestMapping(name = "auth", value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<String> auth(HttpServletRequest rq) {
@@ -68,10 +71,21 @@ public class AuthController extends AbstractController {
         }
     }
 
-    @RequestMapping(name = "denied", value = "/denied", method = RequestMethod.POST)
+    @RequestMapping(name = "denied", value = "/denied", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
     public ResponseEntity<String> denied(HttpServletRequest rq) {
         ErrorMessage msg = new ErrorMessage("Access is Denied!");
         return ResponseEntity.status(401).body(JsonUtil.toJson(msg));
+    }
+
+    @RequestMapping(name = "logout", value = "/auth/logout", method = RequestMethod.POST)
+    public ResponseEntity<String> logout(HttpServletRequest rq) {
+        return ResponseEntity.ok(JsonUtil.toJson("Successfully logged out"));
+    }
+
+    @RequestMapping(name = "endpoints", value = "/admin/endpoints", method = RequestMethod.GET)
+    public ResponseEntity<String> endpoints(HttpServletRequest rq) {
+        clearSession(rq);
+        return ResponseEntity.ok(handlerMapping.getHandlerMethods().toString());
     }
 
     private void setSecurityContext(WFOPerson authUser) {

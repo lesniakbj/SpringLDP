@@ -18,4 +18,9 @@ public class TelephonyGroupServiceImpl extends AbstractService implements Teleph
     public List<TelephonyGroup> getAllTelephonyGroups() {
         return telephonyGroupDao.getAll();
     }
+
+    @Override
+    public TelephonyGroup addTelephonyGroup(TelephonyGroup tg) {
+        return null;
+    }
 }
