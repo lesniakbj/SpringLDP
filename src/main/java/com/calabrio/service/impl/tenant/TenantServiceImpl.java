@@ -1,10 +1,9 @@
 package com.calabrio.service.impl.tenant;
 
-import com.calabrio.dao.TenantDao;
+import com.calabrio.dao.impl.tenant.TenantDao;
 import com.calabrio.model.tenant.Tenant;
 import com.calabrio.model.tenant.TenantProperty;
 import com.calabrio.service.AbstractService;
-import com.calabrio.service.TenantService;
 import com.calabrio.util.properties.DbProperties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

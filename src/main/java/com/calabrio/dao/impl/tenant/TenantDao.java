@@ -1,4 +1,4 @@
-package com.calabrio.dao;
+package com.calabrio.dao.impl.tenant;
 
 import com.calabrio.model.tenant.Tenant;
 import com.calabrio.model.tenant.TenantProperty;

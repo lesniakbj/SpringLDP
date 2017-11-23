@@ -1,7 +1,6 @@
 package com.calabrio.dao.impl.telephony;
 
 import com.calabrio.dao.AbstractDao;
-import com.calabrio.dao.TelephonyGroupDao;
 import com.calabrio.model.telephony.TelephonyGroup;
 import org.springframework.stereotype.Repository;
 

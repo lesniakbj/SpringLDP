@@ -2,7 +2,7 @@ package com.calabrio.controller.tenant;
 
 import com.calabrio.controller.AbstractController;
 import com.calabrio.model.tenant.Tenant;
-import com.calabrio.service.TenantService;
+import com.calabrio.service.impl.tenant.TenantService;
 import com.calabrio.util.JsonUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

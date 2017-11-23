@@ -1,12 +1,10 @@
 package com.calabrio.interceptor;
 
-import com.calabrio.model.ErrorMessage;
+import com.calabrio.model.generic.ErrorMessage;
 import com.calabrio.model.user.WFOPerson;
 import com.calabrio.util.JsonUtil;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

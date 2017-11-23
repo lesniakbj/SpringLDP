@@ -1,4 +1,4 @@
-package com.calabrio.model;
+package com.calabrio.model.generic;
 
 public class ErrorMessage {
     private String error;

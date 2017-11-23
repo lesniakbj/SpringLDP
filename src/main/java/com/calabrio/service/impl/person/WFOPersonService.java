@@ -1,7 +1,9 @@
-package com.calabrio.dao;
+package com.calabrio.service.impl.person;
 
-
+import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.user.WFOPerson;
+
+import javax.naming.AuthenticationException;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -15,8 +17,6 @@ import com.calabrio.model.user.WFOPerson;
  * <p>
  * Created by Brendan.Lesniak on 11/17/2017.
  */
-public interface WFOPersonDao {
-    WFOPerson findByEmail(String email);
-
-    boolean authenticate(WFOPerson user, String password);
+public interface WFOPersonService {
+    WFOPerson authenticate(AuthRequest auth) throws AuthenticationException;
 }

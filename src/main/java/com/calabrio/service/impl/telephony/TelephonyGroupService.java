@@ -1,4 +1,4 @@
-package com.calabrio.service;
+package com.calabrio.service.impl.telephony;
 
 import com.calabrio.model.telephony.TelephonyGroup;
 

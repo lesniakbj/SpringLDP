@@ -1,18 +1,13 @@
 package com.calabrio.datasource;
 
 import com.calabrio.model.tenant.Tenant;
-import com.calabrio.service.TenantService;
 import com.calabrio.util.ConnectionUtil;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.lookup.DataSourceLookup;
 import org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;

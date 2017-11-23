@@ -1,9 +1,7 @@
 package com.calabrio.dao;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -49,6 +47,15 @@ public class AbstractDao {
 
         return null;
     }
+    public <T> List<T> queryListResult(Query query) {
+        try {
+            return (List<T>)query.list();
+        } catch (NoResultException ex) {
+            log.debug("No results when attempting query!");
+        }
+
+        return null;
+    }
 
     public <T> T add(T type) {
         log.debug("AddingTenant TenantDao");
@@ -75,6 +82,13 @@ public class AbstractDao {
         tx.commit();
         session.close();
         return types;
+    }
+
+    public <T> T update(T type) {
+        getSession().update(type);
+        getSession().flush();
+        getSession().clear();
+        return type;
     }
 
     public Session getSession() {

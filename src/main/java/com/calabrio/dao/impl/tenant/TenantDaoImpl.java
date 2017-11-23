@@ -1,12 +1,9 @@
 package com.calabrio.dao.impl.tenant;
 
 import com.calabrio.dao.AbstractDao;
-import com.calabrio.dao.TenantDao;
 import com.calabrio.model.tenant.Tenant;
 import com.calabrio.model.tenant.TenantProperty;
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

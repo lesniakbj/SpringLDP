@@ -1,22 +1,11 @@
 package com.calabrio.dao.impl.person;
 
 import com.calabrio.dao.AbstractDao;
-import com.calabrio.dao.WFOPersonDao;
-import com.calabrio.model.tenant.Tenant;
 import com.calabrio.model.user.WFOPerson;
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Root;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.

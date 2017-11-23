@@ -3,7 +3,7 @@ package com.calabrio.controller.auth;
 import com.calabrio.controller.AbstractController;
 import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.user.WFOPerson;
-import com.calabrio.service.WFOPersonService;
+import com.calabrio.service.impl.person.WFOPersonService;
 import com.calabrio.util.JsonUtil;
 import com.calabrio.util.properties.SessionProperties;
 import org.apache.log4j.Logger;

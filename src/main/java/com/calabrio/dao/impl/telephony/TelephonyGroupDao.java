@@ -1,4 +1,4 @@
-package com.calabrio.dao;
+package com.calabrio.dao.impl.telephony;
 
 import com.calabrio.model.telephony.TelephonyGroup;
 

@@ -1,11 +1,10 @@
 package com.calabrio.service.impl.person;
 
-import com.calabrio.dao.TenantDao;
-import com.calabrio.dao.WFOPersonDao;
+import com.calabrio.dao.impl.tenant.TenantDao;
+import com.calabrio.dao.impl.person.WFOPersonDao;
 import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.user.WFOPerson;
 import com.calabrio.service.AbstractService;
-import com.calabrio.service.WFOPersonService;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

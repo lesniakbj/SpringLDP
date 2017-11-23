@@ -1,6 +1,6 @@
 package com.calabrio.controller;
 
-import com.calabrio.model.ErrorMessage;
+import com.calabrio.model.generic.ErrorMessage;
 import com.calabrio.util.JsonUtil;
 import org.apache.log4j.Logger;
 import org.springframework.http.ResponseEntity;

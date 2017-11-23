@@ -1,6 +1,6 @@
-package com.calabrio.controller;
+package com.calabrio.controller.generic;
 
-import com.calabrio.model.user.WFOPerson;
+import com.calabrio.controller.AbstractController;
 import org.apache.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;

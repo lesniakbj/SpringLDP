@@ -1,7 +1,7 @@
 package com.calabrio.controller.telephony;
 
 import com.calabrio.controller.AbstractController;
-import com.calabrio.service.TelephonyGroupService;
+import com.calabrio.service.impl.telephony.TelephonyGroupService;
 import com.calabrio.util.JsonUtil;
 import com.calabrio.util.SpringUtil;
 import org.apache.log4j.Logger;
