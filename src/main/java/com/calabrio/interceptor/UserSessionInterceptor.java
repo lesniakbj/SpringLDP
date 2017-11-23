@@ -15,12 +15,13 @@ public class UserSessionInterceptor extends AbstractInterceptor  {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.trace("PreHandle");
+        log.debug("PreHandle");
 
         // Ensure that we have a logged in user, excluded paths can be set
         // in config.WebMvcConfig.EXCLUDE_USER_PATHS
         WFOPerson user = getLoggedInUser(request);
-        if(user == null) {
+        log.debug(String.format("Request Path: %s", request.getRequestURL()));
+        if(user == null && !request.getContextPath().equals("/auth")) {
             ErrorMessage msg = new ErrorMessage("Must have a logged in user!");
             response.getWriter().write(JsonUtil.toJson(msg));
             return false;

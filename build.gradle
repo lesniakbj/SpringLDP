@@ -27,7 +27,6 @@ jar {
 
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.8.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.5.8.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.0.0.M5'
     compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.0.0.M5'
     compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.0.0.M5'

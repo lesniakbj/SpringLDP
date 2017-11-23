@@ -7,6 +7,7 @@ import com.calabrio.util.JsonUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,7 +31,7 @@ public class TenantController extends AbstractController {
     }
 
     @RequestMapping(name = "addTenant", value = "/admin/tenant/add", method = RequestMethod.POST)
-    @PreAuthorize("hasPermission(#id, 'Foo', 'read')")
+    @PreAuthorize("hasPermission('ADMIN_TENANT')")
     public ResponseEntity<String> addTenant(HttpServletRequest rq) {
         try {
             Tenant tenant = JsonUtil.fromJson(requestBody(rq), Tenant.class);

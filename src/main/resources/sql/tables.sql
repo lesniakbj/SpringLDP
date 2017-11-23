@@ -64,3 +64,11 @@ CREATE TABLE TenantProperties (
 	value NVARCHAR(MAX) NOT NULL,
 	PRIMARY KEY (tenantId, keyName)
 );
+
+CREATE TABLE PersonPermissions (
+	personId INT NOT NULL,
+	permissionId INT NOT NULL,
+	FOREIGN KEY (personId) REFERENCES WFOPerson(id)
+);
+
+INSERT INTO PersonPermissions VALUES (1, 0)

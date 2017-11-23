@@ -1,5 +1,7 @@
 package com.calabrio.security;
 
+import com.calabrio.model.user.WFOPermission;
+import com.calabrio.model.user.WFOPerson;
 import org.apache.log4j.Logger;
 import org.springframework.security.access.expression.SecurityExpressionRoot;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionOperations;
@@ -10,6 +12,13 @@ public class WFOPermissionExpressionRoot extends SecurityExpressionRoot implemen
 
     public WFOPermissionExpressionRoot(Authentication authentication) {
         super(authentication);
+    }
+
+    public boolean hasPermission(WFOPermission permission) {
+        log.debug("Checking user permission!");
+        log.debug(String.format("[%s]", this.getPrincipal()));
+        WFOPerson user = ((UserPrincipal) this.getPrincipal()).getPerson();
+        return user.hasPermission(permission);
     }
 
     @Override

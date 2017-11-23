@@ -1,6 +1,7 @@
 package com.calabrio.model.user;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -36,6 +37,12 @@ public class WFOPerson {
 
     @Column(name = "email", length = 254)
     private String email;
+
+    @ElementCollection(targetClass = WFOPermission.class, fetch = FetchType.EAGER)
+    @JoinTable(name = "PersonPermissions", joinColumns = @JoinColumn(name = "personId"))
+    @Column(name = "permissionId", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private List<WFOPermission> userPermissions;
 
     public Integer getId() {
         return id;
@@ -83,6 +90,18 @@ public class WFOPerson {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<WFOPermission> getUserPermissions() {
+        return userPermissions;
+    }
+
+    public void setUserPermissions(List<WFOPermission> userPermissions) {
+        this.userPermissions = userPermissions;
+    }
+
+    public boolean hasPermission(WFOPermission permission) {
+        return userPermissions.contains(permission);
     }
 
     @Override
