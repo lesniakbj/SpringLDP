@@ -1,6 +1,7 @@
 package com.calabrio.model.server;
 
 import com.calabrio.model.telephony.RecordingGroup;
+import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
 
@@ -8,8 +9,9 @@ import javax.persistence.*;
 @Table(name = "RecordingGroupServer")
 @PrimaryKeyJoinColumn(name = "serverFk", referencedColumnName = "id")
 public class RecordingGroupServer extends Server {
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "recordingGroupId")
+    @Expose(serialize = false)
     private RecordingGroup recordingGroup;
 
     @Column(name = "priority")

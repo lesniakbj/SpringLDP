@@ -2,8 +2,11 @@ package com.calabrio.model.telephony;
 
 import com.calabrio.model.server.Server;
 import com.calabrio.model.server.TelephonyGroupServer;
+import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,24 +30,38 @@ public class TelephonyGroup {
     @Id
     @Column(name =  "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Expose
     private Integer id;
 
     @Column(name =  "name", nullable = false)
+    @Expose
     private String name;
 
     @Column(name =  "telephonyGroupTypeId", nullable = false)
     @Enumerated(EnumType.STRING)
+    @Expose
     private TelephonyGroupType telephonyGroupType;
 
     @Column(name =  "inclusionList")
+    @Expose
     private String inclusionList;
 
     @OneToOne
     @JoinColumn(name = "acdServerId", nullable = false)
+    @Expose
     private Server acdServer;
 
     @OneToMany(mappedBy = "telephonyGroup", fetch = FetchType.EAGER)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Fetch(FetchMode.SELECT)
+    @Expose
     private List<TelephonyGroupServer> servers;
+
+    @OneToMany(mappedBy = "telephonyGroup", fetch = FetchType.EAGER)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Fetch(FetchMode.SELECT)
+    @Expose
+    private List<SignalingGroup> signalingGroups;
 
     public Integer getId() {
         return id;
@@ -92,5 +109,13 @@ public class TelephonyGroup {
 
     public void setServers(List<TelephonyGroupServer> servers) {
         this.servers = servers;
+    }
+
+    public List<SignalingGroup> getSignalingGroups() {
+        return signalingGroups;
+    }
+
+    public void setSignalingGroups(List<SignalingGroup> signalingGroups) {
+        this.signalingGroups = signalingGroups;
     }
 }

@@ -1,8 +1,16 @@
 package com.calabrio.model.telephony;
 
 import com.calabrio.model.server.Server;
+import com.calabrio.model.server.SignalingGroupServer;
+import com.calabrio.model.server.TelephonyGroupServer;
+import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -22,22 +30,39 @@ public class SignalingGroup {
     @Id
     @Column(name = "id", nullable =  false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Expose
     private Integer id;
 
     @Column(name =  "name", nullable = false)
+    @Expose
     private String name;
 
-    @OneToOne
-    @JoinColumn(name =  "telephonyGroupId")
+    @ManyToOne
+    @JoinColumn(name = "telephonyGroupId")
+    @Expose(serialize = false)
     private TelephonyGroup telephonyGroup;
 
     @OneToOne
     @JoinColumn(name = "primarySignalingId")
+    @Expose
     private Server primary;
 
     @OneToOne
     @JoinColumn(name = "backupSignalingId")
+    @Expose
     private Server backup;
+
+    @OneToMany(mappedBy = "signalingGroup", fetch = FetchType.EAGER)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Fetch(FetchMode.SELECT)
+    @Expose
+    private List<SignalingGroupServer> servers;
+
+    @OneToMany(mappedBy = "signalingGroup", fetch = FetchType.EAGER)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @Fetch(FetchMode.SELECT)
+    @Expose
+    private List<RecordingGroup> recordingGroups;
 
     public Integer getId() {
         return id;
@@ -77,5 +102,21 @@ public class SignalingGroup {
 
     public void setBackup(Server backup) {
         this.backup = backup;
+    }
+
+    public List<SignalingGroupServer> getServers() {
+        return servers;
+    }
+
+    public void setServers(List<SignalingGroupServer> servers) {
+        this.servers = servers;
+    }
+
+    public List<RecordingGroup> getRecordingGroups() {
+        return recordingGroups;
+    }
+
+    public void setRecordingGroups(List<RecordingGroup> recordingGroups) {
+        this.recordingGroups = recordingGroups;
     }
 }

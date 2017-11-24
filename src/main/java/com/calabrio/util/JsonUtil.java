@@ -11,6 +11,7 @@ public class JsonUtil {
     static {
         GsonBuilder builder = new GsonBuilder();
         builder.serializeNulls();
+        builder.excludeFieldsWithoutExposeAnnotation();
         jsonTransformer = builder.create();
     }
 

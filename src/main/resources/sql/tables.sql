@@ -135,3 +135,4 @@ CREATE TABLE RecordingGroup (
 
 INSERT INTO Server VALUES ('ACD_SERVER', 'localhost')
 INSERT INTO TelephonyGroup VALUES ('TestTG1', 'UNIFIED_CM', NULL, 1)
+INSERT INTO SignalingGroup VALUES ('TestSG1', 1, 1, null)

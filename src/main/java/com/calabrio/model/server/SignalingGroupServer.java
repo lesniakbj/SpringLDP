@@ -1,6 +1,7 @@
 package com.calabrio.model.server;
 
 import com.calabrio.model.telephony.SignalingGroup;
+import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
 
@@ -8,8 +9,9 @@ import javax.persistence.*;
 @Table(name = "SignalingGroupServer")
 @PrimaryKeyJoinColumn(name = "serverFk", referencedColumnName = "id")
 public class SignalingGroupServer extends Server {
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "signalingGroupId")
+    @Expose(serialize = false)
     private SignalingGroup signalingGroup;
 
     @Column(name = "signalingAssociation")

@@ -1,5 +1,7 @@
 package com.calabrio.model.server;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 
 /**
@@ -20,13 +22,16 @@ import javax.persistence.*;
 public class Server {
     @Id
     @Column(name = "id", nullable = false)
+    @Expose
     private Integer id;
 
     @Column(name = "serverType", nullable = false)
     @Enumerated(EnumType.STRING)
+    @Expose
     private ServerType serverType;
 
     @Column(name = "ipHostName", nullable = false)
+    @Expose
     private String ipHostName;
 
     public Integer getId() {

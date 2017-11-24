@@ -1,6 +1,9 @@
 package com.calabrio.model.generic;
 
+import com.google.gson.annotations.Expose;
+
 public class ErrorMessage {
+    @Expose
     private String error;
 
     public ErrorMessage(String error) {

@@ -1,5 +1,7 @@
 package com.calabrio.model.tenant;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,21 +10,27 @@ public class Tenant {
     @Id
     @Column(name = "tenantId", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Expose
     private Integer tenantId;
 
     @Column(name = "tenantName", length =  50, nullable = false)
+    @Expose
     private String tenantName;
 
     @Column(name = "displayName", length =  50, nullable = false)
+    @Expose
     private String displayName;
 
     @Column(name = "databaseName", length =  125, nullable = false)
+    @Expose
     private String databaseName;
 
     @Column(name = "databaseUserName", length =  100)
+    @Expose
     private String databaseUserName;
 
     @Column(name = "databasePassword", length =  200)
+    @Expose
     private String databasePassword;
 
     @OneToOne

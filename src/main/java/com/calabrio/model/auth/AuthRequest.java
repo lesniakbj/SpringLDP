@@ -1,5 +1,7 @@
 package com.calabrio.model.auth;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * (c) Copyright 2017 Calabrio, Inc.
  * All Rights Reserved. www.calabrio.com LICENSED MATERIALS
@@ -13,8 +15,13 @@ package com.calabrio.model.auth;
  * Created by Brendan.Lesniak on 11/17/2017.
  */
 public class AuthRequest {
+    @Expose
     private String email;
+
+    @Expose
     private String password;
+
+    @Expose
     private Integer tenantId;
 
     public AuthRequest(String email, String password, Integer tenantId) {

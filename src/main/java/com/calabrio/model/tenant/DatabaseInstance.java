@@ -1,5 +1,7 @@
 package com.calabrio.model.tenant;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,24 +10,31 @@ public class DatabaseInstance {
     @Id
     @Column(name = "databaseInstanceId", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Expose
     private Integer databaseInstanceId;
 
     @Column(name = "hostName", length = 200, nullable = false)
+    @Expose
     private String hostName;
 
     @Column(name = "instanceName", length = 16)
+    @Expose
     private String instanceName;
 
     @Column(name = "port")
+    @Expose
     private Integer port;
 
     @Column(name = "master", nullable = false)
+    @Expose
     private Integer master;
 
     @Column(name = "username", length = 100)
+    @Expose
     private String username;
 
     @Column(name = "password", length = 200)
+    @Expose
     private String password;
 
     public Integer getDatabaseInstanceId() {

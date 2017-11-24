@@ -1,5 +1,7 @@
 package com.calabrio.model.user;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,30 +23,38 @@ public class WFOPerson {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Expose
     private Integer id;
 
     @Column(name = "tenantId")
+    @Expose
     private Integer tenantId;
 
     @Column(name = "acdId", length = 256)
+    @Expose
     private String acdId;
 
     @Column(name = "firstName", length = 60)
+    @Expose
     private String firstName;
 
     @Column(name = "lastName", length = 60)
+    @Expose
     private String lastName;
 
     @Column(name = "email", length = 254)
+    @Expose
     private String email;
 
     @ElementCollection(targetClass = WFOPermission.class, fetch = FetchType.EAGER)
     @JoinTable(name = "PersonPermissions", joinColumns = @JoinColumn(name = "personId"))
     @Column(name = "permissionId", nullable = false)
     @Enumerated(EnumType.STRING)
+    @Expose
     private List<WFOPermission> userPermissions;
 
     @Column(name = "isServiceUser")
+    @Expose
     private boolean isServiceUser;
 
     public Integer getId() {
