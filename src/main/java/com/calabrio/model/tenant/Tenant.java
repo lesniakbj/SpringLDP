@@ -37,8 +37,8 @@ public class Tenant {
     @JoinColumn(name = "databaseInstanceId")
     private DatabaseInstance databaseInstance;
 
-    @OneToOne
-    @JoinColumn(name = "tenantStateId")
+    @Column(name = "tenantStateId")
+    @Enumerated(EnumType.STRING)
     private TenantState tenantState;
 
     public Integer getTenantId() {

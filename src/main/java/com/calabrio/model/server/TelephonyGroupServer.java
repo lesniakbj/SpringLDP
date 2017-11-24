@@ -1,11 +1,7 @@
 package com.calabrio.model.server;
 
-import com.calabrio.model.telephony.SignalingGroup;
 import com.calabrio.model.telephony.TelephonyGroup;
 import com.google.gson.annotations.Expose;
-import org.hibernate.annotations.FilterDef;
-import org.hibernate.annotations.FilterJoinTable;
-import org.hibernate.annotations.ParamDef;
 
 import javax.persistence.*;
 

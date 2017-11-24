@@ -1,8 +1,6 @@
 package com.calabrio.model.telephony;
 
 import com.calabrio.model.server.RecordingGroupServer;
-import com.calabrio.model.server.Server;
-import com.calabrio.model.server.TelephonyGroupServer;
 import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;

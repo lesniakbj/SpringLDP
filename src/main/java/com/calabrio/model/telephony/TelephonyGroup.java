@@ -10,7 +10,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Map;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -51,7 +50,7 @@ public class TelephonyGroup {
     @Expose
     private Server acdServer;
 
-    @OneToMany(mappedBy = "telephonyGroup", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "telephonyGroup", fetch = FetchType.EAGER, targetEntity = TelephonyGroupServer.class)
     @LazyCollection(LazyCollectionOption.FALSE)
     @Fetch(FetchMode.SELECT)
     @Expose

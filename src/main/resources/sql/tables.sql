@@ -6,10 +6,9 @@ CREATE TABLE Tenant (
 	databaseUserName NVARCHAR(100) NULL,
 	databasePassword NVARCHAR(200) NULL,
 	databaseInstanceId INT NULL,
-	tenantStateId INT NOT NULL,
+	tenantStateId NVARCHAR(MAX) NOT NULL,
 	PRIMARY KEY (tenantId),
-	FOREIGN KEY (databaseInstanceId) REFERENCES [dbo].[DatabaseInstance]([databaseInstanceId]),
-	FOREIGN KEY (tenantStateId) REFERENCES [dbo].[TenantState]([tenantStateId])
+	FOREIGN KEY (databaseInstanceId) REFERENCES [dbo].[DatabaseInstance]([databaseInstanceId])
 );
 
 CREATE TABLE DatabaseInstance (
@@ -23,25 +22,7 @@ CREATE TABLE DatabaseInstance (
 	PRIMARY KEY (databaseInstanceId)
 );
 
-CREATE TABLE TenantState (
-	tenantStateId INT IDENTITY(1,1) NOT NULL,
-	name NVARCHAR(50) NOT NULL,
-	PRIMARY KEY (tenantStateId)
-);
-
-SET IDENTITY_INSERT TenantState ON;
-GO
-
-INSERT INTO TenantState (tenantStateId, name) VALUES
-(0, 'Activated'), (1, 'Suspended'), (2, 'Deactivated'),
-(3, 'New'), (4, 'Failed Setup'), (5, 'Mainenance'),
-(6, 'Deleted'), (7, 'Failed Deleltion');
-
-SET IDENTITY_INSERT TenantState OFF;
-GO
-
-INSERT INTO Tenant (tenantName, displayName, databaseName, databaseUserName, databasePassword, tenantStateId)
-VALUES ('Tenant1', 'Tenant1', 'Tenant1', 'dbTenant1', '', 0), ('Tenant2', 'Tenant2', 'Tenant2', 'dbTenant2', '', 0)
+INSERT INTO Tenant VALUES ('Tenant1', 'Tenant1', 'Tenant1', 'dbTenant1', '', 0), ('Tenant2', 'Tenant2', 'Tenant2', 'dbTenant2', '', 0)
 
 INSERT INTO DatabaseInstance (hostName, instanceName, port, master, username, password)
 VALUES ('localhost', '', 1433, 1, 'sa', '')
@@ -71,9 +52,6 @@ CREATE TABLE PersonPermissions (
 	permissionId NVARCHAR(MAX) NOT NULL,
 	FOREIGN KEY (personId) REFERENCES WFOPerson(id)
 );
-
-INSERT INTO PersonPermissions VALUES (1, 0)
-INSERT INTO PersonPermissions VALUES (2, 'VIEW_TELEPHONY')
 
 CREATE TABLE Server (
 	id INT IDENTITY(1,1) NOT NULL,
@@ -133,6 +111,12 @@ CREATE TABLE RecordingGroup (
 	FOREIGN KEY (signalingGroupId) REFERENCES SignalingGroup(id)
 );
 
+INSERT INTO WFOPerson VALUES ()
+INSERT INTO PersonPermissions VALUES (1, 0)
+INSERT INTO PersonPermissions VALUES (2, 'VIEW_TELEPHONY')
 INSERT INTO Server VALUES ('ACD_SERVER', 'localhost')
 INSERT INTO TelephonyGroup VALUES ('TestTG1', 'UNIFIED_CM', NULL, 1)
 INSERT INTO SignalingGroup VALUES ('TestSG1', 1, 1, null)
+INSERT INTO SignalingGroupServer VALUES (1, 1, 0, 0)
+INSERT INTO RecordingGroup VALUES ('TestRG1', 1)
+INSERT INTO RecordingGroupServer VALUES (1, 4, 0)

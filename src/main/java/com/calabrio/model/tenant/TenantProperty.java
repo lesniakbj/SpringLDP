@@ -9,12 +9,12 @@ import javax.persistence.*;
 public class TenantProperty {
     @Column(name = "id", nullable =  false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Expose
-    private transient Integer id;
+    @Expose(serialize = false)
+    private Integer id;
 
     @Column(name = "tenantId", nullable =  false)
-    @Expose
-    private transient Integer tenantId;
+    @Expose(serialize = false)
+    private Integer tenantId;
 
     @Id
     @Column(name = "keyName", length = 100, nullable = false)
