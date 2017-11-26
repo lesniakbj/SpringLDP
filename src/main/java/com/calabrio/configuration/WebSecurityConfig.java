@@ -40,7 +40,6 @@ public class WebSecurityConfig extends GlobalMethodSecurityConfiguration  {
                 .logout()
                     .clearAuthentication(true)
                     .invalidateHttpSession(true)
-                    .logoutUrl("/auth/logout")
                     .and()
                 .authorizeRequests()
                     .antMatchers("/auth").anonymous()

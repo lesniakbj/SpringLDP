@@ -65,7 +65,17 @@ DEMO.login = {
 
     logoutUser: function() {
         $('#logoutUserButton').on('click', function() {
-            console.log('Clicked on logout!');
+            $.ajax({
+                 type: 'DELETE',
+                 url: DEMO.login.api + '/logout',
+                 dataType: 'json',
+                 success: function(data) {
+                     console.log('Successfully logged out user: ' + JSON.stringify(data));
+                 },
+                 error: function(error) {
+                    console.log('Error: ' + JSON.stringify(error));
+                 }
+            });
         });
     }
 };
