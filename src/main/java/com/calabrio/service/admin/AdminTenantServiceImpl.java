@@ -59,6 +59,8 @@ public class AdminTenantServiceImpl extends AbstractService implements AdminTena
     @Override
     @PreAuthorize("hasPermission('ADMIN_SYSTEM')")
     public Tenant addTenant(Tenant tenant) {
+        log.debug(String.format("Add Tenant %s", tenant));
+
         // Has to run as the default (Admin) tenant
         setTenantId(DbProperties.DEFAULT_TENANT);
 
@@ -67,13 +69,14 @@ public class AdminTenantServiceImpl extends AbstractService implements AdminTena
         Tenant t = tenantRepository.add(tenant);
 
         // Create Tenant Database
-        adminRepository.createTenantDatabase(t.getDatabaseName(), t.getDatabaseUserName(), t.getDatabasePassword());
+        boolean createDb = adminRepository.createTenantDatabase(t.getDatabaseName(), t.getDatabaseUserName(), t.getDatabasePassword());
+        boolean createTables = adminRepository.createTenantTables(t.getDatabaseName());
+        boolean createUsers =  adminRepository.createBaseTenantUsers(t.getDatabaseName(), t.getTenantId());
 
-        // Create Tenant Tables
-        adminRepository.createTenantTables(t.getDatabaseName());
-
-        // Populate Base User (Service User, Base Tenant Admin)
-        adminRepository.createBaseTenantUsers(t.getDatabaseName(), t.getTenantId());
+        if(!(createDb && createTables && createUsers)) {
+            t.setTenantState(TenantState.FAILED_SETUP);
+            tenantRepository.update(t);
+        }
 
         return t;
     }
@@ -81,6 +84,10 @@ public class AdminTenantServiceImpl extends AbstractService implements AdminTena
     @Override
     @PreAuthorize("hasPermission('ADMIN_SYSTEM')")
     public void removeTenant(Tenant tenant) {
+        log.debug(String.format("Delete Tenant %s", tenant));
+
+        // Has to run as the default (Admin) tenant
+        setTenantId(DbProperties.DEFAULT_TENANT);
         tenantRepository.delete(tenant);
     }
 }

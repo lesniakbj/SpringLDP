@@ -93,6 +93,12 @@ public class AbstractRepository {
         return type;
     }
 
+    public <T> void delete(T type) {
+        getSession().delete(type);
+        getSession().flush();
+        getSession().clear();
+    }
+
     public Session getSession() {
         return sessionFactory.getCurrentSession();
     }

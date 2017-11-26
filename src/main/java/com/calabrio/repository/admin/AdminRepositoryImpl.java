@@ -17,29 +17,29 @@ public class AdminRepositoryImpl extends AbstractRepository implements AdminRepo
     private static final String CREATE_BASE_TENANT_USERS = "EXEC admin.createTenantUsers :dbName, :tenantId";
 
     @Override
-    public void createTenantDatabase(String databaseName, String username, String password) {
+    public boolean createTenantDatabase(String databaseName, String username, String password) {
         log.debug("Creating Tenant DB Query");
         NativeQuery createDb = getSession().createNativeQuery(CREATE_TENANT_DB);
         createDb.setParameter("dbName", databaseName);
         createDb.setParameter("username", username);
         createDb.setParameter("password", password);
-        createDb.executeUpdate();
+        return createDb.executeUpdate() >= 0;
     }
 
     @Override
-    public void createTenantTables(String databaseName) {
+    public boolean createTenantTables(String databaseName) {
         log.debug("Creating Tenant Tables Query");
-        NativeQuery createDb = getSession().createNativeQuery(CREATE_TENANT_TABLES);
-        createDb.setParameter("dbName", databaseName);
-        createDb.executeUpdate();
+        NativeQuery createTables = getSession().createNativeQuery(CREATE_TENANT_TABLES);
+        createTables.setParameter("dbName", databaseName);
+        return createTables.executeUpdate() >= 0;
     }
 
     @Override
-    public void createBaseTenantUsers(String databaseName, Integer tenantId) {
+    public boolean createBaseTenantUsers(String databaseName, Integer tenantId) {
         log.debug("Creating Base Tenant Users Query");
-        NativeQuery createDb = getSession().createNativeQuery(CREATE_BASE_TENANT_USERS);
-        createDb.setParameter("dbName", databaseName);
-        createDb.setParameter("tenantId", tenantId);
-        createDb.executeUpdate();
+        NativeQuery createUsers = getSession().createNativeQuery(CREATE_BASE_TENANT_USERS);
+        createUsers.setParameter("dbName", databaseName);
+        createUsers.setParameter("tenantId", tenantId);
+        return createUsers.executeUpdate() >= 0;
     }
 }

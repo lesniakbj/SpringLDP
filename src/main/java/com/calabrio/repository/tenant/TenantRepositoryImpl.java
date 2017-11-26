@@ -41,6 +41,6 @@ public class TenantRepositoryImpl extends AbstractRepository implements TenantRe
     @Override
     public void delete(Tenant tenant) {
         log.debug("DeleteTenant TenantDao");
-        getSession().delete(tenant);
+        super.delete(tenant);
     }
 }

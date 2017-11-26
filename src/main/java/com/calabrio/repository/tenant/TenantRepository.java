@@ -11,5 +11,6 @@ public interface TenantRepository {
     Tenant add(Tenant tenant);
     List<Tenant> addBatch(List<Tenant> tenants);
 
+    Tenant update(Tenant tenant);
     void delete(Tenant tenant);
 }
