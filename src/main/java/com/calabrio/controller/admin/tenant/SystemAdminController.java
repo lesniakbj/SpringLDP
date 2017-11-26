@@ -26,7 +26,7 @@ public class SystemAdminController extends AbstractController {
     }
 
     @RequestMapping(name = "tenantById", value = "/admin/tenant/{tenantId}", method = RequestMethod.GET)
-    public ResponseEntity<String> tenantById(HttpServletRequest rq, @RequestParam(value = "tenantId")Integer tenantId) {
+    public ResponseEntity<String> tenantById(HttpServletRequest rq, @PathVariable(value = "tenantId")Integer tenantId) {
         log.debug(String.format("TenantAdminController Getting Tenant by Id: %s", tenantId));
         String json = JsonUtil.toJson(tenantService.getTenantById(tenantId));
         return ResponseEntity.ok(json);

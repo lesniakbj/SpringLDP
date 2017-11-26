@@ -3,6 +3,7 @@ package com.calabrio.repository.tenant;
 import com.calabrio.repository.AbstractRepository;
 import com.calabrio.model.tenant.Tenant;
 import org.apache.log4j.Logger;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +16,8 @@ public class TenantRepositoryImpl extends AbstractRepository implements TenantDa
 
     @Override
     public Tenant findById(Integer tenantId) {
-        return null;
+        Query query = super.getQuery("FROM Tenant WHERE tenantId = :tenantId").setParameter("tenantId", tenantId);
+        return querySingleResult(query);
     }
 
     @Override
