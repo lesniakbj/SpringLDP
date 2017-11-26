@@ -21,6 +21,14 @@ public class TenantRepositoryImpl extends AbstractRepository implements TenantRe
     }
 
     @Override
+    public Tenant findByName(String tenantName, String databaseName) {
+        Query query = super.getQuery("FROM Tenant WHERE tenantName = :tenantName AND databaseName = :databaseName");
+        query.setParameter("tenantName", tenantName);
+        query.setParameter("databaseName", databaseName);
+        return super.querySingleResult(query);
+    }
+
+    @Override
     public List<Tenant> findAll() {
         log.debug("GetAll TenantDao");
         return super.getAllOfType(getSession(), Tenant.class);
@@ -36,6 +44,12 @@ public class TenantRepositoryImpl extends AbstractRepository implements TenantRe
     public List<Tenant> addBatch(List<Tenant> tenants) {
         log.debug("AddingTenantBatch TenantDao");
         return super.batchAdd(tenants);
+    }
+
+    @Override
+    public Tenant update(Tenant tenant) {
+        super.update(tenant);
+        return null;
     }
 
     @Override

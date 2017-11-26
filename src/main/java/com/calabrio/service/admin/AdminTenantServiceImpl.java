@@ -8,6 +8,7 @@ import com.calabrio.service.AbstractService;
 import com.calabrio.util.ObjectsUtil;
 import com.calabrio.util.properties.DbProperties;
 import org.apache.log4j.Logger;
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -60,9 +61,12 @@ public class AdminTenantServiceImpl extends AbstractService implements AdminTena
     @PreAuthorize("hasPermission('ADMIN_SYSTEM')")
     public Tenant addTenant(Tenant tenant) {
         log.debug(String.format("Add Tenant %s", tenant));
-
         // Has to run as the default (Admin) tenant
         setTenantId(DbProperties.DEFAULT_TENANT);
+
+        if(tenantRepository.findByName(tenant.getTenantName(), tenant.getDatabaseName()) != null) {
+            throw new ServiceException(String.format("Unable to add Tenant! Already Exists by name: %s", tenant.getTenantName()));
+        }
 
         // Set Tenant State and Add it
         tenant.setTenantState(TenantState.NEW);

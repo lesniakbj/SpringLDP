@@ -41,7 +41,7 @@ public class SystemAdminController extends AbstractController {
             log.debug(String.format("Tenant parsed as: %s", tenant));
 
             // Validate we have everything we need.
-            if(ObjectsUtil.anyNull(tenant.getDatabaseName(), tenant.getDatabaseUserName(), tenant.getDatabasePassword())) {
+            if(ObjectsUtil.anyNull(tenant.getTenantName(), tenant.getDatabaseName(), tenant.getDatabaseUserName(), tenant.getDatabasePassword())) {
                 log.debug("Tenant didn't have required fields");
                 return errorResponse("Tenant didn't have required fields", 400);
             }
@@ -49,7 +49,7 @@ public class SystemAdminController extends AbstractController {
             tenant = tenantService.addTenant(tenant);
             return ResponseEntity.ok(JsonUtil.toJson(tenant));
         } catch (Exception e) {
-            log.debug("Error trying to parse Tenant JSON", e);
+            log.debug("Error trying to add tenant", e);
             return errorResponse(e.getMessage(), 400);
         }
     }
@@ -63,7 +63,7 @@ public class SystemAdminController extends AbstractController {
             tenantService.removeTenant(tenant);
             return ResponseEntity.ok("Successfully Removed!");
         } catch (Exception e) {
-            log.debug("Error trying to parse Tenant JSON", e);
+            log.debug("Error trying to remove tenant", e);
             return errorResponse(e.getMessage(), 400);
         }
     }

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface TenantRepository {
     Tenant findById(Integer tenantId);
+    Tenant findByName(String tenantName, String databaseName);
     List<Tenant> findAll();
 
     Tenant add(Tenant tenant);
@@ -13,4 +14,5 @@ public interface TenantRepository {
 
     Tenant update(Tenant tenant);
     void delete(Tenant tenant);
+
 }
