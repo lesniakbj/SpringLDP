@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.text.ParseException;
 
 public abstract class AbstractInterceptor implements HandlerInterceptor {
     private static final Logger log = Logger.getLogger(AbstractInterceptor.class);
@@ -27,7 +26,7 @@ public abstract class AbstractInterceptor implements HandlerInterceptor {
     static WFOPerson getLoggedInUser(HttpServletRequest rq) {
         try {
             return JsonUtil.fromJson((String)rq.getSession().getAttribute(SessionProperties.WFO_PERSON), WFOPerson.class);
-        } catch (ParseException e) {
+        } catch (Exception e) {
             log.debug("Unable to parse user from session.");
             return null;
         }

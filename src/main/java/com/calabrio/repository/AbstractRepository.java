@@ -1,4 +1,4 @@
-package com.calabrio.dao;
+package com.calabrio.repository;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -24,8 +24,8 @@ import java.util.List;
  * <p>
  * Created by Brendan.Lesniak on 11/17/2017.
  */
-public class AbstractDao {
-    private static final Logger log = Logger.getLogger(AbstractDao.class);
+public class AbstractRepository {
+    private static final Logger log = Logger.getLogger(AbstractRepository.class);
 
     @Autowired
     private SessionFactory sessionFactory;

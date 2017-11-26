@@ -1,4 +1,4 @@
-package com.calabrio.model.generic;
+package com.calabrio.dto.message;
 
 import com.google.gson.annotations.Expose;
 

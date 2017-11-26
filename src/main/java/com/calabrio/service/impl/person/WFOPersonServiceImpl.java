@@ -1,13 +1,16 @@
 package com.calabrio.service.impl.person;
 
-import com.calabrio.dao.impl.person.WFOPersonDao;
-import com.calabrio.dao.impl.tenant.TenantDao;
+import com.calabrio.repository.person.WFOPersonRepository;
 import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.user.WFOPerson;
+import com.calabrio.security.principal.UserPrincipal;
 import com.calabrio.service.AbstractService;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.naming.AuthenticationException;
@@ -29,10 +32,7 @@ public class WFOPersonServiceImpl extends AbstractService implements WFOPersonSe
     private static final Logger log = Logger.getLogger(WFOPersonServiceImpl.class);
 
     @Autowired
-    private WFOPersonDao userDao;
-
-    @Autowired
-    private TenantDao tenantDao;
+    private WFOPersonRepository wfoPersonRepository;
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -41,15 +41,22 @@ public class WFOPersonServiceImpl extends AbstractService implements WFOPersonSe
         log.debug(String.format("Authenticating user with auth request: %s", auth));
         setTenantId(auth.getTenantId());
 
-        WFOPerson user = userDao.findByEmail(auth.getEmail());
+        log.debug("Searching for User to auth");
+        WFOPerson user = wfoPersonRepository.findByEmail(auth.getEmail());
         if(user == null) {
             throw new AuthenticationException("Unable to find user!");
         }
 
         log.debug(String.format("Attempting to auth user: %s", user));
-        if(!userDao.authenticate(user, auth.getPassword())) {
+        if(!wfoPersonRepository.authenticate(user, auth.getPassword())) {
             throw new AuthenticationException("Unable to authenticate user!");
         }
+
+        log.debug(String.format("Setting user Authentication Context for user: %s", user));
+        UserPrincipal principal = new UserPrincipal();
+        principal.setPerson(user);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(principal, null, principal.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         return user;
     }

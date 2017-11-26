@@ -44,6 +44,7 @@ public class WebSecurityConfig extends GlobalMethodSecurityConfiguration  {
                     .and()
                 .authorizeRequests()
                     .antMatchers("/auth").anonymous()
+                    .antMatchers("/demo.html").permitAll()
                     .anyRequest().authenticated();
         }
     }

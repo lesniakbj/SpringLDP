@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>LDP Spring Exmaple - Brendan</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="css/demo.css">
+
+        <!-- Scripts, load an CDN scripts first -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="js/demo.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="loginArea" class="demoArea">
+                <p>User Login Demo:</p>
+                <div id="loginDiv">
+                    <div><label>Email:</label><input type="email" name="email" class="fixedWidth" id="loginEmail"></div>
+                    <div><label>Password:</label><input type="password" name="password" class="fixedWidth" id="loginPassword"></div>
+                    <div><label>Tenant:</label><select name="tenant" class="fixedWidth" id="loginTenant"></select></div>
+                    <div><input type="submit" value="Login" class="inputButton" id="loginEmailButton"><input type="button" value="Logout" class="inputButton" id="logoutUserButton"></div>
+                </div>
+            </div>
+            <div id="adminArea" class="demoArea">
+                <p>This area will handle sys admin demos</p>
+            </div>
+            <div id="tenantAdminArea" class="demoArea">
+                <p>This area will handle tenant admin demos</p>
+            </div>
+            <div id="serverArea" class="demoArea">
+                <p>This area will handle server group demos</p>
+            </div>
+            <div id="telephonyGroupArea" class="demoArea">
+                <p>This area will handle telephony group demos</p>
+            </div>
+        </div>
+        <div class="container">
+            <div id="rawJSONArea" class="demoArea">
+                <p>This area will display raw JSON for demos</p>
+            </div>
+        </div>
+    </body>
+</html>

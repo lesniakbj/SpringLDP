@@ -1,6 +1,6 @@
 package com.calabrio.interceptor;
 
-import com.calabrio.model.generic.ErrorMessage;
+import com.calabrio.dto.message.ErrorMessage;
 import com.calabrio.model.user.WFOPerson;
 import com.calabrio.util.JsonUtil;
 import org.apache.log4j.Logger;

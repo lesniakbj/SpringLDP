@@ -1,6 +1,6 @@
 package com.calabrio.service.impl.telephony;
 
-import com.calabrio.dao.impl.telephony.TelephonyGroupDao;
+import com.calabrio.repository.telephony.TelephonyGroupRepository;
 import com.calabrio.model.telephony.TelephonyGroup;
 import com.calabrio.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +12,15 @@ import java.util.List;
 public class TelephonyGroupServiceImpl extends AbstractService implements TelephonyGroupService {
 
     @Autowired
-    private TelephonyGroupDao telephonyGroupDao;
+    private TelephonyGroupRepository telephonyGroupRepository;
 
     @Override
     public List<TelephonyGroup> getAllTelephonyGroups() {
-        return telephonyGroupDao.getAll();
+        return telephonyGroupRepository.getAll();
     }
 
     @Override
     public TelephonyGroup addTelephonyGroup(TelephonyGroup tg) {
-        return null;
+        return telephonyGroupRepository.add(tg);
     }
 }

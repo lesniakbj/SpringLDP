@@ -1,4 +1,4 @@
-package com.calabrio.dao.impl.person;
+package com.calabrio.repository.person;
 
 
 import com.calabrio.model.user.WFOPerson;
@@ -15,7 +15,7 @@ import com.calabrio.model.user.WFOPerson;
  * <p>
  * Created by Brendan.Lesniak on 11/17/2017.
  */
-public interface WFOPersonDao {
+public interface WFOPersonRepository {
     WFOPerson findByEmail(String email);
 
     boolean authenticate(WFOPerson user, String password);

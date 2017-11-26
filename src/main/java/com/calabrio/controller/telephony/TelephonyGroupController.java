@@ -4,17 +4,16 @@ import com.calabrio.controller.AbstractController;
 import com.calabrio.model.telephony.TelephonyGroup;
 import com.calabrio.service.impl.telephony.TelephonyGroupService;
 import com.calabrio.util.JsonUtil;
-import com.calabrio.util.SpringUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
 
 @RestController
 public class TelephonyGroupController extends AbstractController {
@@ -22,9 +21,6 @@ public class TelephonyGroupController extends AbstractController {
 
     @Autowired
     private TelephonyGroupService telephonyGroupService;
-
-    @Autowired
-    private SpringUtil springUtil;
 
     @RequestMapping(name = "telephony", value = "/telephony", method = RequestMethod.GET)
     @PreAuthorize("hasPermission('VIEW_TELEPHONY')")
@@ -37,14 +33,14 @@ public class TelephonyGroupController extends AbstractController {
 
     @RequestMapping(name = "telephonyAdd", value = "/telephony", method = RequestMethod.POST)
     @PreAuthorize("(hasPermission('VIEW_TELEPHONY') AND hasPermission('ADMIN_TELEPHONY')) OR isServiceUser()")
-    public ResponseEntity<String> telephonyAdd(HttpServletRequest rq) {
+    public ResponseEntity<String> telephonyAdd(HttpServletRequest rq, @RequestBody String requestJson) {
         log.debug("TelephonyGroupController Add");
         try {
-            TelephonyGroup tg = JsonUtil.fromJson(requestBody(rq), TelephonyGroup.class);
+            TelephonyGroup tg = JsonUtil.fromJson(requestBody(rq, requestJson), TelephonyGroup.class);
             log.debug(String.format("Telephony group parsed as: %s", tg));
             tg = telephonyGroupService.addTelephonyGroup(tg);
             return ResponseEntity.ok(JsonUtil.toJson(tg));
-        } catch (ParseException e) {
+        } catch (Exception e) {
             log.debug("Error trying to parse Tenant JSON", e);
             return errorResponse(e.getMessage(), 400);
         }

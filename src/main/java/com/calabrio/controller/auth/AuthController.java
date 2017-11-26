@@ -1,27 +1,25 @@
 package com.calabrio.controller.auth;
 
 import com.calabrio.controller.AbstractController;
+import com.calabrio.dto.message.SuccessMessage;
 import com.calabrio.model.auth.AuthRequest;
-import com.calabrio.model.generic.ErrorMessage;
+import com.calabrio.model.tenant.Tenant;
 import com.calabrio.model.user.WFOPerson;
-import com.calabrio.security.principal.UserPrincipal;
+import com.calabrio.service.impl.admin.AdminTenantService;
 import com.calabrio.service.impl.person.WFOPersonService;
 import com.calabrio.util.JsonUtil;
 import com.calabrio.util.properties.SessionProperties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
-import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -43,13 +41,21 @@ public class AuthController extends AbstractController {
     private WFOPersonService userService;
 
     @Autowired
-    private RequestMappingHandlerMapping handlerMapping;
+    private AdminTenantService adminTenantService;
 
     @RequestMapping(name = "auth", value = "/auth", method = RequestMethod.POST)
-    public ResponseEntity<String> auth(HttpServletRequest rq) {
+    public ResponseEntity<String> auth(HttpServletRequest rq, @RequestBody String requestJson) {
+        log.debug("Auth, attempting to authenticate user session");
         try {
-            AuthRequest auth = JsonUtil.fromJson(requestBody(rq), AuthRequest.class);
+            log.debug(String.format("Passed in RequestBody: %s", requestJson));
+            AuthRequest auth = JsonUtil.fromJson(requestBody(rq, requestJson), AuthRequest.class);
             setAttribute(rq, SessionProperties.WFO_TENANT, auth.getTenantId());
+
+            // If there isn't a TenantId, return a list of Tenant Name/Ids
+            if(auth.getTenantId() == null) {
+                List<Tenant> tenants = adminTenantService.getAllTenantsNoAuth();
+                return ResponseEntity.ok(JsonUtil.toJson(tenants));
+            }
 
             // Authenticate
             WFOPerson authUser = userService.authenticate(auth);
@@ -58,40 +64,20 @@ public class AuthController extends AbstractController {
                 return errorResponse("Error authenticating user credentials", 400);
             }
 
-            // Set our Security Context for this User
-            setSecurityContext(authUser);
-
             String json = JsonUtil.toJson(authUser);
             setAttribute(rq, SessionProperties.WFO_PERSON, json);
             return ResponseEntity.ok(json);
-        } catch (ParseException | AuthenticationException e) {
+        } catch (Exception e) {
             log.debug(e.getMessage(), e);
             clearSession(rq);
             return errorResponse(e.getMessage(), 400);
         }
     }
 
-    @RequestMapping(name = "denied", value = "/denied", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-    public ResponseEntity<String> denied(HttpServletRequest rq) {
-        ErrorMessage msg = new ErrorMessage("Access is Denied!");
-        return ResponseEntity.status(401).body(JsonUtil.toJson(msg));
-    }
-
     @RequestMapping(name = "logout", value = "/auth/logout", method = RequestMethod.POST)
     public ResponseEntity<String> logout(HttpServletRequest rq) {
-        return ResponseEntity.ok(JsonUtil.toJson("Successfully logged out"));
-    }
-
-    @RequestMapping(name = "endpoints", value = "/admin/endpoints", method = RequestMethod.GET)
-    public ResponseEntity<String> endpoints(HttpServletRequest rq) {
+        log.debug("Logging out user, clearing session.");
         clearSession(rq);
-        return ResponseEntity.ok(handlerMapping.getHandlerMethods().toString());
-    }
-
-    private void setSecurityContext(WFOPerson authUser) {
-        UserPrincipal principal = new UserPrincipal();
-        principal.setPerson(authUser);
-        Authentication authentication = new UsernamePasswordAuthenticationToken(principal, null, principal.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return ResponseEntity.ok(JsonUtil.toJson(new SuccessMessage("Successfully logged out")));
     }
 }

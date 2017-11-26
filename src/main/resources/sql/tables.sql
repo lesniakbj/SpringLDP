@@ -1,3 +1,4 @@
+-- COMMON TABLES
 CREATE TABLE Tenant (
 	tenantId INT IDENTITY(1,1) NOT NULL,
 	tenantName NVARCHAR(50) NOT NULL,
@@ -22,11 +23,37 @@ CREATE TABLE DatabaseInstance (
 	PRIMARY KEY (databaseInstanceId)
 );
 
+CREATE TABLE WFOPerson (
+	id INT IDENTITY(1, 1) NOT NULL,
+	tenantId INT NOT NULL,
+	acdId NVARCHAR(256) NULL,
+	firstName NVARCHAR(60) NULL,
+	lastName NVARCHAR(60) NULL,
+	email NVARCHAR(254) NULL,
+	password NVARCHAR(200) NULL,
+	isServiceUser BIT NOT NULL DEFAULT(0),
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE PersonPermissions (
+	personId INT NOT NULL,
+	permissionId NVARCHAR(MAX) NOT NULL,
+	FOREIGN KEY (personId) REFERENCES WFOPerson(id)
+);
+
 INSERT INTO Tenant VALUES ('Tenant1', 'Tenant1', 'Tenant1', 'dbTenant1', '', 0), ('Tenant2', 'Tenant2', 'Tenant2', 'dbTenant2', '', 0)
 
 INSERT INTO DatabaseInstance (hostName, instanceName, port, master, username, password)
 VALUES ('localhost', '', 1433, 1, 'sa', '')
 
+INSERT INTO WFOPerson VALUES
+(-1, null, 'Sys', 'Admin', 'sys@admin.com', '12345', 0)
+
+INSERT INTO PersonPermissions VALUES
+(1, 'ADMIN_SYSTEM')
+
+
+-- TENANT TABLES
 CREATE TABLE WFOPerson (
 	id INT IDENTITY(1, 1) NOT NULL,
 	tenantId INT NOT NULL,
@@ -111,9 +138,21 @@ CREATE TABLE RecordingGroup (
 	FOREIGN KEY (signalingGroupId) REFERENCES SignalingGroup(id)
 );
 
-INSERT INTO WFOPerson VALUES ()
-INSERT INTO PersonPermissions VALUES (1, 0)
-INSERT INTO PersonPermissions VALUES (2, 'VIEW_TELEPHONY')
+-- First Tenant Persons
+INSERT INTO WFOPerson VALUES
+(1, 'RandomACD', 'Service', 'User', 'service@user.com', '12345', 1),
+(1, 'RandomACD', 'Tenant', 'Admin', 'tenant@admin.com', '12345', 0),
+(1, 'RandomACD', 'Super', 'Visor', 'super@visor.com', '12345', 0),
+(1, 'RandomACD', 'Random', 'Agent', 'random@agent.com', '12345', 0)
+
+INSERT INTO PersonPermissions VALUES
+(4, 'ADMIN_TENANT'),
+(4, 'ADMIN_TELEPHONY'),
+(4, 'VIEW_TELEPHONY'),
+(5, 'ADMIN_TELEPHONY'),
+(5, 'VIEW_TELEPHONY'),
+(6, 'VIEW_TELEPHONY')
+
 INSERT INTO Server VALUES ('ACD_SERVER', 'localhost')
 INSERT INTO TelephonyGroup VALUES ('TestTG1', 'UNIFIED_CM', NULL, 1)
 INSERT INTO SignalingGroup VALUES ('TestSG1', 1, 1, null)

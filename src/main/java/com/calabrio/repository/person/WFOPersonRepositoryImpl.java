@@ -1,6 +1,6 @@
-package com.calabrio.dao.impl.person;
+package com.calabrio.repository.person;
 
-import com.calabrio.dao.AbstractDao;
+import com.calabrio.repository.AbstractRepository;
 import com.calabrio.model.user.WFOPerson;
 import org.apache.log4j.Logger;
 import org.hibernate.query.Query;
@@ -21,8 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class WFOPersonDaoImpl extends AbstractDao implements WFOPersonDao {
-    private static final Logger log = Logger.getLogger(WFOPersonDaoImpl.class);
+public class WFOPersonRepositoryImpl extends AbstractRepository implements WFOPersonRepository {
+    private static final Logger log = Logger.getLogger(WFOPersonRepositoryImpl.class);
 
     public WFOPerson findByEmail(String email) {
         log.debug("Finding user by email.");
@@ -37,7 +37,7 @@ public class WFOPersonDaoImpl extends AbstractDao implements WFOPersonDao {
             return false;
         }
 
-        Query query = super.getQuery("FROM WFOPerson WHERE password = :password").setParameter("password", password);
+        Query query = super.getQuery("FROM WFOPerson WHERE email = :email AND password = :password").setParameter("password", password).setParameter("email", user.getEmail());
         WFOPerson pwUser =  super.querySingleResult(query);
 
         return pwUser != null && pwUser.equals(user);

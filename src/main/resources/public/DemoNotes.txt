@@ -1,0 +1,5 @@
+Software:
+=========
+1) 2 WebServers:
+    a) API Host (Spring Boot Tomcat - localhost:8080)
+    b) HTML UI Host (Mongoose WebServer - localhost:7070)
