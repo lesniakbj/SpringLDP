@@ -1,4 +1,4 @@
-package com.calabrio.service.impl.person;
+package com.calabrio.service.person;
 
 import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.user.WFOPerson;

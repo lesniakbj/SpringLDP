@@ -1,7 +1,7 @@
 package com.calabrio.controller.tenant;
 
 import com.calabrio.controller.AbstractController;
-import com.calabrio.service.impl.tenant.TenantService;
+import com.calabrio.service.tenant.TenantService;
 import com.calabrio.util.JsonUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,6 @@ public class TenantController extends AbstractController {
     @RequestMapping(name = "tenantProperties", value = "/tenant/properties", method = RequestMethod.GET)
     public ResponseEntity<String> tenantProperties(HttpServletRequest rq) {
         String json = JsonUtil.toJson(tenantService.getAllTenantProperties());
-        clearSession(rq);
         return ResponseEntity.ok(json);
     }
 }

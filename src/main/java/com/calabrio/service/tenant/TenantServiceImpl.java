@@ -1,4 +1,4 @@
-package com.calabrio.service.impl.tenant;
+package com.calabrio.service.tenant;
 
 import com.calabrio.repository.tenant.TenantPropertyRepository;
 import com.calabrio.model.tenant.TenantProperty;

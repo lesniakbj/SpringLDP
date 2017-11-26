@@ -1,7 +1,12 @@
+p {
+    margin: 0em;
+}
+
 .container {
-    width: 1200px;
+    width: 1000px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: .25em;
     border: 1px solid black;
     text-align: center;
 }
@@ -13,6 +18,15 @@
     border: 1px solid black;
 }
 
+.demoLabel {
+    margin-bottom: .25em;
+    text-decoration: underline;
+}
+
+#loginDiv {
+    border: 1px solid black;
+}
+
 #loginDiv label {
     display: inline-block;
     width: 4.5em;
@@ -21,6 +35,7 @@
 
 #loginDiv div {
     margin-top: .5em;
+    margin-bottom: .5em;
 }
 
 #loginDiv input.inputButton {
@@ -31,4 +46,16 @@
 #loginDiv input.fixedWidth {
     width: 10em;
     margin-left: .5em;
+}
+
+.demoActions {
+    border: 1px solid black;
+    padding: .5em;
+}
+
+.demoActionsResponse {
+    border: 1px solid black;
+    margin-top: .25em;
+    height: 10em;
+    overflow-y: scroll;
 }

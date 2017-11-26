@@ -2,7 +2,7 @@ package com.calabrio.controller.telephony;
 
 import com.calabrio.controller.AbstractController;
 import com.calabrio.model.telephony.TelephonyGroup;
-import com.calabrio.service.impl.telephony.TelephonyGroupService;
+import com.calabrio.service.telephony.TelephonyGroupService;
 import com.calabrio.util.JsonUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,6 @@ public class TelephonyGroupController extends AbstractController {
     public ResponseEntity<String> telephony(HttpServletRequest rq) {
         log.debug("TelephonyGroupController ListAll");
         String json = JsonUtil.toJson(telephonyGroupService.getAllTelephonyGroups());
-        clearSession(rq);
         return ResponseEntity.ok(json);
     }
 

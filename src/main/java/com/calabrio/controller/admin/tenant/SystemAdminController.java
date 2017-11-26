@@ -2,13 +2,11 @@ package com.calabrio.controller.admin.tenant;
 
 import com.calabrio.controller.AbstractController;
 import com.calabrio.model.tenant.Tenant;
-import com.calabrio.service.impl.admin.AdminTenantService;
-import com.calabrio.service.impl.tenant.TenantService;
+import com.calabrio.service.admin.AdminTenantService;
 import com.calabrio.util.JsonUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +22,6 @@ public class SystemAdminController extends AbstractController {
     public ResponseEntity<String> tenant(HttpServletRequest rq) {
         log.debug("TenantAdminController Getting all Tenants");
         String json = JsonUtil.toJson(tenantService.getAllTenants());
-        clearSession(rq);
         return ResponseEntity.ok(json);
     }
 
@@ -32,7 +29,6 @@ public class SystemAdminController extends AbstractController {
     public ResponseEntity<String> tenantById(HttpServletRequest rq, @RequestParam(value = "tenantId")Integer tenantId) {
         log.debug(String.format("TenantAdminController Getting Tenant by Id: %s", tenantId));
         String json = JsonUtil.toJson(tenantService.getTenantById(tenantId));
-        clearSession(rq);
         return ResponseEntity.ok(json);
     }
 

@@ -12,25 +12,69 @@
     <body>
         <div class="container">
             <div id="loginArea" class="demoArea">
-                <p>User Login Demo:</p>
-                <div id="loginDiv">
-                    <div><label>Email:</label><input type="email" name="email" class="fixedWidth" id="loginEmail"></div>
-                    <div><label>Password:</label><input type="password" name="password" class="fixedWidth" id="loginPassword"></div>
-                    <div><label>Tenant:</label><select name="tenant" class="fixedWidth" id="loginTenant"></select></div>
-                    <div><input type="submit" value="Login" class="inputButton" id="loginEmailButton"><input type="button" value="Logout" class="inputButton" id="logoutUserButton"></div>
+                <p class="demoLabel">User Login Demo Area</p>
+                <div>
+                    <div id="loginDiv">
+                        <div><label>Email:</label><input type="email" name="email" class="fixedWidth" id="loginEmail"></div>
+                        <div><label>Password:</label><input type="password" name="password" class="fixedWidth" id="loginPassword"></div>
+                        <div><label>Tenant:</label><select name="tenant" class="fixedWidth" id="loginTenant"></select></div>
+                        <div><input type="submit" value="Login" class="inputButton" id="loginEmailButton"><input type="button" value="Logout" class="inputButton" id="logoutUserButton"></div>
+                    </div>
                 </div>
             </div>
             <div id="adminArea" class="demoArea">
-                <p>This area will handle sys admin demos</p>
+                <p class="demoLabel">System Admin Demo Area</p>
+                <div>
+                    <div id="adminActions" class="demoActions">
+                        <input type="button" value="View Endpoints" class="inputButton" id="endpointsButton">
+                        <input type="button" value="View All Tenants" class="inputButton" id="tenantsButton">
+                        <input type="button" value="View Tenant by Id" class="inputButton" id="tenantById">
+                        <input type="button" value="Add New Tenant" class="inputButton" id="newTenant">
+                        <input type="button" value="Remove Tenant" class="inputButton" id="removeTenant">
+                    </div>
+                    <div id="adminActionResponse" class="demoActionsResponse">
+
+                    </div>
+                </div>
             </div>
             <div id="tenantAdminArea" class="demoArea">
-                <p>This area will handle tenant admin demos</p>
+                <p class="demoLabel">Tenant Properties Admin Demo Area</p>
+                <div>
+                    <div id="tenantAdminActions" class="demoActions">
+                        <input type="button" value="View Properties" class="inputButton" id="viewTenantPropertiesButton">
+                        <input type="button" value="Add Properties" class="inputButton" id="addTenantPropertiesButton">
+                        <input type="button" value="Remove Properties" class="inputButton" id="removeTenantPropertiesButton">
+                        <input type="button" value="Edit Properties" class="inputButton" id="editTenantPropertiesButton">
+                    </div>
+                    <div id="tenantAdminActionResponse" class="demoActionsResponse">
+
+                    </div>
+                </div>
             </div>
             <div id="serverArea" class="demoArea">
-                <p>This area will handle server group demos</p>
+                <p class="demoLabel">Server Admin Demo Area</p>
+                <div>
+                    <div id="serverAdminActions" class="demoActions">
+                        <input type="button" value="View Servers" class="inputButton" id="viewServerButton">
+                        <input type="button" value="Add Server" class="inputButton" id="addServerButton">
+                    </div>
+                    <div id="serverAdminActionsResponse" class="demoActionsResponse">
+
+                    </div>
+                </div>
             </div>
             <div id="telephonyGroupArea" class="demoArea">
-                <p>This area will handle telephony group demos</p>
+                <p class="demoLabel">Telephony Demo Area</p>
+                <div>
+                    <div id="telephonyActions" class="demoActions">
+                        <input type="button" value="View Telephony Groups" class="inputButton" id="viewTelephonyGroups">
+                        <input type="button" value="Add Telephony Group" class="inputButton" id="addTelephonyGroups">
+                        <input type="button" value="View Signaling Groups" class="inputButton" id="viewSignalingGroups">
+                    </div>
+                    <div id="telephonyActionsResponse" class="demoActionsResponse">
+
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container">

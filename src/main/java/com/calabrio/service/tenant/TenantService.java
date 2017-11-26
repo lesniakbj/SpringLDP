@@ -1,6 +1,5 @@
-package com.calabrio.service.impl.tenant;
+package com.calabrio.service.tenant;
 
-import com.calabrio.model.tenant.Tenant;
 import com.calabrio.model.tenant.TenantProperty;
 
 import java.util.List;

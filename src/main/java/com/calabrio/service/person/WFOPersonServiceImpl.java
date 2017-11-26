@@ -1,10 +1,11 @@
-package com.calabrio.service.impl.person;
+package com.calabrio.service.person;
 
 import com.calabrio.repository.person.WFOPersonRepository;
 import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.user.WFOPerson;
 import com.calabrio.security.principal.UserPrincipal;
 import com.calabrio.service.AbstractService;
+import com.calabrio.service.auth.AuthenticationService;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class WFOPersonServiceImpl extends AbstractService implements WFOPersonSe
     private static final Logger log = Logger.getLogger(WFOPersonServiceImpl.class);
 
     @Autowired
+    private AuthenticationService authenticationService;
+
+    @Autowired
     private WFOPersonRepository wfoPersonRepository;
 
     @Autowired
@@ -53,10 +57,7 @@ public class WFOPersonServiceImpl extends AbstractService implements WFOPersonSe
         }
 
         log.debug(String.format("Setting user Authentication Context for user: %s", user));
-        UserPrincipal principal = new UserPrincipal();
-        principal.setPerson(user);
-        Authentication authentication = new UsernamePasswordAuthenticationToken(principal, null, principal.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        authenticationService.applyAuthentication(user);
 
         return user;
     }

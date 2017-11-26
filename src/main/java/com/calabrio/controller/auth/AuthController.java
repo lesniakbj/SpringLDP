@@ -5,15 +5,14 @@ import com.calabrio.dto.message.SuccessMessage;
 import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.tenant.Tenant;
 import com.calabrio.model.user.WFOPerson;
-import com.calabrio.service.impl.admin.AdminTenantService;
-import com.calabrio.service.impl.person.WFOPersonService;
+import com.calabrio.service.admin.AdminTenantService;
+import com.calabrio.service.auth.AuthenticationService;
+import com.calabrio.service.person.WFOPersonService;
 import com.calabrio.util.JsonUtil;
 import com.calabrio.util.properties.SessionProperties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -42,6 +40,9 @@ public class AuthController extends AbstractController {
 
     @Autowired
     private WFOPersonService userService;
+
+    @Autowired
+    private AuthenticationService authenticationService;
 
     @Autowired
     private AdminTenantService adminTenantService;
@@ -80,7 +81,7 @@ public class AuthController extends AbstractController {
     @RequestMapping(name = "logout", value = "/auth/logout", method = RequestMethod.DELETE)
     public ResponseEntity<String> logout(HttpServletRequest rq) {
         log.debug("Logging out user, clearing session.");
-        SecurityContextHolder.getContext().setAuthentication(null);
+        authenticationService.removeAuthentication();
         clearSession(rq);
         return ResponseEntity.ok(JsonUtil.toJson(new SuccessMessage("Successfully logged out")));
     }

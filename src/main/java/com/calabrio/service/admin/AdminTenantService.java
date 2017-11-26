@@ -1,4 +1,4 @@
-package com.calabrio.service.impl.admin;
+package com.calabrio.service.admin;
 
 import com.calabrio.model.tenant.Tenant;
 
