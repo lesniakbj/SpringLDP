@@ -1,8 +1,11 @@
 package com.calabrio.service.admin;
 
-import com.calabrio.repository.tenant.TenantDao;
 import com.calabrio.model.tenant.Tenant;
+import com.calabrio.model.tenant.TenantState;
+import com.calabrio.repository.admin.AdminRepository;
+import com.calabrio.repository.tenant.TenantRepository;
 import com.calabrio.service.AbstractService;
+import com.calabrio.util.ObjectsUtil;
 import com.calabrio.util.properties.DbProperties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +19,17 @@ public class AdminTenantServiceImpl extends AbstractService implements AdminTena
     private static final Logger log = Logger.getLogger(AdminTenantServiceImpl.class);
 
     @Autowired
-    private TenantDao tenantDao;
+    private AdminRepository adminRepository;
+
+    @Autowired
+    private TenantRepository tenantRepository;
 
     @Override
     public List<Tenant> getAllTenantsNoAuth() {
         log.debug("GetAllTenants TenantService");
         // Has to run as the default (Admin) tenant
         setTenantId(DbProperties.DEFAULT_TENANT);
-        List<Tenant> tenants = tenantDao.findAll();
+        List<Tenant> tenants = tenantRepository.findAll();
         for(Tenant t : tenants) {
             t.setDatabasePassword(null);
             t.setDatabaseUserName(null);
@@ -38,7 +44,7 @@ public class AdminTenantServiceImpl extends AbstractService implements AdminTena
         log.debug("GetAllTenants TenantService");
         // Has to run as the default (Admin) tenant
         setTenantId(DbProperties.DEFAULT_TENANT);
-        return tenantDao.findAll();
+        return tenantRepository.findAll();
     }
 
     @Override
@@ -47,7 +53,7 @@ public class AdminTenantServiceImpl extends AbstractService implements AdminTena
         log.debug("GetTenantById TenantService");
         // Has to run as the default (Admin) tenant
         setTenantId(DbProperties.DEFAULT_TENANT);
-        return tenantDao.findById(tenantId);
+        return tenantRepository.findById(tenantId);
     }
 
     @Override
@@ -56,17 +62,25 @@ public class AdminTenantServiceImpl extends AbstractService implements AdminTena
         // Has to run as the default (Admin) tenant
         setTenantId(DbProperties.DEFAULT_TENANT);
 
+        // Set Tenant State and Add it
+        tenant.setTenantState(TenantState.NEW);
+        Tenant t = tenantRepository.add(tenant);
+
         // Create Tenant Database
+        adminRepository.createTenantDatabase(t.getDatabaseName(), t.getDatabaseUserName(), t.getDatabasePassword());
 
-        // Create Tenant DB User
+        // Create Tenant Tables
+        adminRepository.createTenantTables(t.getDatabaseName());
 
-        // Add Tenant To CommonTables
-        return tenantDao.add(tenant);
+        // Populate Base User (Service User, Base Tenant Admin)
+        adminRepository.createBaseTenantUsers(t.getDatabaseName(), t.getTenantId());
+
+        return t;
     }
 
     @Override
     @PreAuthorize("hasPermission('ADMIN_SYSTEM')")
     public void removeTenant(Tenant tenant) {
-        tenantDao.delete(tenant);
+        tenantRepository.delete(tenant);
     }
 }

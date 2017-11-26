@@ -4,7 +4,7 @@ import com.calabrio.model.tenant.Tenant;
 
 import java.util.List;
 
-public interface TenantDao {
+public interface TenantRepository {
     Tenant findById(Integer tenantId);
     List<Tenant> findAll();
 

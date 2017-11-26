@@ -18,4 +18,13 @@ public class ObjectsUtil {
         }
         return true;
     }
+
+    public static boolean anyNull(Object... objects) {
+        for(Object obj : objects) {
+            if(obj == null) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

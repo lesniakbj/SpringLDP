@@ -4,6 +4,7 @@ import com.calabrio.controller.AbstractController;
 import com.calabrio.model.tenant.Tenant;
 import com.calabrio.service.admin.AdminTenantService;
 import com.calabrio.util.JsonUtil;
+import com.calabrio.util.ObjectsUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,13 @@ public class SystemAdminController extends AbstractController {
         try {
             Tenant tenant = JsonUtil.fromJson(requestBody(rq, requestJson), Tenant.class);
             log.debug(String.format("Tenant parsed as: %s", tenant));
+
+            // Validate we have everything we need.
+            if(ObjectsUtil.anyNull(tenant.getDatabaseName(), tenant.getDatabaseUserName(), tenant.getDatabasePassword())) {
+                log.debug("Tenant didn't have required fields");
+                return errorResponse("Tenant didn't have required fields", 400);
+            }
+
             tenant = tenantService.addTenant(tenant);
             return ResponseEntity.ok(JsonUtil.toJson(tenant));
         } catch (Exception e) {

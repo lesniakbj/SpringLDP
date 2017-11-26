@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class TenantRepositoryImpl extends AbstractRepository implements TenantDao {
+public class TenantRepositoryImpl extends AbstractRepository implements TenantRepository {
     private static final Logger log = Logger.getLogger(TenantRepositoryImpl.class);
 
     @Override

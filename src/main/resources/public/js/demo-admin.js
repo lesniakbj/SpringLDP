@@ -58,12 +58,13 @@ DEMO.admin = {
                 });
                 break;
             case 'tenants':
-                $.each(data, function(i, tenant) {
-                    $('#adminActionResponse').append('<p>' + 'Name: ' + tenant.displayName + '</p>');
-                });
-                break;
-            case 'tenant':
-                $('#adminActionResponse').append('<p>' + 'Name: ' + data.displayName + '</p>');
+                if(data.constructor === Array) {
+                    $.each(data, function(i, tenant) {
+                        $('#adminActionResponse').append('<p>' + 'Name: ' + tenant.displayName + '</p>');
+                    });
+                } else {
+                    $('#adminActionResponse').append('<p>' + 'Name: ' + data.displayName + '</p>');
+                }
                 break;
             case 'getTenantId':
                 $('#adminActionResponse').append('<label>TenantId: </label><input type="text" id="tenantIdForSearch"><input type="button" value="Get Tenant" class="inputButton" id="getTenantById">');
@@ -73,7 +74,7 @@ DEMO.admin = {
                         url: DEMO.admin.api + '/tenant/' + $('#tenantIdForSearch').val(),
                         dataType: 'json',
                         success: function(data) {
-                            DEMO.admin.populateDemoArea(data, 'tenant');
+                            DEMO.admin.populateDemoArea(data, 'tenants');
                         },
                         error: function(error) { console.log('Error: ' + JSON.stringify(error, null, '\t')); }
                     });

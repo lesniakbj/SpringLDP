@@ -41,6 +41,131 @@ CREATE TABLE PersonPermissions (
 	FOREIGN KEY (personId) REFERENCES WFOPerson(id)
 );
 
+CREATE SCHEMA admin;
+
+CREATE PROCEDURE [admin].[createTenantDatabase] (@databaseName NVARCHAR(255), @username NVARCHAR(255), @password NVARCHAR(255))
+AS
+BEGIN
+	EXEC('USE master CREATE DATABASE ' + @databaseName);
+	EXEC('USE master CREATE LOGIN ' + @username + ' WITH PASSWORD=N''' +  @password + '''');
+	EXEC('USE ' + @databaseName + ' CREATE USER ' + @username + ' FOR LOGIN ' + @username + ' WITH DEFAULT_SCHEMA=[dbo]');
+	EXEC('USE ' + @databaseName + ' ALTER ROLE db_owner ADD MEMBER ' + @username);
+END
+
+CREATE PROCEDURE [admin].[createTenantTables] (@databaseName NVARCHAR(255))
+AS
+BEGIN
+	DECLARE @query NVARCHAR(MAX);
+	SET @query = '
+        CREATE TABLE WFOPerson (
+            id INT IDENTITY(1, 1) NOT NULL,
+            tenantId INT NOT NULL,
+            acdId NVARCHAR(256) NULL,
+            firstName NVARCHAR(60) NULL,
+            lastName NVARCHAR(60) NULL,
+            email NVARCHAR(254) NULL,
+            password NVARCHAR(200) NULL,
+            isServiceUser BIT NOT NULL DEFAULT(0),
+            PRIMARY KEY (id)
+        );
+
+        CREATE TABLE TenantProperties (
+            id INT IDENTITY(1,1) NOT NULL,
+            tenantId INT NOT NULL,
+            keyName NVARCHAR(100) NOT NULL,
+            value NVARCHAR(MAX) NOT NULL,
+            PRIMARY KEY (tenantId, keyName)
+        );
+
+        CREATE TABLE PersonPermissions (
+            personId INT NOT NULL,
+            permissionId NVARCHAR(MAX) NOT NULL,
+            FOREIGN KEY (personId) REFERENCES WFOPerson(id)
+        );
+
+        CREATE TABLE Server (
+            id INT IDENTITY(1,1) NOT NULL,
+            serverType NVARCHAR(MAX) NOT NULL,
+            ipHostName NVARCHAR(1000) NOT NULL,
+            PRIMARY KEY (id)
+        );
+
+        CREATE TABLE TelephonyGroupServer (
+            telephonyGroupId INT NOT NULL,
+            serverFk INT NOT NULL,
+            FOREIGN KEY (serverFk) REFERENCES Server(id)
+        );
+
+        CREATE TABLE RecordingGroupServer (
+            recordingGroupId INT NOT NULL,
+            serverFk INT NOT NULL,
+            priority INT NULL,
+            FOREIGN KEY (serverFk) REFERENCES Server(id)
+        );
+
+        CREATE TABLE SignalingGroupServer (
+            signalingGroupId INT NOT NULL,
+            serverFk INT NOT NULL,
+            signalingAssociation INT NULL,
+            priority INT NULL,
+            FOREIGN KEY (serverFk) REFERENCES Server(id)
+        );
+
+        CREATE TABLE TelephonyGroup (
+            id INT IDENTITY(1,1) NOT NULL,
+            name NVARCHAR(255) NOT NULL,
+            telephonyGroupTypeId NVARCHAR(MAX) NOT NULL,
+            inclusionList NVARCHAR(MAX) NULL,
+            acdServerId INT NOT NULL,
+            PRIMARY KEY (id),
+            FOREIGN KEY (acdServerId) REFERENCES Server(id)
+        );
+
+        CREATE TABLE SignalingGroup (
+            id INT IDENTITY(1,1) NOT NULL,
+            name NVARCHAR(255) NOT NULL,
+            telephonyGroupId INT NULL,
+            primarySignalingId INT NULL,
+            backupSignalingId INT NULL,
+            PRIMARY KEY (id),
+            FOREIGN KEY (telephonyGroupId) REFERENCES TelephonyGroup(id),
+            FOREIGN KEY (primarySignalingId) REFERENCES Server(id),
+            FOREIGN KEY (backupSignalingId) REFERENCES Server(id)
+        );
+
+        CREATE TABLE RecordingGroup (
+            id INT IDENTITY(1,1) NOT NULL,
+            name NVARCHAR(255) NOT NULL,
+            signalingGroupId INT NOT NULL,
+            PRIMARY KEY (id),
+            FOREIGN KEY (signalingGroupId) REFERENCES SignalingGroup(id)
+        );
+    ';
+
+	EXEC('USE ' + @databaseName + ' ' + @query);
+END
+
+CREATE PROCEDURE [admin].[createTenantUsers] (@databaseName NVARCHAR(255), @tenantId NVARCHAR(MAX))
+AS
+BEGIN
+	DECLARE @query NVARCHAR(MAX);
+	SET @query = '
+		INSERT INTO WFOPerson VALUES
+		(' + @tenantId + ', ''RandomACD'', ''Service'', ''User'', ''service@user.com'', ''12345'', 1),
+		(' + @tenantId + ', ''RandomACD'', ''Tenant'', ''Admin'', ''tenant@admin.com'', ''12345'', 0)
+
+		DECLARE @tenantAdmin INT;
+		SELECT @tenantAdmin = id FROM WFOPerson WHERE email = ''tenant@admin.com'';
+
+		INSERT INTO PersonPermissions VALUES
+		(@tenantAdmin, ''ADMIN_TENANT''),
+		(@tenantAdmin, ''ADMIN_TELEPHONY''),
+		(@tenantAdmin, ''VIEW_TELEPHONY'')
+	';
+
+	EXEC('USE ' + @databaseName + ' ' + @query);
+END
+
 INSERT INTO Tenant VALUES ('Tenant1', 'Tenant1', 'Tenant1', 'dbTenant1', '', 0), ('Tenant2', 'Tenant2', 'Tenant2', 'dbTenant2', '', 0)
 
 INSERT INTO DatabaseInstance (hostName, instanceName, port, master, username, password)
