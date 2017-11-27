@@ -7,6 +7,8 @@ DEMO.admin = {
         this.viewEndpoints();
         this.viewAllTenants();
         this.viewTenantById();
+        this.addNewTenant();
+        this.removeTenant();
     },
 
     viewEndpoints: function() {
@@ -43,6 +45,18 @@ DEMO.admin = {
         });
     },
 
+    addNewTenant: function() {
+        $('#newTenant').on('click', function() {
+            DEMO.admin.populateDemoArea(null, 'getNewTenantDetails');
+        });
+    },
+
+    removeTenant: function() {
+        $('#removeTenant').on('click', function() {
+            DEMO.admin.populateDemoArea(null, 'removeTenantDetails');
+        });
+    },
+
     clearDemoArea: function() {
         $('#adminActionResponse').empty();
     },
@@ -58,28 +72,119 @@ DEMO.admin = {
                 });
                 break;
             case 'tenants':
+                var headerElm = '<div class="adminTenantHeader ">';
+                headerElm += '<span class="adminDisplayName left underline">Display Name:</span>';
+                headerElm += '<span class="adminDatabaseName underline">Database Name:</span>';
+                headerElm += '<span class="adminDatabaseUsername right">Database Username:</span>';
+                headerElm += '</div>';
+                $('#adminActionResponse').append(headerElm);
+
                 if(data.constructor === Array) {
                     $.each(data, function(i, tenant) {
-                        $('#adminActionResponse').append('<p>' + 'Name: ' + tenant.displayName + '</p>');
+                        var dataElm = '<div class="adminTenantDisplay">';
+                        dataElm += '<span class="adminDisplayName left">' + tenant.displayName + '</span>';
+                        dataElm += '<span class="adminDatabaseName">' + tenant.databaseName + '</span>';
+                        dataElm += '<span class="adminDatabaseUsername right">' + tenant.databaseUserName + '</span>';
+                        dataElm += '</div>';
+                        $('#adminActionResponse').append(dataElm);
                     });
                 } else {
-                    $('#adminActionResponse').append('<p>' + 'Name: ' + data.displayName + '</p>');
+                    var dataElm = '<div class="adminTenantDisplay">';
+                    dataElm += '<span class="adminDisplayName left">' + data.displayName + '</span>';
+                    dataElm += '<span class="adminDatabaseName">' + data.databaseName + '</span>';
+                    dataElm += '<span class="adminDatabaseUsername right">' + data.databaseUserName + '</span>';
+                    dataElm += '</div>';
+                    $('#adminActionResponse').append(dataElm);
                 }
                 break;
             case 'getTenantId':
-                $('#adminActionResponse').append('<label>TenantId: </label><input type="text" id="tenantIdForSearch"><input type="button" value="Get Tenant" class="inputButton" id="getTenantById">');
-                $('#getTenantById').on('click', function() {
-                    $.ajax({
-                        type: 'GET',
-                        url: DEMO.admin.api + '/tenant/' + $('#tenantIdForSearch').val(),
-                        dataType: 'json',
-                        success: function(data) {
-                            DEMO.admin.populateDemoArea(data, 'tenants');
-                        },
-                        error: function(error) { console.log('Error: ' + JSON.stringify(error, null, '\t')); }
-                    });
-                });
+                DEMO.admin.getTenantId();
+                break;
+            case 'getNewTenantDetails':
+                DEMO.admin.getNewTenantDetails();
+                break;
+            case 'removeTenantDetails':
+                DEMO.admin.removeTenantDetails();
                 break;
         }
+    },
+
+    getTenantId: function() {
+        $('#adminActionResponse').append('<label>TenantId: </label><input type="text" id="tenantIdForSearch"><input type="button" value="Get Tenant" class="inputButton" id="getTenantById">');
+        $('#getTenantById').on('click', function() {
+            $.ajax({
+                type: 'GET',
+                url: DEMO.admin.api + '/tenant/' + $('#tenantIdForSearch').val(),
+                dataType: 'json',
+                success: function(data) {
+                    DEMO.admin.populateDemoArea(data, 'tenants');
+                },
+                error: function(error) { console.log('Error: ' + JSON.stringify(error, null, '\t')); }
+            });
+        });
+    },
+
+    getNewTenantDetails: function() {
+        $('#adminActionResponse').append('<div><label>Name: </label><input type="text" id="newTenantName"></div>');
+        $('#adminActionResponse').append('<div><label>Display Name: </label><input type="text" id="newTenantDisplayName"></div>');
+        $('#adminActionResponse').append('<div><label>Database Name: </label><input type="text" id="newTenantDatabaseName"></div>');
+        $('#adminActionResponse').append('<div><label>Database Username: </label><input type="text" id="newTenantDatabaseUsername"></div>');
+        $('#adminActionResponse').append('<div><label>Database Password: </label><input type="text" id="newTenantDatabasePassword"></div>');
+        $('#adminActionResponse').append('<div><input type="button" value="Create Tenant" id="createNewTenantButton"></div>');
+        $('#createNewTenantButton').on('click', function() {
+            var newTenant = {
+                tenantName: $('#newTenantName').val(),
+                displayName: $('#newTenantDisplayName').val(),
+                databaseName: $('#newTenantDatabaseName').val(),
+                databaseUserName: $('#newTenantDatabaseUsername').val(),
+                databasePassword: $('#newTenantDatabasePassword').val()
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: DEMO.admin.api + '/tenant/add',
+                dataType: 'json',
+                data: JSON.stringify(newTenant),
+                success: function(data) {
+                    DEMO.admin.populateDemoArea(data, 'tenants');
+                },
+                error: function(error) { console.log('Error: ' + JSON.stringify(error, null, '\t')); }
+            });
+        });
+    },
+
+    removeTenantDetails: function() {
+        $.ajax({
+            type: 'GET',
+            url: DEMO.admin.api + '/tenant',
+            dataType: 'json',
+            success: function(data) {
+                DEMO.admin.populateRemoveTenant(data);
+            },
+            error: function(error) { console.log('Error: ' + JSON.stringify(error, null, '\t')); }
+        });
+    },
+
+    populateRemoveTenant: function(data) {
+        $.each(data, function(i, tenant) {
+            $('#adminActionResponse').append('<div><input type="button" class="deleteTenantButton" value="' + tenant.displayName + '" id="newTenantName' + tenant.tenantId + '"></div>');
+        });
+
+        $('.deleteTenantButton').on('click', function() {
+            var delTenant = {
+
+            };
+
+            $.ajax({
+                type: 'DELETE',
+                url: DEMO.admin.api + '/tenant/remove',
+                dataType: 'json',
+                data: JSON.stringify(delTenant),
+                success: function(data) {
+                    DEMO.admin.populateDemoArea(data, 'tenants');
+                },
+                error: function(error) { console.log('Error: ' + JSON.stringify(error, null, '\t')); }
+            });
+        });
     }
 };

@@ -59,3 +59,44 @@ p {
     height: 10em;
     overflow-y: scroll;
 }
+
+.adminTenantHeader {
+    text-decoration: underline;
+    text-align: left;
+    margin-left: .5em;
+}
+
+.adminTenantDisplay {
+    margin-top: .25em;
+    text-align: left;
+    margin-left: .5em;
+}
+
+.adminDatabaseName {
+    width: 8em;
+    display: inline-block;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.adminDisplayName {
+    margin-left: 2em;
+    margin-right: 2em;
+    display: inline-block;
+    width: 8em;
+}
+
+.adminDatabaseUsername {
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+.right {
+    margin-right: 0em;
+}
+
+.left {
+    margin-left: 0em;
+}

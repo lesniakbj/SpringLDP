@@ -38,7 +38,6 @@ DEMO.login = {
         $.each(data, function(i, tenant) {
             tenantDropDown.append($('<option>', { value: tenant.tenantId, text: tenant.displayName }));
         });
-        tenantDropDown.multiSelect('refresh');
     },
 
     logoutUser: function() {
