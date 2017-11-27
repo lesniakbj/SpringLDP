@@ -93,6 +93,27 @@ p {
     margin-right: 2em;
 }
 
+.loginDivResponse {
+    margin-top: .25em;
+    border: 1px solid black;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    text-align: left;
+}
+
+.loginDivResponse div {
+    margin-left: 1em;
+}
+
+.loginDivResponse span {
+    display: inline-block;
+    width: 16em;
+}
+
+.loginDivResponse span.loggedName {
+    display: inline;
+}
+
 .right {
     margin-right: 0em;
 }
