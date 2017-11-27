@@ -22,7 +22,7 @@ DEMO.login = {
                 data: JSON.stringify(loginData),
                 success: function(data) {
                     if(loginData.tenantId === null) {
-                        DEMO.login.populateTenantDropDown(data, loginData);
+                        DEMO.login.populateTenantDropDown(data);
                     } else {
                         $('#loggedInTenantName').text(loginData.tenantId);
                         $('#loggedInUserName').text(loginData.email);
@@ -34,8 +34,9 @@ DEMO.login = {
         });
     },
 
-    populateTenantDropDown: function(data, loginData) {
+    populateTenantDropDown: function(data) {
         var tenantDropDown = $('#loginTenant');
+        tenantDropDown.empty();
         tenantDropDown.append($('<option>', { value: -1, text: 'Admin' }));
         $.each(data, function(i, tenant) {
             tenantDropDown.append($('<option>', { value: tenant.tenantId, text: tenant.displayName }));
@@ -51,7 +52,7 @@ DEMO.login = {
                  success: function(data) {
                     $('#loggedInTenantName').text('');
                     $('#loggedInUserName').text('');
-                     console.log('Successfully logged out user: ' + JSON.stringify(data, null, '\t'));
+                    console.log('Successfully logged out user: ' + JSON.stringify(data, null, '\t'));
                  },
                  error: function(error) {
                     console.log('Error: ' + JSON.stringify(error, null, '\t'));

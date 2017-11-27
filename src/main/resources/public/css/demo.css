@@ -101,6 +101,10 @@ p {
     text-align: left;
 }
 
+.adminActionResponse {
+    padding-top: .25em;
+}
+
 .loginDivResponse div {
     margin-left: 1em;
 }

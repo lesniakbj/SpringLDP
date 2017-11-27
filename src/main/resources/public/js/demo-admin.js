@@ -147,6 +147,15 @@ DEMO.admin = {
                 data: JSON.stringify(newTenant),
                 success: function(data) {
                     DEMO.admin.populateDemoArea(data, 'tenants');
+                    $.ajax({
+                        type: 'GET',
+                        url: DEMO.admin.api + '/tenant',
+                        dataType: 'json',
+                        success: function(data) {
+                            DEMO.login.populateTenantDropDown(data);
+                        },
+                        error: function(error) { console.log('Error: ' + JSON.stringify(error, null, '\t')); }
+                    });
                 },
                 error: function(error) { console.log('Error: ' + JSON.stringify(error, null, '\t')); }
             });
@@ -167,12 +176,12 @@ DEMO.admin = {
 
     populateRemoveTenant: function(data) {
         $.each(data, function(i, tenant) {
-            $('#adminActionResponse').append('<div><input type="button" class="deleteTenantButton" value="' + tenant.displayName + '" id="newTenantName' + tenant.tenantId + '"></div>');
+            $('#adminActionResponse').append('<div><input type="button" class="deleteTenantButton" value="' + tenant.displayName + '" id="newTenantName' + tenant.tenantId + '" data-tenant="' + tenant.tenantId + '"></div>');
         });
 
-        $('.deleteTenantButton').on('click', function() {
+        $('.deleteTenantButton').on('click', function(event) {
             var delTenant = {
-
+                tenantId: $(event.target).data('tenant')
             };
 
             $.ajax({

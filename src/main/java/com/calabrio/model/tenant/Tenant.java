@@ -104,4 +104,18 @@ public class Tenant {
     public void setTenantState(TenantState tenantState) {
         this.tenantState = tenantState;
     }
+
+    @Override
+    public String toString() {
+        return "Tenant{" +
+                "tenantId=" + tenantId +
+                ", tenantName='" + tenantName + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", databaseName='" + databaseName + '\'' +
+                ", databaseUserName='" + databaseUserName + '\'' +
+                ", databasePassword='" + databasePassword + '\'' +
+                ", databaseInstance=" + databaseInstance +
+                ", tenantState=" + tenantState +
+                '}';
+    }
 }
