@@ -10,7 +10,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
@@ -27,7 +26,6 @@ import org.springframework.web.servlet.DispatcherServlet;
  */
 @SpringBootApplication(exclude = {HibernateJpaAutoConfiguration.class, ErrorMvcAutoConfiguration.class})
 @ComponentScan(basePackages = {"com.calabrio"})
-@EnableScheduling
 // @EnableCaching
 public class ApplicationMain {
     public static void main(String[] args) {

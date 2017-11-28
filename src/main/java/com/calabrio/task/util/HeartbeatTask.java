@@ -2,7 +2,11 @@ package com.calabrio.task.util;
 
 import com.calabrio.task.AbstractTask;
 import org.apache.log4j.Logger;
+import org.springframework.scheduling.TriggerContext;
+import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -26,7 +30,14 @@ public class HeartbeatTask extends AbstractTask {
     }
 
     @Override
-    public String getScheduleExpression() {
+    public Date getNextRunTime(TriggerContext triggerContext) {
+        log.debug("Getting next run time for HeartBeat");
+        CronTrigger trigger = new CronTrigger(getCronExpression());
+        return trigger.nextExecutionTime(triggerContext);
+    }
+
+    @Override
+    public String getCronExpression() {
         return EVERY_MINUTE;
     }
 }

@@ -27,6 +27,9 @@ public class UserSessionInterceptor extends AbstractInterceptor  {
             return false;
         }
 
+        // Set the TenantContext
+        // TenantContext.setTenantId(user.getTenantId());
+
         // Otherwise we are good to go
         return true;
     }

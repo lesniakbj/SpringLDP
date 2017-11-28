@@ -1,9 +1,10 @@
 package com.calabrio.task;
 
 import org.apache.log4j.Logger;
-import org.springframework.scheduling.annotation.SchedulingConfigurer;
-import org.springframework.scheduling.config.ScheduledTaskRegistrar;
+import org.springframework.scheduling.TriggerContext;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Component;
  * Created by Brendan.Lesniak on 11/28/2017.
  */
 @Component
-public abstract class AbstractTask implements SchedulingConfigurer, Runnable {
+public abstract class AbstractTask implements Runnable {
     private static final Logger log = Logger.getLogger(AbstractTask.class);
 
     protected static final String EVERY_SECOND = "* * * ? * *";
@@ -29,11 +30,7 @@ public abstract class AbstractTask implements SchedulingConfigurer, Runnable {
 
     protected static final String EVERY_HOUR = "0 0 * ? * *";
 
-    public abstract String getScheduleExpression();
+    public abstract Date getNextRunTime(TriggerContext triggerContext);
 
-    @Override
-    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
-        log.debug(String.format("Adding new Scheduled Task: %s, Expression: %s", this, getScheduleExpression()));
-        taskRegistrar.addCronTask(this, getScheduleExpression());
-    }
+    public abstract String getCronExpression();
 }
