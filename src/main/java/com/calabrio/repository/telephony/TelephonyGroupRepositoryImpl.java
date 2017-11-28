@@ -1,7 +1,7 @@
 package com.calabrio.repository.telephony;
 
-import com.calabrio.repository.AbstractRepository;
 import com.calabrio.model.telephony.TelephonyGroup;
+import com.calabrio.repository.AbstractRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

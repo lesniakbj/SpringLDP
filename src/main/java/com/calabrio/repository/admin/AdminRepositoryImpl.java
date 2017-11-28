@@ -3,7 +3,6 @@ package com.calabrio.repository.admin;
 import com.calabrio.repository.AbstractRepository;
 import org.apache.log4j.Logger;
 import org.hibernate.query.NativeQuery;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

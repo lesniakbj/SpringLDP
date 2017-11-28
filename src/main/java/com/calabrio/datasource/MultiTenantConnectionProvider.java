@@ -6,9 +6,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.engine.jdbc.connections.spi.AbstractDataSourceBasedMultiTenantConnectionProviderImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;

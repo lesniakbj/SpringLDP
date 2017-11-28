@@ -1,7 +1,7 @@
 package com.calabrio.repository.tenant;
 
-import com.calabrio.repository.AbstractRepository;
 import com.calabrio.model.tenant.TenantProperty;
+import com.calabrio.repository.AbstractRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

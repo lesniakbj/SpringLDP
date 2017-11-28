@@ -5,7 +5,6 @@ import com.calabrio.model.tenant.TenantState;
 import com.calabrio.repository.admin.AdminRepository;
 import com.calabrio.repository.tenant.TenantRepository;
 import com.calabrio.service.AbstractService;
-import com.calabrio.util.ObjectsUtil;
 import com.calabrio.util.properties.DbProperties;
 import org.apache.log4j.Logger;
 import org.hibernate.service.spi.ServiceException;

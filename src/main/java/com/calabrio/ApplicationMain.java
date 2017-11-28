@@ -4,13 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
@@ -27,6 +27,8 @@ import org.springframework.web.servlet.DispatcherServlet;
  */
 @SpringBootApplication(exclude = {HibernateJpaAutoConfiguration.class, ErrorMvcAutoConfiguration.class})
 @ComponentScan(basePackages = {"com.calabrio"})
+@EnableScheduling
+// @EnableCaching
 public class ApplicationMain {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(ApplicationMain.class, args);
@@ -37,12 +39,9 @@ public class ApplicationMain {
 
     @Bean
     public EmbeddedServletContainerCustomizer containerCustomizer() {
-        return new EmbeddedServletContainerCustomizer() {
-            @Override
-            public void customize(ConfigurableEmbeddedServletContainer container) {
-                container.addErrorPages(new ErrorPage(HttpStatus.UNAUTHORIZED, "/denied"));
-                container.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/denied"));
-            }
+        return container -> {
+            container.addErrorPages(new ErrorPage(HttpStatus.UNAUTHORIZED, "/denied"));
+            container.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/denied"));
         };
     }
 }

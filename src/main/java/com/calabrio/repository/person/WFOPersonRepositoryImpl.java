@@ -1,7 +1,7 @@
 package com.calabrio.repository.person;
 
-import com.calabrio.repository.AbstractRepository;
 import com.calabrio.model.user.WFOPerson;
+import com.calabrio.repository.AbstractRepository;
 import org.apache.log4j.Logger;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;

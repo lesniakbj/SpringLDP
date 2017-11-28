@@ -1,7 +1,7 @@
 package com.calabrio.service.tenant;
 
-import com.calabrio.repository.tenant.TenantPropertyRepository;
 import com.calabrio.model.tenant.TenantProperty;
+import com.calabrio.repository.tenant.TenantPropertyRepository;
 import com.calabrio.service.AbstractService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

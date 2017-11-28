@@ -1,7 +1,6 @@
 package com.calabrio.controller.admin.endpoints;
 
 import com.calabrio.controller.AbstractController;
-import com.calabrio.dto.message.SuccessMessage;
 import com.calabrio.model.auth.EndpointMapping;
 import com.calabrio.util.JsonUtil;
 import org.apache.log4j.Logger;

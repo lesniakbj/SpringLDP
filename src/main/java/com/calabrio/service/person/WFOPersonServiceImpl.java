@@ -1,17 +1,13 @@
 package com.calabrio.service.person;
 
-import com.calabrio.repository.person.WFOPersonRepository;
 import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.user.WFOPerson;
-import com.calabrio.security.principal.UserPrincipal;
+import com.calabrio.repository.person.WFOPersonRepository;
 import com.calabrio.service.AbstractService;
 import com.calabrio.service.auth.AuthenticationService;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.naming.AuthenticationException;

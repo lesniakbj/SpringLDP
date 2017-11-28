@@ -3,7 +3,11 @@ package com.calabrio.model.server;
 import com.calabrio.model.telephony.TelephonyGroup;
 import com.google.gson.annotations.Expose;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.

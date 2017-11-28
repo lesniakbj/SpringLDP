@@ -6,10 +6,8 @@ import org.apache.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.stream.Collectors;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.

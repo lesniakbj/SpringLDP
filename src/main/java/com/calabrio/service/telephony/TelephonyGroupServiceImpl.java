@@ -1,7 +1,7 @@
 package com.calabrio.service.telephony;
 
-import com.calabrio.repository.telephony.TelephonyGroupRepository;
 import com.calabrio.model.telephony.TelephonyGroup;
+import com.calabrio.repository.telephony.TelephonyGroupRepository;
 import com.calabrio.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
