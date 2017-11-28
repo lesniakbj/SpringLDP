@@ -1,5 +1,6 @@
 package com.calabrio.task;
 
+import com.calabrio.datasource.context.TenantContext;
 import org.apache.log4j.Logger;
 import org.springframework.scheduling.TriggerContext;
 import org.springframework.stereotype.Component;
@@ -24,13 +25,24 @@ public abstract class AbstractTask implements Runnable {
 
     protected static final String EVERY_SECOND = "* * * ? * *";
     protected static final String EVERY_FIVE_SECONDS = "*/5 * * ? * *";
-
     protected static final String EVERY_MINUTE = "0 * * ? * *";
     protected static final String EVERY_FIVE_MINUTES = "0 */5 * ? * *";
-
     protected static final String EVERY_HOUR = "0 0 * ? * *";
 
-    public abstract Date getNextRunTime(TriggerContext triggerContext);
+    private Integer tenantId;
 
+    public abstract Date getNextRunTime(TriggerContext triggerContext);
     public abstract String getCronExpression();
+
+    public void setTenantId(Integer tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public Integer getTenantId() {
+        return this.tenantId;
+    }
+
+    public void setTenantSession() {
+        TenantContext.setTenantId(tenantId);
+    }
 }

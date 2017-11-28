@@ -1,7 +1,7 @@
 package com.calabrio.datasource;
 
+import com.calabrio.datasource.context.TenantContext;
 import com.calabrio.util.properties.DbProperties;
-import com.calabrio.util.properties.SessionProperties;
 import org.apache.log4j.Logger;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.stereotype.Component;
@@ -33,16 +33,10 @@ public class TenantResolver implements CurrentTenantIdentifierResolver {
     }
 
     private Integer resolveTenant() {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        if(attr != null) {
-            HttpSession sess = attr.getRequest().getSession(false);
-            if(sess != null) {
-                Integer tenantDb = (Integer)sess.getAttribute(SessionProperties.WFO_TENANT);
-                if(tenantDb != null) {
-                    log.debug(String.format("Tenant Resolved to: %s", tenantDb));
-                    return tenantDb;
-                }
-            }
+        Integer tenantDb = TenantContext.getTenantId();
+        if(tenantDb != null) {
+            log.debug(String.format("Tenant Resolved to: %s", tenantDb));
+            return tenantDb;
         }
 
         log.debug("Resolved to default tenant ID.");

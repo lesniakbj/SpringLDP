@@ -16,6 +16,12 @@ public class AdminRepositoryImpl extends AbstractRepository implements AdminRepo
     private static final String CREATE_BASE_TENANT_USERS = "EXEC admin.createTenantUsers :dbName, :tenantId";
 
     @Override
+    public boolean heartbeat() {
+        NativeQuery createDb = getSession().createNativeQuery("SELECT 3 + 4");
+        return createDb.getSingleResult() != null;
+    }
+
+    @Override
     public boolean createTenantDatabase(String databaseName, String username, String password) {
         log.debug("Creating Tenant DB Query");
         NativeQuery createDb = getSession().createNativeQuery(CREATE_TENANT_DB);

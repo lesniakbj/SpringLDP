@@ -1,6 +1,7 @@
 package com.calabrio.controller.auth;
 
 import com.calabrio.controller.AbstractController;
+import com.calabrio.datasource.context.TenantContext;
 import com.calabrio.dto.message.SuccessMessage;
 import com.calabrio.model.auth.AuthRequest;
 import com.calabrio.model.tenant.Tenant;
@@ -52,7 +53,7 @@ public class AuthController extends AbstractController {
         try {
             log.debug(String.format("Passed in RequestBody: %s", requestJson));
             AuthRequest auth = JsonUtil.fromJson(requestBody(rq, requestJson), AuthRequest.class);
-            setAttribute(rq, SessionProperties.WFO_TENANT, auth.getTenantId());
+            TenantContext.setTenantId(auth.getTenantId());
 
             // If there isn't a TenantId, return a list of Tenant Name/Ids
             if(auth.getTenantId() == null) {
