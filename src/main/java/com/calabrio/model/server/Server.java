@@ -17,7 +17,7 @@ import javax.persistence.*;
  * Created by Brendan.Lesniak on 11/20/2017.
  */
 @Entity
-@Table(name = "Server")
+@Table(name = "Server", indexes = {})
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Server {
     @Id
