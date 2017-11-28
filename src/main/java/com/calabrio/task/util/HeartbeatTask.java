@@ -50,11 +50,7 @@ public class HeartbeatTask extends AbstractTask {
 
     @Override
     public String getCronExpression() {
+        // Get the expression from the Db, Properties, Etc...
         return EVERY_MINUTE;
-    }
-
-    @Override
-    public Integer getTenantId() {
-        return null;
     }
 }
