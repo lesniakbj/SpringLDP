@@ -3,6 +3,7 @@ package com.calabrio.task;
 import com.calabrio.datasource.context.TenantContext;
 import org.apache.log4j.Logger;
 import org.springframework.scheduling.TriggerContext;
+import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -31,8 +32,13 @@ public abstract class AbstractTask implements Runnable {
 
     private Integer tenantId;
 
-    public abstract Date getNextRunTime(TriggerContext triggerContext);
     public abstract String getCronExpression();
+
+    public Date getNextRunTime(TriggerContext triggerContext) {
+        log.debug("Getting next run time for HeartBeat");
+        CronTrigger trigger = new CronTrigger(getCronExpression());
+        return trigger.nextExecutionTime(triggerContext);
+    }
 
     public void setTenantId(Integer tenantId) {
         this.tenantId = tenantId;

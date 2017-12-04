@@ -30,14 +30,20 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.8.RELEASE'
 
     // Spring Security
-    compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.0.0.M5'
-    compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.0.0.M5'
-    compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.0.0.M5'
+    compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.0.0.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.0.0.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.0.0.RELEASE'
 
-    // Spring Framework (Other)
-    compile group: 'org.springframework', name: 'spring-jdbc', version: '5.0.1.RELEASE'
-    compile group: 'org.springframework', name: 'spring-tx', version: '5.0.1.RELEASE'
-    compile group: 'org.springframework', name: 'spring-orm', version: '5.0.1.RELEASE'
+    // Spring WebSocket/Messaging
+    compile group: 'org.springframework', name: 'spring-websocket', version: '5.0.2.RELEASE'
+    compile group: 'org.springframework', name: 'spring-messaging', version: '5.0.2.RELEASE'
+
+    // Spring Database/Transactions/ORM
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '5.0.2.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version: '5.0.2.RELEASE'
+    compile group: 'org.springframework', name: 'spring-orm', version: '5.0.2.RELEASE'
+
+    // Inject Annotation
     compile group: 'javax.inject', name: 'javax.inject', version: '1'
 
     // Log4J

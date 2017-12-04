@@ -11,4 +11,6 @@ public interface AdminTenantService {
 
     Tenant addTenant(Tenant tenant);
     void removeTenant(Tenant tenant);
+
+    boolean heartbeat();
 }

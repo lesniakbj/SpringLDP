@@ -16,13 +16,13 @@ public class TenantRepositoryImpl extends AbstractRepository implements TenantRe
 
     @Override
     public Tenant findById(Integer tenantId) {
-        Query query = super.getQuery("FROM Tenant WHERE tenantId = :tenantId").setParameter("tenantId", tenantId);
+        Query<Tenant> query = super.getQuery("FROM Tenant WHERE tenantId = :tenantId", Tenant.class).setParameter("tenantId", tenantId);
         return querySingleResult(query);
     }
 
     @Override
     public Tenant findByName(String tenantName, String databaseName) {
-        Query query = super.getQuery("FROM Tenant WHERE tenantName = :tenantName AND databaseName = :databaseName");
+        Query<Tenant> query = super.getQuery("FROM Tenant WHERE tenantName = :tenantName AND databaseName = :databaseName", Tenant.class);
         query.setParameter("tenantName", tenantName);
         query.setParameter("databaseName", databaseName);
         return super.querySingleResult(query);

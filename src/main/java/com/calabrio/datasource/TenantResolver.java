@@ -2,13 +2,10 @@ package com.calabrio.datasource;
 
 import com.calabrio.datasource.context.TenantContext;
 import com.calabrio.util.properties.DbProperties;
+import com.calabrio.util.properties.SessionProperties;
 import org.apache.log4j.Logger;
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpSession;
 
 /**
  * (c) Copyright 2017 Calabrio, Inc.
@@ -33,9 +30,19 @@ public class TenantResolver implements CurrentTenantIdentifierResolver {
     }
 
     private Integer resolveTenant() {
+        // First check to see if our TenantContext for the running thread has
+        // been set; otherwise, we will want to set the TenantId based on the
+        // HTTP session of the logged in user. TenantContext should be used in Service/Intra-App calls.
         Integer tenantDb = TenantContext.getTenantId();
         if(tenantDb != null) {
-            log.debug(String.format("Tenant Resolved to: %s", tenantDb));
+            log.debug(String.format("Tenant Resolved using TenantContext to: %s", tenantDb));
+            return tenantDb;
+        }
+
+        // Session Properties should be set on the HTTP Session level, for a logged in user.
+        tenantDb = SessionProperties.getTenantId();
+        if(tenantDb != null) {
+            log.debug(String.format("Tenant Resolved using SessionProperties to: %s", tenantDb));
             return tenantDb;
         }
 

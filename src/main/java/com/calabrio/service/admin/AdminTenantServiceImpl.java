@@ -93,4 +93,18 @@ public class AdminTenantServiceImpl extends AbstractService implements AdminTena
         setTenantId(DbProperties.DEFAULT_TENANT);
         tenantRepository.delete(tenant);
     }
+
+    @Override
+    public boolean heartbeat() {
+        setTenantId(DbProperties.DEFAULT_TENANT);
+        List<Tenant> tenants = getAllTenants();
+        for(Tenant t : tenants) {
+            log.debug(String.format("Checking Tenant %s Heat Beat", t.getTenantId()));
+            setTenantId(t.getTenantId());
+            if(!adminRepository.heartbeat()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

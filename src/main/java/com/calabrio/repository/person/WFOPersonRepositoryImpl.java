@@ -26,7 +26,7 @@ public class WFOPersonRepositoryImpl extends AbstractRepository implements WFOPe
 
     public WFOPerson findByEmail(String email) {
         log.debug("Finding user by email.");
-        Query query = super.getQuery("FROM WFOPerson WHERE email = :email").setParameter("email", email);
+        Query<WFOPerson> query = super.getQuery("FROM WFOPerson WHERE email = :email", WFOPerson.class).setParameter("email", email);
         return super.querySingleResult(query);
     }
 
@@ -37,7 +37,7 @@ public class WFOPersonRepositoryImpl extends AbstractRepository implements WFOPe
             return false;
         }
 
-        Query query = super.getQuery("FROM WFOPerson WHERE email = :email AND password = :password").setParameter("password", password).setParameter("email", user.getEmail());
+        Query<WFOPerson> query = super.getQuery("FROM WFOPerson WHERE email = :email AND password = :password", WFOPerson.class).setParameter("password", password).setParameter("email", user.getEmail());
         WFOPerson pwUser =  super.querySingleResult(query);
 
         return pwUser != null && pwUser.equals(user);

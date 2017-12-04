@@ -1,5 +1,8 @@
 package com.calabrio.util.properties;
 
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
 /**
  * (c) Copyright 2017 Calabrio, Inc.
  * All Rights Reserved. www.calabrio.com LICENSED MATERIALS
@@ -13,5 +16,14 @@ package com.calabrio.util.properties;
  * Created by Brendan.Lesniak on 11/17/2017.
  */
 public class SessionProperties {
+    public static final String WFO_TENANT = "WFOTenant";
     public static final String WFO_PERSON = "WFOPerson";
+
+    public static Integer getTenantId() {
+        return (Integer)((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession(false).getAttribute(WFO_TENANT);
+    }
+
+    public static void setTenantId(Integer tenantId) {
+        ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession(false).setAttribute(WFO_TENANT, tenantId);
+    }
 }

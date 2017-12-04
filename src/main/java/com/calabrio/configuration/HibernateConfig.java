@@ -2,6 +2,7 @@ package com.calabrio.configuration;
 
 import com.calabrio.datasource.MultiTenantConnectionProvider;
 import com.calabrio.datasource.TenantResolver;
+import com.calabrio.interceptor.QueryInterceptor;
 import com.calabrio.util.ConnectionUtil;
 import com.calabrio.util.SpringUtil;
 import org.apache.log4j.Logger;
@@ -51,6 +52,10 @@ public class HibernateConfig {
     @Qualifier("tenantResolverBean")
     private TenantResolver tenantResolver;
 
+    @Autowired
+    @Qualifier("queryInterceptorBean")
+    private QueryInterceptor queryInterceptor;
+
     @Bean
     @Autowired
     public LocalSessionFactoryBean sessionFactory() {
@@ -61,6 +66,7 @@ public class HibernateConfig {
         sessionFactory.setHibernateProperties(hibernateProperties());
         sessionFactory.setCurrentTenantIdentifierResolver(tenantResolver);
         sessionFactory.setMultiTenantConnectionProvider(connectionProvider);
+        sessionFactory.setEntityInterceptor(queryInterceptor);
         return sessionFactory;
     }
 
@@ -97,5 +103,10 @@ public class HibernateConfig {
     @Bean(name = "tenantResolverBean")
     public TenantResolver tenantResolverBean() {
         return new TenantResolver();
+    }
+
+    @Bean(name = "queryInterceptorBean")
+    public QueryInterceptor queryInterceptorBean() {
+        return new QueryInterceptor();
     }
 }

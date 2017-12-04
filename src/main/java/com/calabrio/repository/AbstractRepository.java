@@ -37,21 +37,21 @@ public class AbstractRepository {
         criteria.select(root);
         return sess.createQuery(criteria).list();
     }
-    public Query getQuery(String query) {
-        return getSession().createQuery(query);
+    public <T> Query<T> getQuery(String query, Class<T> type) {
+        return getSession().createQuery(query, type);
     }
-    public <T> T querySingleResult(Query query) {
+    public <T> T querySingleResult(Query<T> query) {
         try {
-            return (T)query.getSingleResult();
+            return query.getSingleResult();
         } catch (NoResultException ex) {
             log.debug("No results when attempting query!");
         }
 
         return null;
     }
-    public <T> List<T> queryListResult(Query query) {
+    public <T> List<T> queryListResult(Query<T> query) {
         try {
-            return (List<T>)query.list();
+            return query.list();
         } catch (NoResultException ex) {
             log.debug("No results when attempting query!");
         }
