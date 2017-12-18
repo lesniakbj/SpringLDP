@@ -29,10 +29,11 @@ public class TenantResolver implements CurrentTenantIdentifierResolver {
         return Integer.toString(resolveTenant());
     }
 
+    // First check to see if our TenantContext for the running thread has
+    // been set; otherwise, we will want to set the TenantId based on the
+    // HTTP session of the logged in user.
     private Integer resolveTenant() {
-        // First check to see if our TenantContext for the running thread has
-        // been set; otherwise, we will want to set the TenantId based on the
-        // HTTP session of the logged in user. TenantContext should be used in Service/Intra-App calls.
+        // TenantContext should be used in Service/Intra-App calls.
         Integer tenantDb = TenantContext.getTenantId();
         if(tenantDb != null) {
             log.debug(String.format("Tenant Resolved using TenantContext to: %s", tenantDb));
